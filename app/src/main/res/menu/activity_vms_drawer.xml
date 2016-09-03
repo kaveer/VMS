@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Vehicle Details" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Owner Details" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Accident Records" />
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Tools" />
+    </group>
+
+    <item android:title="Expenses">
+        <menu>
+            <item
+                android:id="@+id/NavFuel"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Fuel" />
+            <item
+                android:id="@+id/NavRepairServicing"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Repair and servicing" />
+            <item
+                android:id="@+id/NavFines"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Fines" />
+            <item
+                android:id="@+id/NavCarWash"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Car Wash" />
+            <item
+                android:id="@+id/NavParking"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Parking" />
+            <item
+                android:id="@+id/NavOtherExpenses"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Other Expenses" />
+        </menu>
+    </item>
+    <item android:title="Annual Expenses">
+        <menu>
+            <item
+                android:id="@+id/NavInsurance"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Insurance" />
+            <item
+                android:id="@+id/NavFitness"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Fitness" />
+            <item
+                android:id="@+id/NavRoadTaxation"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Road Taxation" />
+        </menu>
+    </item>
+    <item android:title="Communication">
+        <menu>
+            <item
+                android:id="@+id/NavShare"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Share" />
+            <item
+                android:id="@+id/NavFacebook"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Facebook" />
+        </menu>
+    </item>
+</menu>
