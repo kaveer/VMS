@@ -24,6 +24,7 @@ public class VMS extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //change general fragment to main fragment created
         MainFragment main = new MainFragment();
         android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
         fmTransaction.replace(R.id.Frame_container, main);
@@ -84,22 +85,86 @@ public class VMS extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
-
         if (id == R.id.NavVehicleDetails) {
-           VehicleDetailsFragment fragment = new  VehicleDetailsFragment();
+            VehicleDetailsFragment fragment = new  VehicleDetailsFragment();
+            android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
+            fmTransaction.replace(R.id.Frame_container, fragment);
+            fmTransaction.commit();
+        } else if (id == R.id.NavHome) {
+            MainFragment fragment = new MainFragment();
             android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
             fmTransaction.replace(R.id.Frame_container, fragment);
             fmTransaction.commit();
         } else if (id == R.id.NavOwnerDetails) {
-
-        } else if (id == R.id.NavAccidentRecords) {
-
+            OwnerDetailsFragment fragment = new OwnerDetailsFragment();
+            android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
+            fmTransaction.replace(R.id.Frame_container, fragment);
+            fmTransaction.commit();
+        }else if (id == R.id.NavAccidentRecords) {
+            AccidentRecordFragment fragment = new AccidentRecordFragment();
+            android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
+            fmTransaction.replace(R.id.Frame_container, fragment);
+            fmTransaction.commit();
         } else if (id == R.id.NavTools) {
-
+            ToolsFragment fragment = new ToolsFragment();
+            android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
+            fmTransaction.replace(R.id.Frame_container, fragment);
+            fmTransaction.commit();
+        } else if (id == R.id.NavFuel) {
+            FuelFragment fragment = new FuelFragment();
+            android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
+            fmTransaction.replace(R.id.Frame_container, fragment);
+            fmTransaction.commit();
+        } else if (id == R.id.NavRepairServicing) {
+            RepairServicingFragment fragment = new RepairServicingFragment();
+            android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
+            fmTransaction.replace(R.id.Frame_container, fragment);
+            fmTransaction.commit();
+        } else if (id == R.id.NavFines) {
+            FinesFragment fragment = new FinesFragment();
+            android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
+            fmTransaction.replace(R.id.Frame_container, fragment);
+            fmTransaction.commit();
+        } else if (id == R.id.NavCarWash) {
+            CarWashFragment fragment = new CarWashFragment();
+            android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
+            fmTransaction.replace(R.id.Frame_container, fragment);
+            fmTransaction.commit();
+        } else if (id == R.id.NavParking) {
+            ParkingFragment fragment = new ParkingFragment();
+            android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
+            fmTransaction.replace(R.id.Frame_container, fragment);
+            fmTransaction.commit();
+        } else if (id == R.id.NavOtherExpenses) {
+            OtherExpensesFragment fragment = new OtherExpensesFragment();
+            android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
+            fmTransaction.replace(R.id.Frame_container, fragment);
+            fmTransaction.commit();
+        } else if (id == R.id.NavInsurance) {
+            InsuranceFragment fragment = new InsuranceFragment();
+            android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
+            fmTransaction.replace(R.id.Frame_container, fragment);
+            fmTransaction.commit();
+        } else if (id == R.id.NavFitness) {
+            FitnessFragment fragment = new FitnessFragment();
+            android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
+            fmTransaction.replace(R.id.Frame_container, fragment);
+            fmTransaction.commit();
+        } else if (id == R.id.NavRoadTaxation) {
+            RoadTaxationFragment fragment = new RoadTaxationFragment();
+            android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
+            fmTransaction.replace(R.id.Frame_container, fragment);
+            fmTransaction.commit();
         } else if (id == R.id.NavShare) {
-
+            ShareFragment fragment = new ShareFragment();
+            android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
+            fmTransaction.replace(R.id.Frame_container, fragment);
+            fmTransaction.commit();
         } else if (id == R.id.NavFacebook) {
-
+            FacebookFragment fragment = new FacebookFragment();
+            android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
+            fmTransaction.replace(R.id.Frame_container, fragment);
+            fmTransaction.commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

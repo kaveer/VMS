@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.avitah.vms.OwnerDetailsFragment">
+    tools:context="com.example.avitah.vms.AccidentRecordFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
@@ -13,9 +13,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="owner"
-        android:id="@+id/textView13"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="acc"
+        android:id="@+id/textView5"
         android:layout_gravity="center" />
 
 </FrameLayout>

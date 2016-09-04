@@ -1,7 +1,6 @@
 package com.example.avitah.vms;
 
-import android.content.Context;
-import android.net.Uri;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,15 +10,11 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link OwnerDetailsFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
  */
-public class OwnerDetailsFragment extends Fragment {
+public class FacebookFragment extends Fragment {
 
 
-
-    public OwnerDetailsFragment() {
+    public FacebookFragment() {
         // Required empty public constructor
     }
 
@@ -28,11 +23,7 @@ public class OwnerDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_owner_details, container, false);
+        return inflater.inflate(R.layout.fragment_facebook, container, false);
     }
-
-
-
-
 
 }

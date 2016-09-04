@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.avitah.vms.OwnerDetailsFragment">
+    tools:context="com.example.avitah.vms.InsuranceFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
@@ -14,8 +14,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="owner"
-        android:id="@+id/textView13"
+        android:text="nsurance"
+        android:id="@+id/textView11"
         android:layout_gravity="center" />
 
 </FrameLayout>
