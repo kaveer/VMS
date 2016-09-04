@@ -1,5 +1,6 @@
 package com.example.avitah.vms;
 
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -22,6 +23,11 @@ public class VMS extends AppCompatActivity
         setContentView(R.layout.activity_vms);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        MainFragment main = new MainFragment();
+        android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
+        fmTransaction.replace(R.id.Frame_container, main);
+        fmTransaction.commit();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -77,16 +83,18 @@ public class VMS extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.NavVehicleDetails) {
+           VehicleDetailsFragment fragment = new  VehicleDetailsFragment();
+            android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
+            fmTransaction.replace(R.id.Frame_container, fragment);
+            fmTransaction.commit();
+        } else if (id == R.id.NavOwnerDetails) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.NavAccidentRecords) {
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.NavTools) {
 
         } else if (id == R.id.NavShare) {
 
