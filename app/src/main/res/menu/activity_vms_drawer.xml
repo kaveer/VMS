@@ -4,19 +4,19 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/NavHome"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_home_black_24dp"
             android:title="Home" />
         <item
             android:id="@+id/NavVehicleDetails"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_directions_car_black_24dp"
             android:title="Vehicle Details" />
         <item
             android:id="@+id/NavOwnerDetails"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_account_circle_black_24dp"
             android:title="Owner Details" />
         <item
             android:id="@+id/NavAccidentRecords"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_local_hospital_black_24dp"
             android:title="Accident Records" />
         <item
             android:id="@+id/NavTools"
@@ -28,27 +28,27 @@
         <menu>
             <item
                 android:id="@+id/NavFuel"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_local_gas_station_black_24dp"
                 android:title="Fuel" />
             <item
                 android:id="@+id/NavRepairServicing"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/ic_traffic_black_24dp"
                 android:title="Repair and servicing" />
             <item
                 android:id="@+id/NavFines"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_local_atm_black_24dp"
                 android:title="Fines" />
             <item
                 android:id="@+id/NavCarWash"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_local_car_wash_black_24dp"
                 android:title="Car Wash" />
             <item
                 android:id="@+id/NavParking"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_local_parking_black_24dp"
                 android:title="Parking" />
             <item
                 android:id="@+id/NavOtherExpenses"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_local_atm_black_24dp"
                 android:title="Other Expenses" />
         </menu>
     </item>
@@ -56,15 +56,15 @@
         <menu>
             <item
                 android:id="@+id/NavInsurance"
-                android:icon="@drawable/ic_menu_share"
+                android:icon="@drawable/ic_rate_review_black_24dp"
                 android:title="Insurance" />
             <item
                 android:id="@+id/NavFitness"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_healing_black_24dp"
                 android:title="Fitness" />
             <item
                 android:id="@+id/NavRoadTaxation"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_directions_black_24dp"
                 android:title="Road Taxation" />
         </menu>
     </item>
@@ -76,7 +76,7 @@
                 android:title="Share" />
             <item
                 android:id="@+id/NavFacebook"
-                android:icon="@drawable/ic_menu_send"
+                android:icon="@drawable/ic_menu_share"
                 android:title="Facebook" />
         </menu>
     </item>
