@@ -128,7 +128,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="SignUp"
-                android:id="@+id/button4" />
+                android:id="@+id/ButtonSignUp"
+                android:onClick="OnSignUpButtonClick" />
         </LinearLayout>
     </ScrollView>
     </RelativeLayout>
