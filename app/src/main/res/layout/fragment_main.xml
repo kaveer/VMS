@@ -41,7 +41,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="Large Text"
-                        android:id="@+id/textView6"
+                        android:id="@+id/TextboxEmail"
                         android:layout_column="0" />
 
                 </TableRow>
@@ -55,7 +55,7 @@
                         android:layout_height="wrap_content"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:text="Medium Text"
-                        android:id="@+id/textView9"
+                        android:id="@+id/TextboxPassword"
                         android:layout_column="0" />
 
                 </TableRow>

@@ -16,15 +16,23 @@ public class Login extends AppCompatActivity {
     public  void OnLoginButtonClick(View login){
 
         if(login.getId() == R.id.ButtonLogin){
-            Intent i = new Intent(Login.this, VMS.class);
-            startActivity(i);
+
+            //EditText email = (EditText)findViewById(R.id.TextboxEmail);
+           // String emailVariable = email.getText().toString();
+           // EditText password = (EditText)findViewById(R.id.TextboxPassword);
+           // String passwordVariable = password.getText().toString();
+
+            Intent loginActivity = new Intent(Login.this, VMS.class);
+           // loginActivity.putExtra("email" , emailVariable);
+            //loginActivity.putExtra("password" , passwordVariable);
+            startActivity(loginActivity);
         }
     }
 
     public void OnSignUpButtonClick(View signUp){
         if(signUp.getId() == R.id.ButtonSignUp){
-            Intent i = new Intent(Login.this, SignUp.class);
-            startActivity(i);
+            Intent signupActivity = new Intent(Login.this, SignUp.class);
+            startActivity(signupActivity);
         }
     }
 }

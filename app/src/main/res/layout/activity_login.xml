@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Username(Email)"
+                android:text="Email"
                 android:id="@+id/textView13" />
 
             <EditText
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:ems="10"
-                android:id="@+id/editText5" />
+                android:id="@+id/TextboxEmail" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:ems="10"
-                android:id="@+id/editText6" />
+                android:id="@+id/TextboxPassword" />
 
             <Button
                 android:layout_width="match_parent"

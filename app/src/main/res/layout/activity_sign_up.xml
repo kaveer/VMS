@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
-                android:text="Username(Email)"
+                android:text="Email"
                 android:id="@+id/textView13" />
 
             <EditText
@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:ems="10"
-                android:id="@+id/editText5" />
+                android:id="@+id/TextboxEmail" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:ems="10"
-                android:id="@+id/editText6" />
+                android:id="@+id/TextboxPassword" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:ems="10"
-                android:id="@+id/ConfirmPasswordTxt" />
+                android:id="@+id/TextboxConfirmPassword" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -86,7 +86,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/FirstNameTxt" />
+                android:id="@+id/TextboxFirstName" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -98,7 +98,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/LastNAmeTxt" />
+                android:id="@+id/TextboxLastName" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -110,7 +110,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/AddressTxt" />
+                android:id="@+id/TextboxAddress" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -122,7 +122,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/editText7" />
+                android:id="@+id/TextboxContact" />
 
             <Button
                 android:layout_width="match_parent"
