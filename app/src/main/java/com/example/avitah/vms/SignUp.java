@@ -33,10 +33,39 @@ public class SignUp extends AppCompatActivity {
             EditText contact = (EditText)findViewById(R.id.TextboxContact);
             String contactVariable = contact.getText().toString();
 
-            if(ValidatePassword(passwordVariable , confirmPasswordVariable)== true){
-                Intent i = new Intent(SignUp.this, VMS.class);
-                startActivity(i);
-            }
+
+           if(emailVariable.isEmpty() == true){
+               email.setError("Enter Email");
+               return;
+           }
+
+           if(passwordVariable.isEmpty() == true){
+                password.setError("Enter Password");
+           }
+
+           if(passwordVariable.length() <= 6){
+                password.setError( "must be greater that 6 characters");
+                return;
+           }
+
+
+           if(ValidatePassword(passwordVariable , confirmPasswordVariable)== false){
+                confirmPassword.setError("Password don't match");
+                return;
+           }
+
+           if (firstnameVariable.isEmpty() == true){
+                firstname.setError("Enter Firstname");
+                return;
+           }
+
+           if(lastnameVariable.isEmpty() == true){
+               lastname.setError("Enter Lastname");
+               return;
+           }
+
+           Intent i = new Intent(SignUp.this, VMS.class);
+           startActivity(i);
         }
     }
 
@@ -44,9 +73,6 @@ public class SignUp extends AppCompatActivity {
     {
 
         if (!password.equals(confirmPassword)) {
-
-            Toast msgbox = Toast.makeText(SignUp.this , "Password don't match" , Toast.LENGTH_SHORT);
-            msgbox.show();
 
             return false;
         }

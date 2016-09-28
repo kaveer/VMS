@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public class Login extends AppCompatActivity {
 
@@ -17,15 +19,30 @@ public class Login extends AppCompatActivity {
 
         if(login.getId() == R.id.ButtonLogin){
 
-            //EditText email = (EditText)findViewById(R.id.TextboxEmail);
-           // String emailVariable = email.getText().toString();
-           // EditText password = (EditText)findViewById(R.id.TextboxPassword);
-           // String passwordVariable = password.getText().toString();
+            EditText email = (EditText)findViewById(R.id.TextboxEmail);
+            String emailVariable = email.getText().toString();
+            EditText password = (EditText)findViewById(R.id.TextboxPassword);
+            String passwordVariable = password.getText().toString();
+
+            if (emailVariable.isEmpty() == true){
+                email.setError("Enter Email");
+                return;
+            }
+            if(passwordVariable.isEmpty() == true){
+                password.setError("Enter Password");
+                return;
+            }
+
+            if(passwordVariable.length() <= 6){
+                password.setError( "must be greater that 6 characters");
+                return;
+            }
 
             Intent loginActivity = new Intent(Login.this, VMS.class);
-           // loginActivity.putExtra("email" , emailVariable);
-            //loginActivity.putExtra("password" , passwordVariable);
             startActivity(loginActivity);
+
+            Toast msgbox = Toast.makeText(Login.this , "Login successful" , Toast.LENGTH_SHORT);
+            msgbox.show();
         }
     }
 
