@@ -39,6 +39,11 @@ public class SignUp extends AppCompatActivity {
                return;
            }
 
+            if ( ValidateEmail(emailVariable) == false){
+                email.setError("Invalid Email");
+                return;
+            }
+
            if(passwordVariable.isEmpty() == true){
                 password.setError("Enter Password");
            }
@@ -54,6 +59,8 @@ public class SignUp extends AppCompatActivity {
                 return;
            }
 
+
+
            if (firstnameVariable.isEmpty() == true){
                 firstname.setError("Enter Firstname");
                 return;
@@ -66,7 +73,19 @@ public class SignUp extends AppCompatActivity {
 
            Intent i = new Intent(SignUp.this, VMS.class);
            startActivity(i);
+            Toast msgbox = Toast.makeText(SignUp.this , "Sign up successful" , Toast.LENGTH_SHORT);
+            msgbox.show();
         }
+    }
+
+    public  boolean ValidateEmail(String email){
+
+        if (!email.toString().matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"))
+        {
+            return false;
+        }
+
+        return true;
     }
 
     public boolean ValidatePassword(String password , String confirmPassword)
