@@ -165,6 +165,16 @@ public class VMS extends AppCompatActivity
             android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
             fmTransaction.replace(R.id.Frame_container, fragment);
             fmTransaction.commit();
+        }else if(id == R.id.ExpenseReport){
+            ExpenseReport fragment = new ExpenseReport();
+            android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
+            fmTransaction.replace(R.id.Frame_container, fragment);
+            fmTransaction.commit();
+        }else  if(id == R.id.AnnualExpenseReport){
+            AnnualExpenseReport fragment = new AnnualExpenseReport();
+            android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
+            fmTransaction.replace(R.id.Frame_container, fragment);
+            fmTransaction.commit();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

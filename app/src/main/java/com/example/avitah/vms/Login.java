@@ -38,10 +38,10 @@ public class Login extends AppCompatActivity {
                 return;
             }
 
-            if ( ValidateEmail(emailVariable) == false){
+           /* if ( ValidateEmail(emailVariable) == false){
                 email.setError("Invalid Email");
                 return;
-            }
+            }*/
 
             Intent loginActivity = new Intent(Login.this, VMS.class);
             startActivity(loginActivity);

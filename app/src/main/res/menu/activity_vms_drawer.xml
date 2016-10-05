@@ -68,6 +68,18 @@
                 android:title="Road Taxation" />
         </menu>
     </item>
+    <item android:title="Reports">
+        <menu>
+            <item
+                android:title="Expense report"
+                android:icon="@drawable/ic_report"
+                android:id="@+id/ExpenseReport"/>
+            <item
+                android:title="Annual Expense report"
+                android:icon="@drawable/ic_report"
+                android:id="@+id/AnnualExpenseReport"/>
+        </menu>
+    </item>
     <item android:title="Communication">
         <menu>
             <item
