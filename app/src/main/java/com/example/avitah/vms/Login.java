@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class Login extends AppCompatActivity {
+    EditText email;
+    EditText password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,49 +18,37 @@ public class Login extends AppCompatActivity {
     }
 
     public  void OnLoginButtonClick(View login){
+        email = (EditText)findViewById(R.id.TextboxEmail);
+        password = (EditText)findViewById(R.id.TextboxPassword);
 
         if(login.getId() == R.id.ButtonLogin){
-
-            EditText email = (EditText)findViewById(R.id.TextboxEmail);
-            String emailVariable = email.getText().toString();
-            EditText password = (EditText)findViewById(R.id.TextboxPassword);
-            String passwordVariable = password.getText().toString();
-
-            if (emailVariable.isEmpty() == true){
-                email.setError("Enter Email");
-                return;
+            if(ValidateEditText()){
+                Intent main = new Intent(Login.this, VMS.class);
+                startActivity(main);
+                Toast messageBox = Toast.makeText(Login.this , "Login successful" , Toast.LENGTH_LONG);
+                messageBox.show();
             }
-            if(passwordVariable.isEmpty() == true){
-                password.setError("Enter Password");
-                return;
-            }
-
-            if(passwordVariable.length() <= 6){
-                password.setError( "must be greater that 6 characters");
-                return;
-            }
-
-           /* if ( ValidateEmail(emailVariable) == false){
-                email.setError("Invalid Email");
-                return;
-            }*/
-
-            Intent loginActivity = new Intent(Login.this, VMS.class);
-            startActivity(loginActivity);
-
-            Toast msgbox = Toast.makeText(Login.this , "Login successful" , Toast.LENGTH_SHORT);
-            msgbox.show();
         }
     }
 
-    public  boolean ValidateEmail(String email){
+    public boolean ValidateEditText(){
+        boolean result = true;
 
-        if (!email.toString().matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"))
-        {
-            return false;
+        if(email.getText().toString().trim().length() == 0){
+            email.setError("Enter Email");
+            return result = false;
         }
 
-        return true;
+        if (!email.getText().toString().trim().matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")){
+            email.setError("Invalid Email Format");
+            return result = false;
+        }
+
+        if(password.getText().toString().trim().length() <= 6){
+            password.setError( "must be greater that 6 characters");
+            return result = false;
+        }
+        return  result;
     }
 
     public void OnSignUpButtonClick(View signUp){

@@ -9,6 +9,14 @@ import android.widget.Toast;
 
 public class SignUp extends AppCompatActivity {
 
+    EditText email;
+    EditText password;
+    EditText confirmPassword;
+    EditText firstName;
+    EditText lastName;
+    EditText address;
+    EditText contact;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,86 +24,59 @@ public class SignUp extends AppCompatActivity {
     }
 
     public void OnSignUpButtonClick(View signUp){
+        email = (EditText)findViewById(R.id.TextboxEmail);
+        password = (EditText)findViewById(R.id.TextboxPassword);
+        confirmPassword = (EditText)findViewById(R.id.TextboxConfirmPassword);
+        firstName = (EditText)findViewById(R.id.TextboxFirstName);
+        lastName = (EditText)findViewById(R.id.TextboxLastName);
+        address = (EditText)findViewById(R.id.TextboxAddress);
+        contact = (EditText)findViewById(R.id.TextboxContact);
+
         if(signUp.getId() == R.id.ButtonSignUp){
-
-            EditText email = (EditText)findViewById(R.id.TextboxEmail);
-            String emailVariable = email.getText().toString();
-            EditText password = (EditText)findViewById(R.id.TextboxPassword);
-            String passwordVariable = password.getText().toString();
-            EditText confirmPassword = (EditText)findViewById(R.id.TextboxConfirmPassword);
-            String confirmPasswordVariable = confirmPassword.getText().toString();
-            EditText firstname = (EditText)findViewById(R.id.TextboxFirstName);
-            String firstnameVariable = firstname.getText().toString();
-            EditText lastname = (EditText)findViewById(R.id.TextboxLastName);
-            String lastnameVariable = lastname.getText().toString();
-            EditText address = (EditText)findViewById(R.id.TextboxAddress);
-            String addressVariable = address.getText().toString();
-            EditText contact = (EditText)findViewById(R.id.TextboxContact);
-            String contactVariable = contact.getText().toString();
-
-
-           if(emailVariable.isEmpty() == true){
-               email.setError("Enter Email");
-               return;
-           }
-
-            if ( ValidateEmail(emailVariable) == false){
-                email.setError("Invalid Email");
-                return;
+           if(ValidateEditText()){
+                Intent main = new Intent(SignUp.this, VMS.class);
+                startActivity(main);
+                Toast messageBox = Toast.makeText(SignUp.this , "Sign up successful" , Toast.LENGTH_LONG);
+                messageBox.show();
             }
-
-           if(passwordVariable.isEmpty() == true){
-                password.setError("Enter Password");
-           }
-
-           if(passwordVariable.length() <= 6){
-                password.setError( "must be greater that 6 characters");
-                return;
-           }
-
-
-           if(ValidatePassword(passwordVariable , confirmPasswordVariable)== false){
-                confirmPassword.setError("Password don't match");
-                return;
-           }
-
-
-
-           if (firstnameVariable.isEmpty() == true){
-                firstname.setError("Enter Firstname");
-                return;
-           }
-
-           if(lastnameVariable.isEmpty() == true){
-               lastname.setError("Enter Lastname");
-               return;
-           }
-
-           Intent i = new Intent(SignUp.this, VMS.class);
-           startActivity(i);
-            Toast msgbox = Toast.makeText(SignUp.this , "Sign up successful" , Toast.LENGTH_SHORT);
-            msgbox.show();
         }
     }
 
-    public  boolean ValidateEmail(String email){
+   public boolean ValidateEditText(){
+        boolean result = true;
+        String getPassword = password.getText().toString().trim();
+        String getConfirmPassword = confirmPassword.getText().toString().trim();
 
-        if (!email.toString().matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+"))
-        {
-            return false;
+        if(email.getText().toString().trim().length() == 0){
+            email.setError("Enter Email");
+            return result = false;
         }
 
-        return true;
-    }
-
-    public boolean ValidatePassword(String password , String confirmPassword)
-    {
-
-        if (!password.equals(confirmPassword)) {
-
-            return false;
+        if(!email.getText().toString().trim().matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")){
+            email.setError("Invalid Email format");
+            return result = false;
         }
-        return true;
-    }
 
+        if(password.getText().toString().trim().length() <= 6){
+            password.setError("Password must be greater than 6 char");
+            return result = false;
+        }
+
+        if(!getPassword.equals(getConfirmPassword)){
+            confirmPassword.setError("Password don't match");
+            return result = false;
+        }
+
+        if(firstName.getText().toString().trim().length() == 0){
+            firstName.setError("Enter Firstname");
+            return result = false;
+        }
+
+        if(lastName.getText().toString().trim().length() == 0){
+            lastName.setError("Enter Firstname");
+            return result = false;
+        }
+
+        return result;
+    }
 }
