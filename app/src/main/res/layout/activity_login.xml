@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:ems="10"
-                android:id="@+id/TextboxEmail" />
+                android:id="@+id/TextboxEmailLogin" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -59,7 +59,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:ems="10"
-                android:id="@+id/TextboxPassword" />
+                android:id="@+id/TextboxPasswordLogin" />
 
             <Button
                 android:layout_width="match_parent"
@@ -67,6 +67,7 @@
                 android:text="Login"
                 android:id="@+id/ButtonLogin"
                 android:clickable="false"
+                tools:onClick="OnLoginButtonClick"
                 android:onClick="OnLoginButtonClick" />
 
             <Button

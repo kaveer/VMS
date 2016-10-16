@@ -1,5 +1,6 @@
 package com.example.avitah.vms;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,14 +19,18 @@ public class Login extends AppCompatActivity {
     }
 
     public  void OnLoginButtonClick(View login){
-        email = (EditText)findViewById(R.id.TextboxEmail);
-        password = (EditText)findViewById(R.id.TextboxPassword);
+        email = (EditText)findViewById(R.id.TextboxEmailLogin);
+        password = (EditText)findViewById(R.id.TextboxPasswordLogin);
 
         if(login.getId() == R.id.ButtonLogin){
-            if(ValidateEditText()){
+            if(ValidateEditText() && GetUser()){
                 Intent main = new Intent(Login.this, VMS.class);
                 startActivity(main);
                 Toast messageBox = Toast.makeText(Login.this , "Login successful" , Toast.LENGTH_LONG);
+                messageBox.show();
+            }
+            else {
+                Toast messageBox = Toast.makeText(Login.this , "Login Fail!" , Toast.LENGTH_SHORT);
                 messageBox.show();
             }
         }
@@ -49,6 +54,17 @@ public class Login extends AppCompatActivity {
             return result = false;
         }
         return  result;
+    }
+
+    public boolean GetUser(){
+        boolean result = false;
+        TableUser.email = email.getText().toString().trim();
+        TableUser.password = password.getText().toString();
+
+        DBHandler DB = new DBHandler(this);
+        result = DB.GetUser();
+
+        return result;
     }
 
     public void OnSignUpButtonClick(View signUp){

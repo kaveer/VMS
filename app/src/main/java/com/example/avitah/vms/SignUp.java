@@ -1,8 +1,10 @@
 package com.example.avitah.vms;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -24,21 +26,21 @@ public class SignUp extends AppCompatActivity {
     }
 
     public void OnSignUpButtonClick(View signUp){
-        email = (EditText)findViewById(R.id.TextboxEmail);
-        password = (EditText)findViewById(R.id.TextboxPassword);
-        confirmPassword = (EditText)findViewById(R.id.TextboxConfirmPassword);
-        firstName = (EditText)findViewById(R.id.TextboxFirstName);
-        lastName = (EditText)findViewById(R.id.TextboxLastName);
-        address = (EditText)findViewById(R.id.TextboxAddress);
-        contact = (EditText)findViewById(R.id.TextboxContact);
+        email = (EditText)findViewById(R.id.TextboxEmailSignUp);
+        password = (EditText)findViewById(R.id.TextboxPasswordSignUp);
+        confirmPassword = (EditText)findViewById(R.id.TextboxConfirmPasswordSignUp);
+        firstName = (EditText)findViewById(R.id.TextboxFirstNameSignUp);
+        lastName = (EditText)findViewById(R.id.TextboxLastNameSignUp);
+        address = (EditText)findViewById(R.id.TextboxAddressSignUp);
+        contact = (EditText)findViewById(R.id.TextboxContactSignUp);
 
         if(signUp.getId() == R.id.ButtonSignUp){
-           if(ValidateEditText()){
+           if(ValidateEditText() && PostUser()){
                 Intent main = new Intent(SignUp.this, VMS.class);
                 startActivity(main);
                 Toast messageBox = Toast.makeText(SignUp.this , "Sign up successful" , Toast.LENGTH_LONG);
                 messageBox.show();
-            }
+           }
         }
     }
 
@@ -52,10 +54,10 @@ public class SignUp extends AppCompatActivity {
             return result = false;
         }
 
-        if(!email.getText().toString().trim().matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")){
+        /*if(!email.getText().toString().trim().matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+")){
             email.setError("Invalid Email format");
             return result = false;
-        }
+        }*/
 
         if(password.getText().toString().trim().length() <= 6){
             password.setError("Password must be greater than 6 char");
@@ -78,5 +80,29 @@ public class SignUp extends AppCompatActivity {
         }
 
         return result;
+    }
+
+    public boolean PostUser(){
+        boolean result = false;
+
+        GetEditText();
+
+        DBHandler DB = new DBHandler(this);
+        DB.PostUser();
+        result = DB.GetUser();
+
+        return result;
+    }
+
+    public void GetEditText(){
+        TableUser.email = email.getText().toString().trim();
+        TableUser.password = password.getText().toString().trim();
+        TableUser.firstName = firstName.getText().toString().trim();
+        TableUser.lastName = lastName.getText().toString().trim();
+        TableUser.address = address.getText().toString().trim();
+        if(contact.getText().toString().trim().length() == 0){
+            contact.setText("0");
+        }
+        TableUser.contact = Integer.parseInt(contact.getText().toString().trim());
     }
 }

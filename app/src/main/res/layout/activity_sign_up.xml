@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:ems="10"
-                android:id="@+id/TextboxEmail" />
+                android:id="@+id/TextboxEmailSignUp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:ems="10"
-                android:id="@+id/TextboxPassword" />
+                android:id="@+id/TextboxPasswordSignUp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:ems="10"
-                android:id="@+id/TextboxConfirmPassword" />
+                android:id="@+id/TextboxConfirmPasswordSignUp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -86,7 +86,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/TextboxFirstName" />
+                android:id="@+id/TextboxFirstNameSignUp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -98,7 +98,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/TextboxLastName" />
+                android:id="@+id/TextboxLastNameSignUp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -110,7 +110,7 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/TextboxAddress" />
+                android:id="@+id/TextboxAddressSignUp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -122,14 +122,16 @@
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/TextboxContact" />
+                android:id="@+id/TextboxContactSignUp"
+                android:inputType="number" />
 
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="SignUp"
                 android:id="@+id/ButtonSignUp"
-                android:onClick="OnSignUpButtonClick" />
+                android:onClick="OnSignUpButtonClick"
+                tools:onClick="OnSignUpButtonClick" />
         </LinearLayout>
     </ScrollView>
     </RelativeLayout>

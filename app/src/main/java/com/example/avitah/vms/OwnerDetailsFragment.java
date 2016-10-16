@@ -7,14 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link OwnerDetailsFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- */
+
 public class OwnerDetailsFragment extends Fragment {
 
 
@@ -31,6 +27,10 @@ public class OwnerDetailsFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_owner_details, container, false);
     }
 
+    /*public void OnUpdateOwnerDetailsClick(View ownerDetails){
+       // Toast messageBox = Toast.makeText(getActivity() , "Login successful" , Toast.LENGTH_LONG);
+      // messageBox.show();
+    }*/
 
 
 
