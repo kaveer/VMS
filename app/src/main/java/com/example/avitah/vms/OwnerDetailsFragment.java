@@ -42,9 +42,10 @@ public class OwnerDetailsFragment extends Fragment {
             public void onClick(View v) {
                 if(ValidateEditText()){
                     UpdateUserDetails();
+                    Toast messageBox = Toast.makeText(getActivity() , "Update successful" , Toast.LENGTH_LONG);
+                    messageBox.show();
                 }
-                Toast messageBox = Toast.makeText(getActivity() , "Login successful" , Toast.LENGTH_LONG);
-                messageBox.show();
+
             }
         });
 
