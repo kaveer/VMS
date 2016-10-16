@@ -42,17 +42,19 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:text="Title"
+                            android:text="Email"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/textView18" />
 
-                        <Spinner
+                        <EditText
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:id="@+id/spinner"
-                            android:layout_weight="1"
-                             />
+                            android:inputType="textPersonName"
+                            android:text=""
+                            android:ems="10"
+                            android:id="@+id/TxtEmailOwnerDetails"
+                            android:layout_weight="1" />
 
                     </TableRow>
 
@@ -61,7 +63,7 @@
                         android:layout_height="match_parent" >
 
                         <TextView
-                            android:text="First name"
+                            android:text="Password"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/textView19" />
@@ -71,7 +73,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="textPersonName"
                             android:ems="10"
-                            android:id="@+id/editText8"
+                            android:id="@+id/TxtPasswordOwnerDetails"
                             android:layout_weight="1" />
 
                     </TableRow>
@@ -82,7 +84,7 @@
                         android:orientation="vertical">
 
                         <TextView
-                            android:text="Last name"
+                            android:text="FirstName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/textView20" />
@@ -92,7 +94,26 @@
                             android:layout_height="wrap_content"
                             android:inputType="textPersonName"
                             android:ems="10"
-                            android:id="@+id/editText5"
+                            android:id="@+id/TxtFirstnameOwnerDetails"
+                            android:layout_weight="1" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" >
+
+                        <TextView
+                            android:text="LastName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/textView9" />
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:inputType="textMultiLine"
+                            android:ems="10"
+                            android:id="@+id/TxtLastnameOwnerDetails"
                             android:layout_weight="1" />
                     </TableRow>
 
@@ -104,14 +125,14 @@
                             android:text="Address"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/textView9" />
+                            android:id="@+id/textView16" />
 
                         <EditText
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:inputType="textMultiLine"
+                            android:inputType="textPersonName"
                             android:ems="10"
-                            android:id="@+id/editText6"
+                            android:id="@+id/TxtAddressOwnerDetails"
                             android:layout_weight="1" />
                     </TableRow>
 
@@ -120,17 +141,18 @@
                         android:layout_height="match_parent" >
 
                         <TextView
-                            android:text="NIC"
+                            android:text="Contact"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/textView16" />
+                            android:id="@+id/textView3" />
 
                         <EditText
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:inputType="textPersonName"
+                            android:text=""
                             android:ems="10"
-                            android:id="@+id/editText9"
+                            android:id="@+id/TxtContactOwnerDetails"
                             android:layout_weight="1" />
                     </TableRow>
 
@@ -149,6 +171,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent" >
 
+                        <Button
+                            android:text="Update"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/BtnUpdateOwnerDetails"
+                            android:layout_weight="1" />
                     </TableRow>
 
                 </TableLayout>

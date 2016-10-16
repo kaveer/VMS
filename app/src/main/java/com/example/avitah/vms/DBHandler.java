@@ -84,4 +84,21 @@ public class DBHandler extends SQLiteOpenHelper {
 
         return  result;
     }
+
+    public  int UpdateUserDetails(){
+        int c;
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(TableUser.TableUserDetails.col_email, TableUser.email);
+        values.put(TableUser.TableUserDetails.col_password, TableUser.password);
+        values.put(TableUser.TableUserDetails.col_firstName, TableUser.firstName);
+        values.put(TableUser.TableUserDetails.col_lastName, TableUser.lastName);
+        values.put(TableUser.TableUserDetails.col_address, TableUser.address);
+        values.put(TableUser.TableUserDetails.col_contact, TableUser.contact);
+
+       c= db.update(TableUser.TableUserDetails.tableName, values , TableUser.TableUserDetails.col_userId + " = ? " ,
+               new String[]{String.valueOf(TableUser.userId)} );
+
+        return c;
+    }
 }
