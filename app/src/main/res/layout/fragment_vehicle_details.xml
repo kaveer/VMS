@@ -52,7 +52,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="textPersonName"
                             android:ems="10"
-                            android:id="@+id/editText7"
+                            android:id="@+id/TxtMakeVehicle"
                             android:singleLine="false"
                             android:layout_weight="1"
                             android:hint="Manufacturer" />
@@ -74,7 +74,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="textPersonName"
                             android:ems="10"
-                            android:id="@+id/editText8"
+                            android:id="@+id/TxtModelVehicle"
                             android:layout_weight="1"
                             android:hint="Vitz, Bora , swift.." />
 
@@ -96,9 +96,9 @@
                             android:layout_height="wrap_content"
                             android:inputType="textPersonName"
                             android:ems="10"
-                            android:id="@+id/editText5"
+                            android:id="@+id/TxtClassVehicle"
                             android:layout_weight="1"
-                            android:hint="Saloon" />
+                            android:hint="Motor car" />
                     </TableRow>
 
                     <TableRow
@@ -116,8 +116,9 @@
                             android:layout_height="wrap_content"
                             android:inputType="textPersonName"
                             android:ems="10"
-                            android:id="@+id/editText6"
-                            android:layout_weight="1" />
+                            android:id="@+id/TxtTypeVehicle"
+                            android:layout_weight="1"
+                            android:hint="Saloon" />
                     </TableRow>
 
                     <TableRow
@@ -135,7 +136,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="textPersonName"
                             android:ems="10"
-                            android:id="@+id/editText9"
+                            android:id="@+id/TxtColorVehicle"
                             android:layout_weight="1" />
                     </TableRow>
 
@@ -154,7 +155,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="textPersonName"
                             android:ems="10"
-                            android:id="@+id/editText14"
+                            android:id="@+id/TxtChassisVehicle"
                             android:layout_weight="1" />
 
                     </TableRow>
@@ -174,7 +175,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="text"
                             android:ems="10"
-                            android:id="@+id/editText12"
+                            android:id="@+id/TxtEngineNoVehicle"
                             android:layout_weight="1" />
 
                     </TableRow>
@@ -194,7 +195,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="numberDecimal"
                             android:ems="10"
-                            android:id="@+id/editText15"
+                            android:id="@+id/TxtEngineCapacityVehicle"
                             android:layout_weight="1"
                             android:hint="CC" />
 
@@ -214,19 +215,20 @@
                         <RadioGroup
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:orientation="vertical"
+                            android:id="@+id/radioGroupFuel">
 
                             <RadioButton
                                 android:text="Petrol"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/radioButton2" />
+                                android:id="@+id/RbtPetrol" />
 
                             <RadioButton
                                 android:text="Diesel"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:id="@+id/radioButton"
+                                android:id="@+id/RbtDiesel"
                                 android:layout_weight="1" />
                         </RadioGroup>
                     </TableRow>
@@ -246,7 +248,7 @@
                             android:layout_height="wrap_content"
                             android:inputType="textPersonName|numberDecimal"
                             android:ems="10"
-                            android:id="@+id/editText13"
+                            android:id="@+id/TxtLoadVehicle"
                             android:layout_weight="1" />
                     </TableRow>
                 </TableLayout>
@@ -268,7 +270,7 @@
                             android:text="Save"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:id="@+id/button5"
+                            android:id="@+id/BtnSaveVehicleDetails"
                             android:layout_weight="1" />
                     </TableRow>
 
