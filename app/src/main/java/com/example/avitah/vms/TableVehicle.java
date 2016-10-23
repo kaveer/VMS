@@ -9,6 +9,7 @@ import android.provider.BaseColumns;
 public class TableVehicle {
     public  static int vehicleId;
     public  static int userId;
+    public  static String regNo;
     public  static  String make;
     public  static  String model;
     public  static  String classType;
@@ -25,6 +26,7 @@ public class TableVehicle {
 
         public  static  String col_vehicleId = "VehicleId";
         public static String col_userId = "UserId";
+        public static String col_RegNo = "RegNo";
         public  static  String col_make = "Make";
         public  static  String col_model = "Model";
         public  static  String col_classType = "Class";

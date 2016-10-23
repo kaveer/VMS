@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 public class VehicleDetailsFragment extends Fragment {
 
+    EditText regNo;
     EditText make;
     EditText model;
     EditText classType;
@@ -77,6 +78,7 @@ public class VehicleDetailsFragment extends Fragment {
     }
 
     public void GetText(){
+        regNo.setText(TableVehicle.regNo);
         make.setText(TableVehicle.make);
         model.setText(TableVehicle.model);
         classType.setText(TableVehicle.classType);
@@ -104,6 +106,7 @@ public class VehicleDetailsFragment extends Fragment {
             load.setText("0");
         }
 
+        TableVehicle.regNo = regNo.getText().toString().trim();
         TableVehicle.make = make.getText().toString().trim();
         TableVehicle.model = model.getText().toString().trim();
         TableVehicle.classType = classType.getText().toString().trim();
@@ -117,6 +120,7 @@ public class VehicleDetailsFragment extends Fragment {
     }
 
     public  void InitializeEditText(View view){
+        regNo = (EditText)view.findViewById(R.id.TxtRegNoVehicle);
         make = (EditText)view.findViewById(R.id.TxtMakeVehicle);
         model = (EditText)view.findViewById(R.id.TxtModelVehicle);
         classType = (EditText)view.findViewById(R.id.TxtClassVehicle);
@@ -132,6 +136,10 @@ public class VehicleDetailsFragment extends Fragment {
     public boolean isValid(){
         boolean result = true ;
 
+        if (regNo.getText().toString().trim().length() == 0){
+            regNo.setError("Enter Registration Number");
+            return result = false;
+        }
         if(make.getText().toString().trim().length() == 0){
             make.setError("Enter Make");
             return result = false;

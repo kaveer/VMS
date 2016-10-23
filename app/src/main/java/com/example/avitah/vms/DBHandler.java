@@ -23,6 +23,7 @@ public class DBHandler extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String createTableUserQuery;
         String createTableVehicleQuery;
+        String createTableFuelQuery;
 
         createTableUserQuery =
                 "CREATE TABLE "+ TableUser.TableUserDetails.tableName +
@@ -41,6 +42,7 @@ public class DBHandler extends SQLiteOpenHelper {
                         " ("
                         + TableVehicle.TableVehicleDetails.col_vehicleId + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                         + TableVehicle.TableVehicleDetails.col_userId + "  INT,"
+                        + TableVehicle.TableVehicleDetails.col_RegNo + "  TEXT,"
                         + TableVehicle.TableVehicleDetails.col_make + "  TEXT,"
                         + TableVehicle.TableVehicleDetails.col_model + "  TEXT,"
                         + TableVehicle.TableVehicleDetails.col_classType + "  TEXT,"
@@ -53,8 +55,22 @@ public class DBHandler extends SQLiteOpenHelper {
                         + TableVehicle.TableVehicleDetails.col_load + "  REAL"
                         + " )";
 
+        createTableFuelQuery =
+                "CREATE TABLE " + TableFuel.TableFuelDetails.tableName +
+                        " ("
+                        + TableFuel.TableFuelDetails.col_FuelId + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                        + TableFuel.TableFuelDetails.col_userId + "  INT,"
+                        + TableFuel.TableFuelDetails.col_FuelDescription + "  TEXT,"
+                        + TableFuel.TableFuelDetails.col_Location + "  TEXT,"
+                        + TableFuel.TableFuelDetails.col_FuelDate + "  DATE DEFAULT CURRENT_DATE,"
+                        + TableFuel.TableFuelDetails.col_Amount + "  REAL,"
+                        + TableFuel.TableFuelDetails.col_totalCost + "  REAL,"
+                        + TableFuel.TableFuelDetails.col_Status + "  TEXT"
+                        + " )";
+
         db.execSQL(createTableUserQuery);
         db.execSQL(createTableVehicleQuery);
+        db.execSQL(createTableFuelQuery);
     }
 
     @Override
@@ -65,6 +81,7 @@ public class DBHandler extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    // ============ DB Operation for user =====================//
     public void PostUser(){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -122,7 +139,9 @@ public class DBHandler extends SQLiteOpenHelper {
 
         return c;
     }
+    // ============ END DB Operation for user =====================//
 
+    // ============= DB Operation for vehicle ==================//
     public boolean GetVehicle(){
         boolean result = false;
         SQLiteDatabase db = this.getWritableDatabase();
@@ -136,16 +155,17 @@ public class DBHandler extends SQLiteOpenHelper {
             cursor.moveToFirst();
             TableVehicle.vehicleId = Integer.parseInt(cursor.getString(0));
             TableVehicle.userId =  Integer.parseInt(cursor.getString(1));
-            TableVehicle.make = cursor.getString(2);
-            TableVehicle.model = cursor.getString(3);
-            TableVehicle.classType = cursor.getString(4);
-            TableVehicle.type = cursor.getString(5);
-            TableVehicle.VehicleColor = cursor.getString(6);
-            TableVehicle.chassisNo = cursor.getString(7);
-            TableVehicle.engineNo = cursor.getString(8);
-            TableVehicle.engineCapacity = Integer.parseInt(cursor.getString(9));
-            TableVehicle.fuel = cursor.getString(10);
-            TableVehicle.load = Float.parseFloat(cursor.getString(11));
+            TableVehicle.regNo = cursor.getString(2);
+            TableVehicle.make = cursor.getString(3);
+            TableVehicle.model = cursor.getString(4);
+            TableVehicle.classType = cursor.getString(5);
+            TableVehicle.type = cursor.getString(6);
+            TableVehicle.VehicleColor = cursor.getString(7);
+            TableVehicle.chassisNo = cursor.getString(8);
+            TableVehicle.engineNo = cursor.getString(9);
+            TableVehicle.engineCapacity = Integer.parseInt(cursor.getString(10));
+            TableVehicle.fuel = cursor.getString(11);
+            TableVehicle.load = Float.parseFloat(cursor.getString(12));
 
             return result = true;
         }
@@ -158,6 +178,7 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(TableVehicle.TableVehicleDetails.col_userId , TableVehicle.userId);
+        values.put(TableVehicle.TableVehicleDetails.col_RegNo , TableVehicle.regNo);
         values.put(TableVehicle.TableVehicleDetails.col_make , TableVehicle.make);
         values.put(TableVehicle.TableVehicleDetails.col_model , TableVehicle.model);
         values.put(TableVehicle.TableVehicleDetails.col_classType , TableVehicle.classType);
@@ -179,6 +200,7 @@ public class DBHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(TableVehicle.TableVehicleDetails.col_userId , TableVehicle.userId);
+        values.put(TableVehicle.TableVehicleDetails.col_RegNo , TableVehicle.regNo);
         values.put(TableVehicle.TableVehicleDetails.col_make , TableVehicle.make);
         values.put(TableVehicle.TableVehicleDetails.col_model , TableVehicle.model);
         values.put(TableVehicle.TableVehicleDetails.col_classType , TableVehicle.classType);
@@ -195,4 +217,22 @@ public class DBHandler extends SQLiteOpenHelper {
 
         return c;
     }
+    // ============= DB Operation for vehicle ==================//
+
+    //============== DB Operation for fuel =======================//
+    public void PostFuel(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(TableFuel.TableFuelDetails.col_userId , TableFuel.userId);
+        values.put(TableFuel.TableFuelDetails.col_FuelDescription, TableFuel.fuelDescription);
+        values.put(TableFuel.TableFuelDetails.col_Location, TableFuel.fuelLocation);
+        values.put(TableFuel.TableFuelDetails.col_FuelDate, TableFuel.fuelDate);
+        values.put(TableFuel.TableFuelDetails.col_Amount, TableFuel.fuelAmount);
+        values.put(TableFuel.TableFuelDetails.col_totalCost, TableFuel.fuelTotalCost);
+        values.put(TableFuel.TableFuelDetails.col_Status, TableFuel.fuelStatus);
+
+        db.insert(TableFuel.TableFuelDetails.tableName , null , values);
+        db.close();
+    }
+    //============== END DB Operation for fuel =======================//
 }
