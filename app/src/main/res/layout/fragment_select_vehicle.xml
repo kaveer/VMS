@@ -1,0 +1,66 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.avitah.vms.SelectVehicleFragment"
+    android:id="@+id/selectVehicle"
+    android:layout_marginTop="@dimen/horizontalAlignmentWithTitleBar"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:orientation="vertical"
+    android:baselineAligned="false">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <TextView
+        android:text="Select Vehicle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView50"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RadioGroup
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/vehicleRadioGroup"
+                android:layout_weight="1">
+
+            </RadioGroup>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:text="Update/Delete"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/BtnUpdateVehicle"
+                android:layout_weight="1" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <Button
+                android:text="Add New Vehicle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/Btn_addVehicle"
+                android:layout_weight="1" />
+        </TableRow>
+    </TableLayout>
+</LinearLayout>
