@@ -20,6 +20,27 @@ public class TableVehicle {
     public  static  int engineCapacity;
     public  static  String fuel;
     public  static  float load;
+    public  static String vehicleStatus = "ACTIVE";
+
+    public static String actionType;
+    public static int vehicleCount;
+
+    public class VehicleNonStatic{
+        public   int vehicleId;
+        public   int userId;
+        public   String regNo;
+        public    String make;
+        public    String model;
+        public    String classType;
+        public    String type;
+        public    String VehicleColor;
+        public    String chassisNo;
+        public    String engineNo;
+        public    int engineCapacity;
+        public    String fuel;
+        public    float load;
+        public    String vehicleStatus;
+    }
 
     public  static abstract class TableVehicleDetails implements BaseColumns {
         public static final String tableName = "TableVehicle";
@@ -37,5 +58,6 @@ public class TableVehicle {
         public  static  String col_engineCapacity = "EngineCapacity";
         public  static  String col_fuel = "Fuel";
         public  static  String col_load = "Load";
+        public static String col_status = "Status";
     }
 }

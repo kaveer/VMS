@@ -37,33 +37,52 @@ public class VehicleDetailsFragment extends Fragment {
         final View view = inflater.inflate(R.layout.fragment_vehicle_details, container, false);
         InitializeEditText(view);
 
-        if(!GetVehicle()){
-            Toast messageBox = Toast.makeText(getActivity() , "No Vehicle Details" , Toast.LENGTH_SHORT);
-            messageBox.show();
-        }
-        else {
-            //retrieve from database
+        if(TableVehicle.actionType == "update"){
             GetText();
         }
 
-        Button buttonUpdate   = (Button)view.findViewById(R.id.BtnSaveVehicleDetails);
-        buttonUpdate.setOnClickListener(new View.OnClickListener() {
+        if(TableVehicle.actionType == "insert"){
+            Toast messageBox = Toast.makeText(getActivity() , "Please enter new vehicle details" , Toast.LENGTH_LONG);
+            messageBox.show();
+        }
+
+        Button buttonSaveUpdate   = (Button)view.findViewById(R.id.BtnSaveVehicleDetails);
+        buttonSaveUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isValid() && !GetVehicle()){
-                    SetEditText(view);
-                    InsertVehicle();
-                    Toast messageBox = Toast.makeText(getActivity() , "Vehicle added successfully" , Toast.LENGTH_LONG);
-                    messageBox.show();
-                }
-                else if (isValid() && GetVehicle()){
+                if(isValid() && TableVehicle.actionType == "update"){
                     SetEditText(view);
                     UpdateVehicle();
-                    Toast messageBox = Toast.makeText(getActivity() , "Vehicle Updated successfully" , Toast.LENGTH_SHORT);
+                    Toast messageBox = Toast.makeText(getActivity() , "Vehicle updated" , Toast.LENGTH_LONG);
+                    messageBox.show();
+               }
+                if(isValid() && TableVehicle.actionType == "insert"){
+                    SetEditText(view);
+                    InsertVehicle();
+                    Toast messageBox = Toast.makeText(getActivity() , "New vehicle added" , Toast.LENGTH_LONG);
                     messageBox.show();
                 }
             }
         });
+
+        Button buttonDelete   = (Button)view.findViewById(R.id.BtnDeleteVehicle);
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(TableVehicle.actionType == "update"){
+                    DeleteVehicle();
+                    Toast messageBox = Toast.makeText(getActivity() , "Vehicle deleted" , Toast.LENGTH_LONG);
+                    messageBox.show();
+                }
+                if(TableVehicle.actionType == "insert"){
+
+                    Toast messageBox = Toast.makeText(getActivity() , "Cannot delete when adding new record" , Toast.LENGTH_LONG);
+                    messageBox.show();
+                }
+            }
+        });
+
+
 
         return view;
     }
@@ -72,6 +91,12 @@ public class VehicleDetailsFragment extends Fragment {
         DBHandler DB = new DBHandler(getContext());
         DB.UpdateVehicle();
     }
+
+    public  void DeleteVehicle(){
+        DBHandler DB = new DBHandler(getContext());
+        DB.DeleteVehicle();
+    }
+
     public void InsertVehicle(){
         DBHandler DB = new DBHandler(getContext());
         DB.PostVehicle();
@@ -181,7 +206,7 @@ public class VehicleDetailsFragment extends Fragment {
         TableVehicle.userId = TableUser.userId;
 
         DBHandler DB = new DBHandler(getContext());
-        result = DB.GetVehicle();
+        DB.GetVehicle();
         return result;
     }
 

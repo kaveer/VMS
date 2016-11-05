@@ -292,9 +292,23 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/BtnSaveVehicleDetails"
                             android:layout_weight="1" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" >
+
+                        <Button
+                            android:text="Delete"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/BtnDeleteVehicle"
+                            android:layout_weight="1" />
                     </TableRow>
 
                 </TableLayout>
+
             </RelativeLayout>
 
         </LinearLayout>

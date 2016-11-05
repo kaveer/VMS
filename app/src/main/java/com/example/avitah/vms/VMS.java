@@ -95,7 +95,7 @@ public class VMS extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.NavVehicleDetails) {
-            VehicleDetailsFragment fragment = new  VehicleDetailsFragment();
+            SelectVehicleFragment fragment = new  SelectVehicleFragment();
             android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
             fmTransaction.replace(R.id.Frame_container, fragment);
             fmTransaction.commit();

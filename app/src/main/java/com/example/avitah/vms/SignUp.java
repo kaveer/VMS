@@ -1,7 +1,13 @@
 package com.example.avitah.vms;
 
+
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +31,7 @@ public class SignUp extends AppCompatActivity {
         setContentView(R.layout.activity_sign_up);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     public void OnSignUpButtonClick(View signUp){
         email = (EditText)findViewById(R.id.TextboxEmailSignUp);
         password = (EditText)findViewById(R.id.TextboxPasswordSignUp);
@@ -40,6 +47,7 @@ public class SignUp extends AppCompatActivity {
                 startActivity(main);
                 Toast messageBox = Toast.makeText(SignUp.this , "Sign up successful" , Toast.LENGTH_LONG);
                 messageBox.show();
+               SetNotification();
            }
         }
     }
@@ -104,5 +112,21 @@ public class SignUp extends AppCompatActivity {
             contact.setText("0");
         }
         TableUser.contact = Integer.parseInt(contact.getText().toString().trim());
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    public void SetNotification(){
+
+        Notification n  = new Notification.Builder(this)
+                .setContentTitle("New mail from " + "test@gmail.com")
+                .setContentText("Subject")
+                .setSmallIcon(R.drawable.ic_logo_new)
+                .build();
+
+
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+        notificationManager.notify(0, n);
     }
 }

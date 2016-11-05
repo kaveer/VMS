@@ -61,6 +61,9 @@ public class Login extends AppCompatActivity {
         TableUser.email = email.getText().toString().trim();
         TableUser.password = password.getText().toString();
 
+        TableUser.email = "kaveer.rajcoomar@gmail.com";
+        TableUser.password = "kaveer3009";
+
         DBHandler DB = new DBHandler(this);
         result = DB.GetUser();
 

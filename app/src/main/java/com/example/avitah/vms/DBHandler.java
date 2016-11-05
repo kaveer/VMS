@@ -6,6 +6,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.content.ContentValues;
 
+import java.util.ArrayList;
+
 /**
  * Created by kaveer on 10/15/2016.
  */
@@ -14,6 +16,8 @@ public class DBHandler extends SQLiteOpenHelper {
 
     public static final String databaseName = "VMSDB";
     public static final int databaseVersion = 1;
+
+
 
     public DBHandler(Context context) {
         super(context, databaseName, null, databaseVersion);
@@ -52,7 +56,8 @@ public class DBHandler extends SQLiteOpenHelper {
                         + TableVehicle.TableVehicleDetails.col_engineNo + "  TEXT,"
                         + TableVehicle.TableVehicleDetails.col_engineCapacity + "  INT,"
                         + TableVehicle.TableVehicleDetails.col_fuel + "  TEXT,"
-                        + TableVehicle.TableVehicleDetails.col_load + "  REAL"
+                        + TableVehicle.TableVehicleDetails.col_load + "  REAL,"
+                        + TableVehicle.TableVehicleDetails.col_status + "  TEXT"
                         + " )";
 
         createTableFuelQuery =
@@ -142,36 +147,50 @@ public class DBHandler extends SQLiteOpenHelper {
     // ============ END DB Operation for user =====================//
 
     // ============= DB Operation for vehicle ==================//
-    public boolean GetVehicle(){
-        boolean result = false;
+    public ArrayList<TableVehicle.VehicleNonStatic> GetVehicle(){
+
+        ArrayList<TableVehicle.VehicleNonStatic> vehicleList = new ArrayList<>();
+
         SQLiteDatabase db = this.getWritableDatabase();
         String query;
         query  = "SELECT * FROM "
-                + TableVehicle.TableVehicleDetails.tableName +
-                " WHERE " + TableVehicle.TableVehicleDetails.col_userId + " = " + TableVehicle.userId ;
+                + TableVehicle.TableVehicleDetails.tableName  +
+                " WHERE " + TableVehicle.TableVehicleDetails.col_userId + " = " + TableVehicle.userId +
+                " AND "
+                + TableVehicle.TableVehicleDetails.col_status + " = '" + TableVehicle.vehicleStatus + "'";
 
         Cursor cursor = db.rawQuery(query , null);
         if(cursor.getCount() > 0){
-            cursor.moveToFirst();
-            TableVehicle.vehicleId = Integer.parseInt(cursor.getString(0));
-            TableVehicle.userId =  Integer.parseInt(cursor.getString(1));
-            TableVehicle.regNo = cursor.getString(2);
-            TableVehicle.make = cursor.getString(3);
-            TableVehicle.model = cursor.getString(4);
-            TableVehicle.classType = cursor.getString(5);
-            TableVehicle.type = cursor.getString(6);
-            TableVehicle.VehicleColor = cursor.getString(7);
-            TableVehicle.chassisNo = cursor.getString(8);
-            TableVehicle.engineNo = cursor.getString(9);
-            TableVehicle.engineCapacity = Integer.parseInt(cursor.getString(10));
-            TableVehicle.fuel = cursor.getString(11);
-            TableVehicle.load = Float.parseFloat(cursor.getString(12));
+            for(cursor.moveToFirst(); !cursor.isAfterLast() ; cursor.moveToNext()){
+                TableVehicle.VehicleNonStatic vehicle = new TableVehicle().new VehicleNonStatic();
 
-            return result = true;
+                vehicle.vehicleId = Integer.parseInt(cursor.getString(0));
+                vehicle.userId =  Integer.parseInt(cursor.getString(1));
+                vehicle.regNo = cursor.getString(2);
+                vehicle.make = cursor.getString(3);
+                vehicle.model = cursor.getString(4);
+                vehicle.classType = cursor.getString(5);
+                vehicle.type = cursor.getString(6);
+                vehicle.VehicleColor = cursor.getString(7);
+                vehicle.chassisNo = cursor.getString(8);
+                vehicle.engineNo = cursor.getString(9);
+                vehicle.engineCapacity = Integer.parseInt(cursor.getString(10));
+                vehicle.fuel = cursor.getString(11);
+                vehicle.load = Float.parseFloat(cursor.getString(12));
+                vehicle.vehicleStatus = cursor.getString(13);
+
+                vehicleList.add(vehicle);
+            }
+
+
+
+
         }
         db.close();
 
-        return  result;
+        return  vehicleList;
+
+
     }
 
     public void PostVehicle(){
@@ -189,6 +208,7 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(TableVehicle.TableVehicleDetails.col_engineCapacity , TableVehicle.engineCapacity);
         values.put(TableVehicle.TableVehicleDetails.col_fuel , TableVehicle.fuel);
         values.put(TableVehicle.TableVehicleDetails.col_load , TableVehicle.load);
+        values.put(TableVehicle.TableVehicleDetails.col_status , TableVehicle.vehicleStatus);
 
 
         db.insert(TableVehicle.TableVehicleDetails.tableName , null , values);
@@ -212,10 +232,52 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(TableVehicle.TableVehicleDetails.col_fuel , TableVehicle.fuel);
         values.put(TableVehicle.TableVehicleDetails.col_load , TableVehicle.load);
 
-        c= db.update(TableVehicle.TableVehicleDetails.tableName, values , TableVehicle.TableVehicleDetails.col_userId + " = ? " ,
-                new String[]{String.valueOf(TableVehicle.userId)} );
+        c= db.update(TableVehicle.TableVehicleDetails.tableName, values , TableVehicle.TableVehicleDetails.col_vehicleId + " = ? " ,
+                new String[]{String.valueOf(TableVehicle.vehicleId)} );
 
         return c;
+    }
+
+    public void GetVehicleByVehicleId(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query;
+        query  = "SELECT * FROM "
+                + TableVehicle.TableVehicleDetails.tableName  +
+                " WHERE " + TableVehicle.TableVehicleDetails.col_userId + " = " + TableVehicle.userId +
+                " AND "
+                + TableVehicle.TableVehicleDetails.col_vehicleId + " = " + TableVehicle.vehicleId ;
+
+        Cursor cursor = db.rawQuery(query , null);
+        if(cursor.getCount() > 0){
+           cursor.moveToFirst();
+
+            TableVehicle.vehicleId = Integer.parseInt(cursor.getString(0));
+            TableVehicle.userId =  Integer.parseInt(cursor.getString(1));
+            TableVehicle.regNo = cursor.getString(2);
+            TableVehicle.make = cursor.getString(3);
+            TableVehicle.model = cursor.getString(4);
+            TableVehicle.classType = cursor.getString(5);
+            TableVehicle.type = cursor.getString(6);
+            TableVehicle.VehicleColor = cursor.getString(7);
+            TableVehicle.chassisNo = cursor.getString(8);
+            TableVehicle.engineNo = cursor.getString(9);
+            TableVehicle.engineCapacity = Integer.parseInt(cursor.getString(10));
+            TableVehicle.fuel = cursor.getString(11);
+            TableVehicle.load = Float.parseFloat(cursor.getString(12));
+            TableVehicle.vehicleStatus = cursor.getString(13);
+
+        }
+        db.close();
+    }
+
+    public void DeleteVehicle(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(TableVehicle.TableVehicleDetails.col_status , "DEACTIVE");
+
+        db.update(TableVehicle.TableVehicleDetails.tableName, values , TableVehicle.TableVehicleDetails.col_vehicleId + " = ? " ,
+                new String[]{String.valueOf(TableVehicle.vehicleId)} );
+
     }
     // ============= DB Operation for vehicle ==================//
 
