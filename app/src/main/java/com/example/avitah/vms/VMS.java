@@ -56,6 +56,8 @@ public class VMS extends AppCompatActivity
       //  USERID = (EditText)findViewById(R.id.ID_Main);
       //  USERID.setText("HNJND");
 
+
+
     }
 
     @Override
@@ -110,7 +112,7 @@ public class VMS extends AppCompatActivity
             fmTransaction.replace(R.id.Frame_container, fragment);
             fmTransaction.commit();
         }else if (id == R.id.NavAccidentRecords) {
-            AccidentRecordFragment fragment = new AccidentRecordFragment();
+            AccidentFragment fragment = new AccidentFragment();
             android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
             fmTransaction.replace(R.id.Frame_container, fragment);
             fmTransaction.commit();

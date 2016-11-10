@@ -28,6 +28,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String createTableUserQuery;
         String createTableVehicleQuery;
         String createTableFuelQuery;
+        String createTableAccident;
 
         createTableUserQuery =
                 "CREATE TABLE "+ TableUser.TableUserDetails.tableName +
@@ -73,9 +74,26 @@ public class DBHandler extends SQLiteOpenHelper {
                         + TableFuel.TableFuelDetails.col_Status + "  TEXT"
                         + " )";
 
+        createTableAccident =
+                "CREATE TABLE " + TableAccident.TableAccidentDetails.tableName +
+                        " ("
+                        + TableAccident.TableAccidentDetails.col_accidentId + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                        + TableAccident.TableAccidentDetails.col_userId + "  INT,"
+                        + TableAccident.TableAccidentDetails.col_acciDate +  "  DATE DEFAULT CURRENT_DATE,"
+                        + TableAccident.TableAccidentDetails.col_makeModel + "  TEXT,"
+                        + TableAccident.TableAccidentDetails.col_regNo + "  TEXT,"
+                        + TableAccident.TableAccidentDetails.col_acciName + "  TEXT,"
+                        + TableAccident.TableAccidentDetails.col_contactNo + "  INT,"
+                        + TableAccident.TableAccidentDetails.col_insurance + "  TEXT,"
+                        + TableAccident.TableAccidentDetails.col_policyNo + "  TEXT,"
+                        + TableAccident.TableAccidentDetails.col_acciDescription + "  TEXT,"
+                        + TableAccident.TableAccidentDetails.col_status + "  TEXT"
+                        + " )";
+
         db.execSQL(createTableUserQuery);
         db.execSQL(createTableVehicleQuery);
         db.execSQL(createTableFuelQuery);
+        db.execSQL(createTableAccident);
     }
 
     @Override
@@ -297,4 +315,24 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
     //============== END DB Operation for fuel =======================//
+
+    //============== DB Operation for accident =======================//
+    public void PostAccident(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(TableAccident.TableAccidentDetails.col_userId , TableAccident.userId);
+        values.put(TableAccident.TableAccidentDetails.col_acciDate , TableAccident.acciDate);
+        values.put(TableAccident.TableAccidentDetails.col_makeModel , TableAccident.makeModel);
+        values.put(TableAccident.TableAccidentDetails.col_regNo , TableAccident.regNo);
+        values.put(TableAccident.TableAccidentDetails.col_acciName , TableAccident.acciName);
+        values.put(TableAccident.TableAccidentDetails.col_contactNo , TableAccident.contactNo);
+        values.put(TableAccident.TableAccidentDetails.col_insurance , TableAccident.insurance);
+        values.put(TableAccident.TableAccidentDetails.col_policyNo , TableAccident.policyNo);
+        values.put(TableAccident.TableAccidentDetails.col_acciDescription , TableAccident.acciDescription);
+        values.put(TableAccident.TableAccidentDetails.col_status , TableAccident.status);
+
+
+        db.insert(TableFuel.TableFuelDetails.tableName , null , values);
+        db.close();
+    }
 }

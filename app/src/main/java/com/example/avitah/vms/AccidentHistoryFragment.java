@@ -11,10 +11,10 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AccidentRecordFragment extends Fragment {
+public class AccidentHistoryFragment extends Fragment {
 
 
-    public AccidentRecordFragment() {
+    public AccidentHistoryFragment() {
         // Required empty public constructor
     }
 
@@ -23,7 +23,7 @@ public class AccidentRecordFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_accident_record, container, false);
+        return inflater.inflate(R.layout.fragment_accident_history, container, false);
     }
 
 }

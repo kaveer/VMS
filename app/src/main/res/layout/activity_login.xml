@@ -24,6 +24,7 @@
             android:id="@+id/textView12"
             android:textAlignment="center" />
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -76,6 +77,7 @@
                 android:text="SignUp"
                 android:id="@+id/ButtonSignUp"
                 android:onClick="OnSignUpButtonClick" />
+
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

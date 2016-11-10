@@ -1,7 +1,11 @@
 package com.example.avitah.vms;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -61,8 +65,8 @@ public class Login extends AppCompatActivity {
         TableUser.email = email.getText().toString().trim();
         TableUser.password = password.getText().toString();
 
-        TableUser.email = "kaveer.rajcoomar@gmail.com";
-        TableUser.password = "kaveer3009";
+      //  TableUser.email = "kaveer.rajcoomar@gmail.com";
+      //  TableUser.password = "kaveer3009";
 
         DBHandler DB = new DBHandler(this);
         result = DB.GetUser();
