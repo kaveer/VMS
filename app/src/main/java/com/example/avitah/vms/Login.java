@@ -20,11 +20,20 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        startService();
+    }
+
+    //call the method to run the tag SERVICE in android manifest which will run the java class MyService
+    public void startService() {
+        startService(new Intent(getBaseContext(), MyService.class));
     }
 
     public  void OnLoginButtonClick(View login){
         email = (EditText)findViewById(R.id.TextboxEmailLogin);
         password = (EditText)findViewById(R.id.TextboxPasswordLogin);
+
+
 
         if(login.getId() == R.id.ButtonLogin){
             if(ValidateEditText() && GetUser()){
