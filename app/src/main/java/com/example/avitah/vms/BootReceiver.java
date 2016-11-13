@@ -19,19 +19,20 @@ public class BootReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Toast messageBox = Toast.makeText(context , "Notification from VMS reciver" , Toast.LENGTH_LONG);
-        messageBox.show();
 
+        OnBootCompleteNotification(context);
+
+    }
+
+    public void OnBootCompleteNotification(Context context){
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(context)
                         .setSmallIcon(R.drawable.ic_logo_new)
-                        .setContentTitle("My notification")
-                        .setContentText("Hello World!");
+                        .setContentTitle("VMS Notification")
+                        .setContentText("VMS will run when boot complete");
 
         NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.notify(1, mBuilder.build());
-
-
     }
 
 

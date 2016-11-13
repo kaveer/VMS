@@ -17,27 +17,26 @@ import android.widget.Toast;
 
 public class MyService extends Service {
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     @Override
     public int onStartCommand(Intent intent, int flags, int startId){
 
+        DefaultNotification();
+
+        Toast.makeText(this, "Welcome to VMS", Toast.LENGTH_LONG).show();
+        return START_STICKY;
+
+        //return super.onStartCommand(intent, flags, startId);
+    }
+
+    public void DefaultNotification(){
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(getApplicationContext())
                         .setSmallIcon(R.drawable.ic_logo_new)
-                        .setContentTitle("My notification")
-                        .setContentText("Hello World!");
+                        .setContentTitle("VMS Notification")
+                        .setContentText("VMS is running in background process");
 
         NotificationManager mNotificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.notify(1, mBuilder.build());
-
-
-        Toast.makeText(this, "Service Started of vms", Toast.LENGTH_LONG).show();
-        return START_STICKY;
-
-
-
-
-        //return super.onStartCommand(intent, flags, startId);
     }
 
     @Override

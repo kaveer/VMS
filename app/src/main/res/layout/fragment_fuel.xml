@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView49"
         android:textAlignment="center"
-        android:textAppearance="@android:style/TextAppearance.Material.Large" />
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -95,7 +95,7 @@
                     android:layout_height="match_parent" >
 
                     <TextView
-                        android:text="Amount"
+                        android:text="Fuel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView37" />
@@ -128,7 +128,25 @@
                         android:id="@+id/TxtTotalCostFuel"
                         android:layout_weight="1" />
                 </TableRow>
+
             </TableLayout>
+
+            <!--<TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <Switch
+                        android:text="Remind me after 5 days"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/switch1" />
+
+                </TableRow>
+            </TableLayout>-->
 
             <TableLayout
                 android:layout_width="match_parent"
