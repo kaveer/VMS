@@ -29,6 +29,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String createTableVehicleQuery;
         String createTableFuelQuery;
         String createTableAccident;
+        String createTableInsurance;
 
         createTableUserQuery =
                 "CREATE TABLE "+ TableUser.TableUserDetails.tableName +
@@ -90,10 +91,28 @@ public class DBHandler extends SQLiteOpenHelper {
                         + TableAccident.TableAccidentDetails.col_status + "  TEXT"
                         + " )";
 
+        createTableInsurance =
+                "CREATE TABLE " + TableInsurance.TableInsuranceDetails.tableName +
+                        " ("
+                        + TableInsurance.TableInsuranceDetails.col_insuranceId + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                        + TableInsurance.TableInsuranceDetails.col_userId + "  INT,"
+                        + TableInsurance.TableInsuranceDetails.col_insuranceType +  "  TEXT,"
+                        + TableInsurance.TableInsuranceDetails.col_selectVehicleId + "  INT,"
+                        + TableInsurance.TableInsuranceDetails.col_insuranceName + "  TEXT,"
+                        + TableInsurance.TableInsuranceDetails.col_policyNo + "  TEXT,"
+                        + TableInsurance.TableInsuranceDetails.col_certificateNo + "  TEXT,"
+                        + TableInsurance.TableInsuranceDetails.col_policyHolder + "  TEXT,"
+                        + TableInsurance.TableInsuranceDetails.col_effectiveDate + "  DATE DEFAULT CURRENT_DATE,"
+                        + TableInsurance.TableInsuranceDetails.col_expiryDate + "  DATE DEFAULT CURRENT_DATE,"
+                        + TableInsurance.TableInsuranceDetails.col_insuranceCost + "  REAL,"
+                        + TableInsurance.TableInsuranceDetails.col_insuranceStatus + "  TEXT"
+                        + " )";
+
         db.execSQL(createTableUserQuery);
         db.execSQL(createTableVehicleQuery);
         db.execSQL(createTableFuelQuery);
         db.execSQL(createTableAccident);
+        db.execSQL(createTableInsurance);
     }
 
     @Override
@@ -333,6 +352,27 @@ public class DBHandler extends SQLiteOpenHelper {
 
 
         db.insert(TableFuel.TableFuelDetails.tableName , null , values);
+        db.close();
+    }
+    //============== END DB Operation for accident =======================//
+
+    //============== DB Operation for insurance =======================//
+    public void PostInsurance(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(TableInsurance.TableInsuranceDetails.col_userId , TableInsurance.userId);
+        values.put(TableInsurance.TableInsuranceDetails.col_insuranceType, TableInsurance.insuranceType);
+        values.put(TableInsurance.TableInsuranceDetails.col_selectVehicleId, TableInsurance.selectVehicleId);
+        values.put(TableInsurance.TableInsuranceDetails.col_insuranceName, TableInsurance.insuranceName);
+        values.put(TableInsurance.TableInsuranceDetails.col_policyNo, TableInsurance.policyNo);
+        values.put(TableInsurance.TableInsuranceDetails.col_certificateNo, TableInsurance.certificateNo);
+        values.put(TableInsurance.TableInsuranceDetails.col_policyHolder, TableInsurance.policyHolder);
+        values.put(TableInsurance.TableInsuranceDetails.col_effectiveDate, TableInsurance.effectiveDate);
+        values.put(TableInsurance.TableInsuranceDetails.col_expiryDate, TableInsurance.expiryDate);
+        values.put(TableInsurance.TableInsuranceDetails.col_insuranceCost, TableInsurance.insuranceCost);
+        values.put(TableInsurance.TableInsuranceDetails.col_insuranceStatus, TableInsurance.insuranceStatus);
+
+        db.insert(TableInsurance.TableInsuranceDetails.tableName , null , values);
         db.close();
     }
 }
