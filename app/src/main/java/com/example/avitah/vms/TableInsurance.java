@@ -19,8 +19,9 @@ public class TableInsurance {
     public  static  String expiryDate;
     public  static  float insuranceCost;
     public  static String insuranceStatus = "ACTIVE";
+    public static int insuranceCount;
 
-    public class InsuramceNonStatic{
+    public class InsuranceNonStatic{
         public  int insuranceId;
         public  int userId;
         public  String insuranceType;

@@ -55,12 +55,10 @@ public class SelectVehicleFragment extends Fragment {
 
             for (TableVehicle.VehicleNonStatic vehicle:  vehicleList) {
                 vehicleRadioButton[counter]  = new RadioButton(getContext());
-                vehicleRadioButton[counter].setText(vehicle.make + " " + vehicle.model);
+                vehicleRadioButton[counter].setText(vehicle.make + "  " + vehicle.model);
                 vehicleRadioButton[counter].setId(vehicle.vehicleId);
                 vehicleRadioGroup.addView(vehicleRadioButton[counter]);
             }
-
-
         }
 
         Button buttonUpdate   = (Button)view.findViewById(R.id.BtnUpdateVehicle);

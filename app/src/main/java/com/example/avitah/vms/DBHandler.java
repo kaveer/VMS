@@ -375,4 +375,49 @@ public class DBHandler extends SQLiteOpenHelper {
         db.insert(TableInsurance.TableInsuranceDetails.tableName , null , values);
         db.close();
     }
+
+    public ArrayList<TableInsurance.InsuranceNonStatic> GetInsurance(){
+        ArrayList<TableInsurance.InsuranceNonStatic> insuranceList = new ArrayList<>();
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query;
+        query  = "SELECT * FROM "
+                + TableInsurance.TableInsuranceDetails.tableName  +
+                " WHERE " + TableInsurance.TableInsuranceDetails.col_userId + " = " + TableUser.userId +
+                " AND "
+                + TableInsurance.TableInsuranceDetails.col_insuranceStatus + " = '" + TableInsurance.insuranceStatus + "'";
+
+        Cursor cursor = db.rawQuery(query , null);
+        if(cursor.getCount() > 0){
+            for(cursor.moveToFirst(); !cursor.isAfterLast() ; cursor.moveToNext()){
+                TableInsurance.InsuranceNonStatic insurance = new TableInsurance().new InsuranceNonStatic();
+
+                insurance.insuranceId = Integer.parseInt(cursor.getString(0));
+                insurance.userId =  Integer.parseInt(cursor.getString(1));
+                insurance.insuranceType = cursor.getString(2);
+                insurance.selectVehicle = Integer.parseInt(cursor.getString(3)) ;
+                insurance.insuranceName = cursor.getString(4);
+                insurance.policyNo = cursor.getString(5);
+                insurance.certificateNo = cursor.getString(6);
+                insurance.policyHolder = cursor.getString(7);
+                insurance.effectiveDate = cursor.getString(8);
+                insurance.expiryDate = cursor.getString(9);
+                insurance.insuranceCost = Float.parseFloat(cursor.getString(10));
+                insurance.insuranceStatus = cursor.getString(11);
+
+                insuranceList.add(insurance);
+            }
+        }
+        db.close();
+
+        return  insuranceList;
+    }
+
+    public void DeleteInsurance(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TableInsurance.TableInsuranceDetails.tableName, TableInsurance.TableInsuranceDetails.col_insuranceId + " = ? ",
+                new String[]{String.valueOf(TableInsurance.insuranceId)});
+        db.close();
+    }
+    //============== END DB Operation for insurance =======================//
 }

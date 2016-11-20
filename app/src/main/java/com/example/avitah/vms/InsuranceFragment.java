@@ -94,6 +94,11 @@ public class InsuranceFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+                InsuranceHistoryFragment fragment = new InsuranceHistoryFragment();
+                android.support.v4.app.FragmentTransaction fmTransaction = getFragmentManager().beginTransaction();
+                fmTransaction.replace(R.id.Frame_container, fragment);
+                fmTransaction.commit();
+
             }
 
 
