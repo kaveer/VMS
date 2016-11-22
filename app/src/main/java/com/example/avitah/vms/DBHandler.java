@@ -333,6 +333,46 @@ public class DBHandler extends SQLiteOpenHelper {
         db.insert(TableFuel.TableFuelDetails.tableName , null , values);
         db.close();
     }
+
+    public ArrayList<TableFuel.FuelNonStatic> GetFuel(){
+        ArrayList<TableFuel.FuelNonStatic> fuelList = new ArrayList<>();
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query;
+        query  = "SELECT * FROM "
+                + TableFuel.TableFuelDetails.tableName  +
+                " WHERE " + TableFuel.TableFuelDetails.col_userId + " = " + TableFuel.userId +
+                " AND "
+                + TableFuel.TableFuelDetails.col_Status + " = '" + TableFuel.fuelStatus + "'";
+
+        Cursor cursor = db.rawQuery(query , null);
+        if(cursor.getCount() > 0){
+            for(cursor.moveToFirst(); !cursor.isAfterLast() ; cursor.moveToNext()){
+                TableFuel.FuelNonStatic fuel = new TableFuel().new FuelNonStatic();
+
+                fuel.fuelId = Integer.parseInt(cursor.getString(0));
+                fuel.userId =  Integer.parseInt(cursor.getString(1));
+                fuel.fuelDescription = cursor.getString(2);
+                fuel.fuelLocation = cursor.getString(3) ;
+                fuel.fuelDate = cursor.getString(4);
+                fuel.fuelAmount =  Float.parseFloat(cursor.getString(5)) ;
+                fuel.fuelTotalCost =  Float.parseFloat(cursor.getString(6)) ;
+                fuel.fuelStatus = cursor.getString(7);
+
+                fuelList.add(fuel);
+            }
+        }
+        db.close();
+
+        return  fuelList;
+    }
+
+    public void DeleteFuel(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TableFuel.TableFuelDetails.tableName, TableFuel.TableFuelDetails.col_FuelId + " = ? ",
+                new String[]{String.valueOf(TableFuel.fuelId)});
+        db.close();
+    }
     //============== END DB Operation for fuel =======================//
 
     //============== DB Operation for accident =======================//

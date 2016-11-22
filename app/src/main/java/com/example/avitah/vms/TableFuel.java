@@ -16,7 +16,19 @@ public class TableFuel {
     public  static String fuelDate;
     public  static float fuelAmount;
     public  static float fuelTotalCost;
-    public  static String fuelStatus;
+    public  static String fuelStatus = "ACTIVE";
+    public static int fuelCount;
+
+    public class FuelNonStatic {
+        public int fuelId;
+        public int userId;
+        public String fuelDescription;
+        public String fuelLocation;
+        public String fuelDate;
+        public float fuelAmount;
+        public float fuelTotalCost;
+        public String fuelStatus;
+    }
 
     public  static abstract class TableFuelDetails implements BaseColumns {
         public static final String tableName = "TableFuel";

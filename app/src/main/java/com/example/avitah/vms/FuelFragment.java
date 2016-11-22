@@ -42,12 +42,19 @@ public class FuelFragment extends Fragment {
             public void onClick(View v) {
                 if(IsValid()){
                     SetEditText();
-
                     InsertFuel();
 
                     Toast messageBox = Toast.makeText(getActivity() , "Fuel record added successfully" , Toast.LENGTH_LONG);
                     messageBox.show();
                 }
+            }
+        });
+
+        Button buttonViewHistory   = (Button)view.findViewById(R.id.BtnFuelHistory);
+        buttonViewHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavigateToVehicleFragment();
             }
         });
 
@@ -78,7 +85,7 @@ public class FuelFragment extends Fragment {
         TableFuel.fuelDate =  Fueldate.getText().toString().trim();
         TableFuel.fuelAmount = Float.parseFloat(amount.getText().toString().trim());
         TableFuel.fuelTotalCost = Float.parseFloat(totalCost.getText().toString().trim());
-        TableFuel.fuelStatus = "active";
+        TableFuel.fuelStatus = "ACTIVE";
     }
 
     public boolean IsValid(){
@@ -110,5 +117,12 @@ public class FuelFragment extends Fragment {
     public void InsertFuel(){
         DBHandler DB = new DBHandler(getContext());
         DB.PostFuel();
+    }
+
+    private void NavigateToVehicleFragment() {
+        FuelHistoryFragment fragment = new FuelHistoryFragment();
+        android.support.v4.app.FragmentTransaction fmTransaction = getFragmentManager().beginTransaction();
+        fmTransaction.replace(R.id.Frame_container, fragment);
+        fmTransaction.commit();
     }
 }
