@@ -18,6 +18,7 @@ public class TableAccident {
     public static String policyNo;
     public static String acciDescription;
     public static String status = "ACTIVE";
+    public static int count;
 
     public class AccidentNonStatic{
         public  int accidentId;

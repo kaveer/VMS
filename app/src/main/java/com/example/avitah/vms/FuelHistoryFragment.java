@@ -94,7 +94,7 @@ public class FuelHistoryFragment extends Fragment {
 
         for (TableFuel.FuelNonStatic fuel:  fuelList) {
             fuelRadioButton[counter]  = new RadioButton(getContext());
-            fuelRadioButton[counter].setText(fuel.fuelLocation + "  " + fuel.fuelStatus);
+            fuelRadioButton[counter].setText("Added at " + fuel.fuelLocation + " ,cost :" + fuel.fuelTotalCost);
             fuelRadioButton[counter].setId(fuel.fuelId);
             fuelRadioGroup.addView(fuelRadioButton[counter]);
         }

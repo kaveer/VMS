@@ -391,7 +391,50 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(TableAccident.TableAccidentDetails.col_status , TableAccident.status);
 
 
-        db.insert(TableFuel.TableFuelDetails.tableName , null , values);
+        db.insert(TableAccident.TableAccidentDetails.tableName , null , values);
+        db.close();
+    }
+
+    public ArrayList<TableAccident.AccidentNonStatic> GetAccident(){
+        ArrayList<TableAccident.AccidentNonStatic> accidentList = new ArrayList<>();
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query;
+        query  = "SELECT * FROM "
+                + TableAccident.TableAccidentDetails.tableName  +
+                " WHERE " + TableAccident.TableAccidentDetails.col_userId + " = " + TableAccident.userId +
+                " AND "
+                + TableAccident.TableAccidentDetails.col_status + " = '" + TableAccident.status + "'";
+
+        Cursor cursor = db.rawQuery(query , null);
+        if(cursor.getCount() > 0){
+            for(cursor.moveToFirst(); !cursor.isAfterLast() ; cursor.moveToNext()){
+                TableAccident.AccidentNonStatic accident = new TableAccident().new AccidentNonStatic();
+
+                accident.accidentId = Integer.parseInt(cursor.getString(0));
+                accident.userId =  Integer.parseInt(cursor.getString(1));
+                accident.acciDate = cursor.getString(2);
+                accident.makeModel = cursor.getString(3) ;
+                accident.regNo = cursor.getString(4);
+                accident.acciName =  cursor.getString(5);
+                accident.contactNo =  Integer.parseInt(cursor.getString(6)) ;
+                accident.insurance = cursor.getString(7);
+                accident.policyNo = cursor.getString(8);
+                accident.acciDescription = cursor.getString(9);
+                accident.status = cursor.getString(10);
+
+                accidentList.add(accident);
+            }
+        }
+        db.close();
+
+        return  accidentList;
+    }
+
+    public void DeleteAccident(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TableAccident.TableAccidentDetails.tableName, TableAccident.TableAccidentDetails.col_accidentId + " = ? ",
+                new String[]{String.valueOf(TableAccident.accidentId)});
         db.close();
     }
     //============== END DB Operation for accident =======================//
