@@ -99,6 +99,7 @@ public class InsuranceFragment extends Fragment {
                 fmTransaction.replace(R.id.Frame_container, fragment);
                 fmTransaction.commit();
 
+
             }
 
 
@@ -115,7 +116,7 @@ public class InsuranceFragment extends Fragment {
         TableInsurance.insuranceType = spinnerInsuranceType.getSelectedItem().toString();
         TableInsurance.selectVehicleId = vehicleRadioGroup.getCheckedRadioButtonId();
         TableInsurance.insuranceName = name.getText().toString().trim();
-        TableInsurance.policyNo = policyNo.getText().toString().trim();
+        TableInsurance.policyNo =Integer.parseInt(policyNo.getText().toString().trim()) ;
         TableInsurance.certificateNo = certificateNo.getText().toString().trim();
         TableInsurance.policyHolder = policyHolder.getText().toString().trim();
         TableInsurance.effectiveDate = effictiveDate.getText().toString().trim();

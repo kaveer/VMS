@@ -12,7 +12,7 @@ public class TableInsurance {
     public  static String insuranceType;
     public  static int selectVehicleId;
     public  static  String insuranceName;
-    public  static  String policyNo;
+    public  static  int policyNo;
     public  static  String certificateNo;
     public  static  String policyHolder;
     public  static  String effectiveDate;
@@ -27,7 +27,7 @@ public class TableInsurance {
         public  String insuranceType;
         public  int selectVehicle;
         public  String insuranceName;
-        public   String policyNo;
+        public   int policyNo;
         public    String certificateNo;
         public    String policyHolder;
         public    String effectiveDate;

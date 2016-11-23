@@ -8,16 +8,11 @@ import android.content.ContentValues;
 
 import java.util.ArrayList;
 
-/**
- * Created by kaveer on 10/15/2016.
- */
 
 public class DBHandler extends SQLiteOpenHelper {
 
     public static final String databaseName = "VMSDB";
     public static final int databaseVersion = 1;
-
-
 
     public DBHandler(Context context) {
         super(context, databaseName, null, databaseVersion);
@@ -99,7 +94,7 @@ public class DBHandler extends SQLiteOpenHelper {
                         + TableInsurance.TableInsuranceDetails.col_insuranceType +  "  TEXT,"
                         + TableInsurance.TableInsuranceDetails.col_selectVehicleId + "  INT,"
                         + TableInsurance.TableInsuranceDetails.col_insuranceName + "  TEXT,"
-                        + TableInsurance.TableInsuranceDetails.col_policyNo + "  TEXT,"
+                        + TableInsurance.TableInsuranceDetails.col_policyNo + "  INT,"
                         + TableInsurance.TableInsuranceDetails.col_certificateNo + "  TEXT,"
                         + TableInsurance.TableInsuranceDetails.col_policyHolder + "  TEXT,"
                         + TableInsurance.TableInsuranceDetails.col_effectiveDate + "  DATE DEFAULT CURRENT_DATE,"
@@ -480,7 +475,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 insurance.insuranceType = cursor.getString(2);
                 insurance.selectVehicle = Integer.parseInt(cursor.getString(3)) ;
                 insurance.insuranceName = cursor.getString(4);
-                insurance.policyNo = cursor.getString(5);
+                insurance.policyNo =  Integer.parseInt(cursor.getString(5)) ;
                 insurance.certificateNo = cursor.getString(6);
                 insurance.policyHolder = cursor.getString(7);
                 insurance.effectiveDate = cursor.getString(8);
