@@ -1,16 +1,14 @@
 package com.example.avitah.vms;
 
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.content.Context;
 import android.content.Intent;
-import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.avitah.DbHandler.DBHandler;
+import com.example.avitah.Tables.TableUser;
 
 public class Login extends AppCompatActivity {
     EditText email;

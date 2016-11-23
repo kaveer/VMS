@@ -1,4 +1,4 @@
-package com.example.avitah.vms;
+package com.example.avitah.Fragment.Accident;
 
 
 import android.os.Bundle;
@@ -9,6 +9,11 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.avitah.DbHandler.DBHandler;
+import com.example.avitah.Tables.TableAccident;
+import com.example.avitah.Tables.TableUser;
+import com.example.avitah.vms.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

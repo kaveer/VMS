@@ -1,7 +1,5 @@
-package com.example.avitah.vms;
+package com.example.avitah.Fragment.Owner;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -11,7 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import static android.R.attr.id;
+import com.example.avitah.DbHandler.DBHandler;
+import com.example.avitah.Tables.TableUser;
+import com.example.avitah.vms.R;
 
 
 public class OwnerDetailsFragment extends Fragment {

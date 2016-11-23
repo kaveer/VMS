@@ -1,4 +1,4 @@
-package com.example.avitah.vms;
+package com.example.avitah.Fragment.Vehicle;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -10,6 +10,11 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import com.example.avitah.DbHandler.DBHandler;
+import com.example.avitah.Tables.TableUser;
+import com.example.avitah.Tables.TableVehicle;
+import com.example.avitah.vms.R;
 
 
 public class VehicleDetailsFragment extends Fragment {

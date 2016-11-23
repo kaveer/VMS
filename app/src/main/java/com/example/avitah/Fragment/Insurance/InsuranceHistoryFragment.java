@@ -1,9 +1,8 @@
-package com.example.avitah.vms;
+package com.example.avitah.Fragment.Insurance;
 
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +10,11 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import com.example.avitah.DbHandler.DBHandler;
+import com.example.avitah.Tables.TableInsurance;
+import com.example.avitah.Tables.TableUser;
+import com.example.avitah.vms.R;
 
 import java.util.ArrayList;
 

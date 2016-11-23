@@ -1,4 +1,4 @@
-package com.example.avitah.vms;
+package com.example.avitah.Tables;
 
 import android.provider.BaseColumns;
 

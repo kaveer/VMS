@@ -1,10 +1,16 @@
-package com.example.avitah.vms;
+package com.example.avitah.DbHandler;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.content.ContentValues;
+
+import com.example.avitah.Tables.TableAccident;
+import com.example.avitah.Tables.TableFuel;
+import com.example.avitah.Tables.TableInsurance;
+import com.example.avitah.Tables.TableUser;
+import com.example.avitah.Tables.TableVehicle;
 
 import java.util.ArrayList;
 
