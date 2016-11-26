@@ -1,4 +1,4 @@
-package com.example.avitah.vms;
+package com.example.avitah.Activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +9,9 @@ import android.widget.Toast;
 
 import com.example.avitah.DbHandler.DBHandler;
 import com.example.avitah.Tables.TableUser;
+import com.example.avitah.vms.MyService;
+import com.example.avitah.vms.R;
+import com.example.avitah.vms.VMS;
 
 public class Login extends AppCompatActivity {
     EditText email;

@@ -11,6 +11,7 @@ import com.example.avitah.Tables.TableFuel;
 import com.example.avitah.Tables.TableInsurance;
 import com.example.avitah.Tables.TableUser;
 import com.example.avitah.Tables.TableVehicle;
+import com.example.avitah.Tables.TableCarWash;
 
 import java.util.ArrayList;
 
@@ -31,6 +32,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String createTableFuelQuery;
         String createTableAccident;
         String createTableInsurance;
+        String createTableCarWash;
 
         createTableUserQuery =
                 "CREATE TABLE "+ TableUser.TableUserDetails.tableName +
@@ -109,11 +111,24 @@ public class DBHandler extends SQLiteOpenHelper {
                         + TableInsurance.TableInsuranceDetails.col_insuranceStatus + "  TEXT"
                         + " )";
 
+        createTableCarWash =
+                "CREATE TABLE " + TableCarWash.TableCarWashDetails.tableName +
+                        " ("
+                        + TableCarWash.TableCarWashDetails.col_carWashId + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                        + TableCarWash.TableCarWashDetails.col_userId + "  INT,"
+                        + TableCarWash.TableCarWashDetails.col_date +  "  DATE DEFAULT CURRENT_DATE,"
+                        + TableCarWash.TableCarWashDetails.col_location + "  TEXT,"
+                        + TableCarWash.TableCarWashDetails.col_description + "  TEXT,"
+                        + TableCarWash.TableCarWashDetails.col_cost + "  REAL,"
+                        + TableCarWash.TableCarWashDetails.col_status + "  TEXT"
+                        + " )";
+
         db.execSQL(createTableUserQuery);
         db.execSQL(createTableVehicleQuery);
         db.execSQL(createTableFuelQuery);
         db.execSQL(createTableAccident);
         db.execSQL(createTableInsurance);
+        db.execSQL(createTableCarWash);
     }
 
     @Override
@@ -504,4 +519,59 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
     //============== END DB Operation for insurance =======================//
+
+    //============== DB Operation for CarWash =======================//
+    public void PostCarWash(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(TableCarWash.TableCarWashDetails.col_userId , TableCarWash.userId);
+        values.put(TableCarWash.TableCarWashDetails.col_date, TableCarWash.date);
+        values.put(TableCarWash.TableCarWashDetails.col_location, TableCarWash.Location);
+        values.put(TableCarWash.TableCarWashDetails.col_description, TableCarWash.Description);
+        values.put(TableCarWash.TableCarWashDetails.col_cost, TableCarWash.Cost);
+        values.put(TableCarWash.TableCarWashDetails.col_status, TableCarWash.Status);
+
+        db.insert(TableCarWash.TableCarWashDetails.tableName , null , values);
+        db.close();
+    }
+
+    public ArrayList<TableCarWash.CarWashNonStatic> GetCarWash(){
+        ArrayList<TableCarWash.CarWashNonStatic> carWashList = new ArrayList<>();
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query;
+        query  = "SELECT * FROM "
+                + TableCarWash.TableCarWashDetails.tableName  +
+                " WHERE " + TableCarWash.TableCarWashDetails.col_userId + " = " + TableUser.userId +
+                " AND "
+                + TableCarWash.TableCarWashDetails.col_status + " = '" + TableCarWash.Status + "'";
+
+        Cursor cursor = db.rawQuery(query , null);
+        if(cursor.getCount() > 0){
+            for(cursor.moveToFirst(); !cursor.isAfterLast() ; cursor.moveToNext()){
+                TableCarWash.CarWashNonStatic carWash = new TableCarWash().new CarWashNonStatic();
+
+                carWash.carWashId = Integer.parseInt(cursor.getString(0));
+                carWash.userId =  Integer.parseInt(cursor.getString(1));
+                carWash.date = cursor.getString(2);
+                carWash.Location = cursor.getString(3) ;
+                carWash.Description = cursor.getString(4);
+                carWash.Cost =  Float.parseFloat(cursor.getString(5)) ;
+                carWash.Status = cursor.getString(6);
+
+                carWashList.add(carWash);
+            }
+        }
+        db.close();
+
+        return  carWashList;
+    }
+
+    public void DeleteCarWash(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TableCarWash.TableCarWashDetails.tableName, TableCarWash.TableCarWashDetails.col_carWashId + " = ? ",
+                new String[]{String.valueOf(TableCarWash.carWashId)});
+        db.close();
+    }
+    //============== END DB Operation for CarWash =======================//
 }

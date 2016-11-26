@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ExpandableListView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 public class ToolsFragment extends Fragment {
 
     ListView listView;
+    ExpandableListView ex;
     public ToolsFragment() {
         // Required empty public constructor
     }
@@ -57,11 +59,15 @@ public class ToolsFragment extends Fragment {
         };
 
         listView = (ListView)view.findViewById(R.id.listviewtest);
+        ex = (ExpandableListView)view.findViewById(R.id.test);
 
         ArrayAdapter adapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1, values);
 
+       ArrayAdapter adapters = new ArrayAdapter(this.getContext(), android.R.layout.simple_expandable_list_item_1, values);
+
 
         listView.setAdapter(adapter);
+        ex.setAdapter(adapters);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 

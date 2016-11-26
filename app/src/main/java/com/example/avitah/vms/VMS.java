@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.avitah.Fragment.Accident.AccidentFragment;
+import com.example.avitah.Fragment.CarWash.CarWashFragment;
 import com.example.avitah.Fragment.Fuel.FuelFragment;
 import com.example.avitah.Fragment.Insurance.InsuranceFragment;
 import com.example.avitah.Fragment.Owner.OwnerDetailsFragment;

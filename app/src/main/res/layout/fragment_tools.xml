@@ -15,8 +15,13 @@
 
             <ListView
                 android:layout_width="match_parent"
-                android:layout_height="466dp"
+                android:layout_height="255dp"
                 android:id="@+id/listviewtest" />
+
+            <ExpandableListView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/test" />
         </LinearLayout>
     </ScrollView>
 
