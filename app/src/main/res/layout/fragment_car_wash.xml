@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:orientation="vertical"
-    tools:context="com.example.avitah.vms.com.example.avitah.Fragment.CarWash.CarWashFragment">
+    tools:context="com.example.avitah.Fragment.CarWash.CarWashFragment">
 
     <TextView
         android:layout_width="match_parent"

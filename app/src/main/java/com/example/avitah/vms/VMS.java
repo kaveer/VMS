@@ -15,6 +15,7 @@ import com.example.avitah.Fragment.CarWash.CarWashFragment;
 import com.example.avitah.Fragment.Fuel.FuelFragment;
 import com.example.avitah.Fragment.Insurance.InsuranceFragment;
 import com.example.avitah.Fragment.Owner.OwnerDetailsFragment;
+import com.example.avitah.Fragment.Parking.ParkingFragment;
 import com.example.avitah.Fragment.Vehicle.SelectVehicleFragment;
 
 public class VMS extends AppCompatActivity

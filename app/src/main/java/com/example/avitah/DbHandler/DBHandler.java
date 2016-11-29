@@ -9,6 +9,7 @@ import android.content.ContentValues;
 import com.example.avitah.Tables.TableAccident;
 import com.example.avitah.Tables.TableFuel;
 import com.example.avitah.Tables.TableInsurance;
+import com.example.avitah.Tables.TableParking;
 import com.example.avitah.Tables.TableUser;
 import com.example.avitah.Tables.TableVehicle;
 import com.example.avitah.Tables.TableCarWash;
@@ -33,6 +34,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String createTableAccident;
         String createTableInsurance;
         String createTableCarWash;
+        String createTableParking;
 
         createTableUserQuery =
                 "CREATE TABLE "+ TableUser.TableUserDetails.tableName +
@@ -123,12 +125,26 @@ public class DBHandler extends SQLiteOpenHelper {
                         + TableCarWash.TableCarWashDetails.col_status + "  TEXT"
                         + " )";
 
+        createTableParking =
+                "CREATE TABLE " + TableParking.TableParkingDetails.tableName +
+                        " ("
+                        + TableParking.TableParkingDetails.col_parkingId + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                        + TableParking.TableParkingDetails.col_userId + "  INT,"
+                        + TableParking.TableParkingDetails.col_date +  "  DATE DEFAULT CURRENT_DATE,"
+                        + TableParking.TableParkingDetails.col_location + "  TEXT,"
+                        + TableParking.TableParkingDetails.col_duration + "  REAL,"
+                        + TableParking.TableParkingDetails.col_description + "  TEXT,"
+                        + TableParking.TableParkingDetails.col_cost + "  REAL,"
+                        + TableParking.TableParkingDetails.col_status + "  TEXT"
+                        + " )";
+
         db.execSQL(createTableUserQuery);
         db.execSQL(createTableVehicleQuery);
         db.execSQL(createTableFuelQuery);
         db.execSQL(createTableAccident);
         db.execSQL(createTableInsurance);
         db.execSQL(createTableCarWash);
+        db.execSQL(createTableParking);
     }
 
     @Override
@@ -574,4 +590,61 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
     //============== END DB Operation for CarWash =======================//
+
+    //============== DB Operation for Parking =======================//
+    public void PostParking(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(TableParking.TableParkingDetails.col_userId , TableParking.userId);
+        values.put(TableParking.TableParkingDetails.col_date, TableParking.date);
+        values.put(TableParking.TableParkingDetails.col_location, TableParking.Location);
+        values.put(TableParking.TableParkingDetails.col_duration, TableParking.duration);
+        values.put(TableParking.TableParkingDetails.col_description, TableParking.Description);
+        values.put(TableParking.TableParkingDetails.col_cost, TableParking.Cost);
+        values.put(TableParking.TableParkingDetails.col_status, TableParking.Status);
+
+        db.insert(TableParking.TableParkingDetails.tableName , null , values);
+        db.close();
+    }
+
+    public ArrayList<TableParking.ParkingNonStatic> GetParking(){
+        ArrayList<TableParking.ParkingNonStatic> parkingList = new ArrayList<>();
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query;
+        query  = "SELECT * FROM "
+                + TableParking.TableParkingDetails.tableName  +
+                " WHERE " + TableParking.TableParkingDetails.col_userId + " = " + TableParking.userId +
+                " AND "
+                + TableParking.TableParkingDetails.col_status + " = '" + TableParking.Status + "'";
+
+        Cursor cursor = db.rawQuery(query , null);
+        if(cursor.getCount() > 0){
+            for(cursor.moveToFirst(); !cursor.isAfterLast() ; cursor.moveToNext()){
+                TableParking.ParkingNonStatic parking = new TableParking().new ParkingNonStatic();
+
+                parking.parkingId = Integer.parseInt(cursor.getString(0));
+                parking.userId =  Integer.parseInt(cursor.getString(1));
+                parking.date = cursor.getString(2);
+                parking.Location = cursor.getString(3) ;
+                parking.duration = Float.parseFloat(cursor.getString(4));
+                parking.Description = cursor.getString(5);
+                parking.Cost =  Float.parseFloat(cursor.getString(6)) ;
+                parking.Status = cursor.getString(7);
+
+                parkingList.add(parking);
+            }
+        }
+        db.close();
+
+        return  parkingList;
+    }
+
+    public void DeleteParking(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TableParking.TableParkingDetails.tableName, TableParking.TableParkingDetails.col_parkingId + " = ? ",
+                new String[]{String.valueOf(TableParking.parkingId)});
+        db.close();
+    }
+    //============== END DB Operation for parking =======================//
 }

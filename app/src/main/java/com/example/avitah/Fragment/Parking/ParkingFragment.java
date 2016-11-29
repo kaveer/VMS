@@ -1,4 +1,4 @@
-package com.example.avitah.Fragment.CarWash;
+package com.example.avitah.Fragment.Parking;
 
 
 import android.os.Bundle;
@@ -11,9 +11,10 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.avitah.DbHandler.DBHandler;
+import com.example.avitah.Tables.TableCarWash;
+import com.example.avitah.Tables.TableParking;
 import com.example.avitah.Tables.TableUser;
 import com.example.avitah.vms.R;
-import com.example.avitah.Tables.TableCarWash;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -22,14 +23,15 @@ import java.util.Calendar;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class CarWashFragment extends Fragment {
+public class ParkingFragment extends Fragment {
 
     EditText date;
     EditText location;
+    EditText duration;
     EditText description;
     EditText cost;
 
-    public CarWashFragment() {
+    public ParkingFragment() {
         // Required empty public constructor
     }
 
@@ -37,25 +39,25 @@ public class CarWashFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_car_wash, container, false);
+        View view = inflater.inflate(R.layout.fragment_parking, container, false);
         InitializeEDitText(view);
         date.setText(GetDateNow());
 
-        Button buttonSave   = (Button)view.findViewById(R.id.Btn_carWashSave);
+        Button buttonSave   = (Button)view.findViewById(R.id.BtnSaveParking);
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(IsValid()){
                     SetEditText();
-                    InsertCarWash();
+                    InsertParking();
 
-                    Toast messageBox = Toast.makeText(getActivity() , "car wash record added successfully" , Toast.LENGTH_LONG);
+                    Toast messageBox = Toast.makeText(getActivity() , "parking record added successfully" , Toast.LENGTH_LONG);
                     messageBox.show();
                 }
             }
         });
 
-        Button buttonHistory   = (Button)view.findViewById(R.id.BtnCarWashHistory);
+        Button buttonHistory   = (Button)view.findViewById(R.id.BtnViewParkingHistory);
         buttonHistory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,18 +68,12 @@ public class CarWashFragment extends Fragment {
         return view;
     }
 
-    private void NavigateToVehicleFragment() {
-        CarWashHistoryFragment fragment = new CarWashHistoryFragment();
-        android.support.v4.app.FragmentTransaction fmTransaction = getFragmentManager().beginTransaction();
-        fmTransaction.replace(R.id.Frame_container, fragment);
-        fmTransaction.commit();
-    }
-
     public void InitializeEDitText(View view){
-        date = (EditText)view.findViewById(R.id.washDate);
-        location = (EditText)view.findViewById(R.id.washLocation);
-        description = (EditText)view.findViewById(R.id.washDescription);
-        cost = (EditText)view.findViewById(R.id.washCost);
+        date = (EditText)view.findViewById(R.id.ParkingDate);
+        location = (EditText)view.findViewById(R.id.ParkingLocation);
+        duration = (EditText)view.findViewById(R.id.ParkingDuration);
+        description = (EditText)view.findViewById(R.id.ParkingDescription);
+        cost = (EditText)view.findViewById(R.id.ParkingCost);
     }
 
     public String GetDateNow(){
@@ -105,31 +101,38 @@ public class CarWashFragment extends Fragment {
             return  result = false;
         }
 
-        if(description.getText().toString().trim().length() == 0){
-            description.setError("Enter description");
+        if(duration.getText().toString().trim().length() == 0){
+            duration.setError("Enter duration");
             return  result = false;
         }
 
         if(cost.getText().toString().trim().length() == 0){
-            cost.setError("Enter car wash cost");
+            cost.setError("Enter parking cost");
             return  result = false;
         }
 
         return result;
     }
 
+    private void NavigateToVehicleFragment() {
+        ParkingHistoryFragment fragment = new ParkingHistoryFragment();
+        android.support.v4.app.FragmentTransaction fmTransaction = getFragmentManager().beginTransaction();
+        fmTransaction.replace(R.id.Frame_container, fragment);
+        fmTransaction.commit();
+    }
+
     public void SetEditText(){
-        TableCarWash.date = date.getText().toString().trim();
-        TableCarWash.Location = location.getText().toString().trim();
-        TableCarWash.Description = description.getText().toString().trim();
-        TableCarWash.Cost = Float.parseFloat(cost.getText().toString().trim());
+        TableParking.date = date.getText().toString().trim();
+        TableParking.Location = location.getText().toString().trim();
+        TableParking.duration = Float.parseFloat(duration.getText().toString().trim());
+        TableParking.Description = description.getText().toString().trim();
+        TableParking.Cost = Float.parseFloat(cost.getText().toString().trim());
     }
 
-    public void InsertCarWash(){
-        TableCarWash.userId = TableUser.userId;
+    public void InsertParking(){
+        TableParking.userId = TableUser.userId;
         DBHandler DB = new DBHandler(getContext());
-        DB.PostCarWash();
+        DB.PostParking();
     }
-
 
 }
