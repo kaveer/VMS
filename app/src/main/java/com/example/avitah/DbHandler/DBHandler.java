@@ -9,6 +9,7 @@ import android.content.ContentValues;
 import com.example.avitah.Tables.TableAccident;
 import com.example.avitah.Tables.TableFuel;
 import com.example.avitah.Tables.TableInsurance;
+import com.example.avitah.Tables.TableOtherExpense;
 import com.example.avitah.Tables.TableParking;
 import com.example.avitah.Tables.TableUser;
 import com.example.avitah.Tables.TableVehicle;
@@ -35,6 +36,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String createTableInsurance;
         String createTableCarWash;
         String createTableParking;
+        String createTableOtherExpense;
 
         createTableUserQuery =
                 "CREATE TABLE "+ TableUser.TableUserDetails.tableName +
@@ -138,6 +140,17 @@ public class DBHandler extends SQLiteOpenHelper {
                         + TableParking.TableParkingDetails.col_status + "  TEXT"
                         + " )";
 
+        createTableOtherExpense =
+                "CREATE TABLE " + TableOtherExpense.TableOtherExpenseDetails.tableName +
+                        " ("
+                        + TableOtherExpense.TableOtherExpenseDetails.col_OtherExpenseId + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                        + TableOtherExpense.TableOtherExpenseDetails.col_userId + "  INT,"
+                        + TableOtherExpense.TableOtherExpenseDetails.col_date +  "  DATE DEFAULT CURRENT_DATE,"
+                        + TableOtherExpense.TableOtherExpenseDetails.col_description + "  TEXT,"
+                        + TableOtherExpense.TableOtherExpenseDetails.col_cost + "  REAL,"
+                        + TableOtherExpense.TableOtherExpenseDetails.col_status + "  TEXT"
+                        + " )";
+
         db.execSQL(createTableUserQuery);
         db.execSQL(createTableVehicleQuery);
         db.execSQL(createTableFuelQuery);
@@ -145,6 +158,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(createTableInsurance);
         db.execSQL(createTableCarWash);
         db.execSQL(createTableParking);
+        db.execSQL(createTableOtherExpense);
     }
 
     @Override
@@ -647,4 +661,57 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
     //============== END DB Operation for parking =======================//
+
+    //============== DB Operation for Other expenses =======================//
+    public void PostOtherExpense(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(TableOtherExpense.TableOtherExpenseDetails.col_userId , TableOtherExpense.userId);
+        values.put(TableOtherExpense.TableOtherExpenseDetails.col_date, TableOtherExpense.date);
+        values.put(TableOtherExpense.TableOtherExpenseDetails.col_description, TableOtherExpense.Description);
+        values.put(TableOtherExpense.TableOtherExpenseDetails.col_cost, TableOtherExpense.Cost);
+        values.put(TableOtherExpense.TableOtherExpenseDetails.col_status, TableOtherExpense.Status);
+
+        db.insert(TableOtherExpense.TableOtherExpenseDetails.tableName , null , values);
+        db.close();
+    }
+
+    public ArrayList<TableOtherExpense.OtherExpenseNonStatic> GetOhterExpense(){
+        ArrayList<TableOtherExpense.OtherExpenseNonStatic> otherExpenseList = new ArrayList<>();
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query;
+        query  = "SELECT * FROM "
+                + TableOtherExpense.TableOtherExpenseDetails.tableName  +
+                " WHERE " + TableOtherExpense.TableOtherExpenseDetails.col_userId + " = " + TableOtherExpense.userId +
+                " AND "
+                + TableOtherExpense.TableOtherExpenseDetails.col_status + " = '" + TableOtherExpense.Status + "'";
+
+        Cursor cursor = db.rawQuery(query , null);
+        if(cursor.getCount() > 0){
+            for(cursor.moveToFirst(); !cursor.isAfterLast() ; cursor.moveToNext()){
+                TableOtherExpense.OtherExpenseNonStatic otherExpense = new TableOtherExpense().new OtherExpenseNonStatic();
+
+                otherExpense.otherExpenseId = Integer.parseInt(cursor.getString(0));
+                otherExpense.userId =  Integer.parseInt(cursor.getString(1));
+                otherExpense.date = cursor.getString(2);
+                otherExpense.Description = cursor.getString(3);
+                otherExpense.Cost =  Float.parseFloat(cursor.getString(4)) ;
+                otherExpense.Status = cursor.getString(5);
+
+                otherExpenseList.add(otherExpense);
+            }
+        }
+        db.close();
+
+        return  otherExpenseList;
+    }
+
+    public void DeleteOtherExpense(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TableOtherExpense.TableOtherExpenseDetails.tableName, TableOtherExpense.TableOtherExpenseDetails.col_OtherExpenseId + " = ? ",
+                new String[]{String.valueOf(TableOtherExpense.otherExpenseId)});
+        db.close();
+    }
+    //============== END DB Operation for Other expenses =======================//
 }
