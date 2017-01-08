@@ -48,4 +48,5 @@ designed to help you build applications for Microsoft Windows. Visual Studio 201
 for writing C# code, and it provides many features that you will learn about as you progress through
 this book. In this chapter, you will use Visual Studio 2013 to build some simple C# applications and
 get started on the path to building highly functional solutions for Windows.</string>
+    <string name="title_activity_test">test</string>
 </resources>

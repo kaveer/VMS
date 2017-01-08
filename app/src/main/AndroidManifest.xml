@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.avitah.vms">
 
-    <!--add line to allow app to run on boot up-->
+    <!-- add line to allow app to run on boot up -->
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
     <application
@@ -14,7 +14,7 @@
         <activity
             android:name=".VMS"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name="com.example.avitah.Activity.Login">
             <intent-filter>
                 //cause this activity to start first
@@ -25,7 +25,7 @@
         </activity>
         <activity android:name="com.example.avitah.Activity.SignUp" />
 
-        <!--add receiver tag to allow android to display message/toast/notification in the java class .BootReceiver-->
+        <!-- add receiver tag to allow android to display message/toast/notification in the java class .BootReceiver -->
         <receiver
             android:name=".BootReceiver"
             android:enabled="true"
@@ -36,7 +36,7 @@
             </intent-filter>
         </receiver>
 
-        <!--Add service tag to run the java class .MyService when the app is actually running a specific activity-->
+        <!-- Add service tag to run the java class .MyService when the app is actually running a specific activity -->
         <service android:name=".MyService">
             <intent-filter>
                 <action android:name="com.example.avitah.vms.MyService" />

@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.content.ContentValues;
 
 import com.example.avitah.Tables.TableAccident;
+import com.example.avitah.Tables.TableFines;
 import com.example.avitah.Tables.TableFuel;
 import com.example.avitah.Tables.TableInsurance;
 import com.example.avitah.Tables.TableOtherExpense;
@@ -37,6 +38,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String createTableCarWash;
         String createTableParking;
         String createTableOtherExpense;
+        String createTableFine;
 
         createTableUserQuery =
                 "CREATE TABLE "+ TableUser.TableUserDetails.tableName +
@@ -151,6 +153,20 @@ public class DBHandler extends SQLiteOpenHelper {
                         + TableOtherExpense.TableOtherExpenseDetails.col_status + "  TEXT"
                         + " )";
 
+        createTableFine =
+                "CREATE TABLE " + TableFines.TableFineDetails.tableName +
+                        " ("
+                        + TableFines.TableFineDetails.col_FineId + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                        + TableFines.TableFineDetails.col_userId + "  INT,"
+                        + TableFines.TableFineDetails.col_Court +  "  TEXT,"
+                        + TableFines.TableFineDetails.col_FineDate + "  DATE DEFAULT CURRENT_DATE,"
+                        + TableFines.TableFineDetails.col_Charge + "  TEXT,"
+                        + TableFines.TableFineDetails.col_BreachOfArticle + "  TEXT,"
+                        + TableFines.TableFineDetails.col_Ordinance + "  TEXT,"
+                        + TableFines.TableFineDetails.col_IssuedBy + "  TEXT,"
+                        + TableFines.TableFineDetails.col_Status + "  TEXT"
+                        + " )";
+
         db.execSQL(createTableUserQuery);
         db.execSQL(createTableVehicleQuery);
         db.execSQL(createTableFuelQuery);
@@ -159,6 +175,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(createTableCarWash);
         db.execSQL(createTableParking);
         db.execSQL(createTableOtherExpense);
+        db.execSQL(createTableFine);
     }
 
     @Override
@@ -714,4 +731,64 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
     //============== END DB Operation for Other expenses =======================//
+
+    //============== DB Operation for Fines =======================//
+    public void PostFine(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(TableFines.TableFineDetails.col_userId , TableFines.userId);
+        values.put(TableFines.TableFineDetails.col_Court, TableFines.court);
+        values.put(TableFines.TableFineDetails.col_FineDate, TableFines.fineDate);
+        values.put(TableFines.TableFineDetails.col_Charge, TableFines.charge);
+        values.put(TableFines.TableFineDetails.col_BreachOfArticle, TableFines.breachOfArticle);
+        values.put(TableFines.TableFineDetails.col_Ordinance, TableFines.ordinace);
+        values.put(TableFines.TableFineDetails.col_IssuedBy, TableFines.issuedBy);
+        values.put(TableFines.TableFineDetails.col_Status, TableFines.fineStatus);
+
+        db.insert(TableFines.TableFineDetails.tableName , null , values);
+        db.close();
+    }
+
+    public ArrayList<TableFines.FineNonStatic> GetFine(){
+        ArrayList<TableFines.FineNonStatic> fineList = new ArrayList<>();
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query;
+        query  = "SELECT * FROM "
+                + TableFines.TableFineDetails.tableName  +
+                " WHERE " + TableFines.TableFineDetails.col_userId + " = " + TableFines.userId +
+                " AND "
+                + TableFines.TableFineDetails.col_Status + " = '" + TableFines.fineStatus + "'";
+
+        Cursor cursor = db.rawQuery(query , null);
+        if(cursor.getCount() > 0){
+            for(cursor.moveToFirst(); !cursor.isAfterLast() ; cursor.moveToNext()){
+                TableFines.FineNonStatic fine = new TableFines().new FineNonStatic();
+
+                fine.FineId = Integer.parseInt(cursor.getString(0));
+                fine.userId =  Integer.parseInt(cursor.getString(1));
+                fine.court = cursor.getString(2);
+                fine.fineDate = cursor.getString(3);
+                fine.charge =  cursor.getString(4) ;
+                fine.breachOfArticle = cursor.getString(5);
+                fine.ordinace = cursor.getString(6);
+                fine.issuedBy = cursor.getString(7);
+                fine.fineStatus = cursor.getString(8);
+
+
+                fineList.add(fine);
+            }
+        }
+        db.close();
+
+        return  fineList;
+    }
+
+    public void DeleteFine(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TableFines.TableFineDetails.tableName, TableFines.TableFineDetails.col_FineId + " = ? ",
+                new String[]{String.valueOf(TableFines.FineId)});
+        db.close();
+    }
+    //============== END DB Operation for Fines =======================//
 }
