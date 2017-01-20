@@ -8,6 +8,7 @@ import android.content.ContentValues;
 
 import com.example.avitah.Tables.TableAccident;
 import com.example.avitah.Tables.TableFines;
+import com.example.avitah.Tables.TableFitness;
 import com.example.avitah.Tables.TableFuel;
 import com.example.avitah.Tables.TableInsurance;
 import com.example.avitah.Tables.TableOtherExpense;
@@ -39,6 +40,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String createTableParking;
         String createTableOtherExpense;
         String createTableFine;
+        String createTableFitness;
 
         createTableUserQuery =
                 "CREATE TABLE "+ TableUser.TableUserDetails.tableName +
@@ -167,6 +169,21 @@ public class DBHandler extends SQLiteOpenHelper {
                         + TableFines.TableFineDetails.col_Status + "  TEXT"
                         + " )";
 
+        createTableFitness =
+                "CREATE TABLE " + TableFitness.TableFitnessDetails.tableName +
+                        " ("
+                        + TableFitness.TableFitnessDetails.col_fitnessId + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                        + TableFitness.TableFitnessDetails.col_userId + "  INT,"
+                        + TableFitness.TableFitnessDetails.col_vehicleId +  "  INT,"
+                        + TableFitness.TableFitnessDetails.col_renewalMonth + "  TEXT,"
+                        + TableFitness.TableFitnessDetails.col_duration + "  TEXT,"
+                        + TableFitness.TableFitnessDetails.col_expiryDate + "  DATE DEFAULT CURRENT_DATE,"
+                        + TableFitness.TableFitnessDetails.col_Location + "  TEXT,"
+                        + TableFitness.TableFitnessDetails.col_cost + "  REAL,"
+                        + TableFitness.TableFitnessDetails.col_fitnessStatus + "  TEXT"
+                        + " )";
+
+
         db.execSQL(createTableUserQuery);
         db.execSQL(createTableVehicleQuery);
         db.execSQL(createTableFuelQuery);
@@ -176,6 +193,8 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(createTableParking);
         db.execSQL(createTableOtherExpense);
         db.execSQL(createTableFine);
+        db.execSQL(createTableFitness);
+
     }
 
     @Override
@@ -791,4 +810,21 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
     //============== END DB Operation for Fines =======================//
+
+    //===================DB Operation for Fitness =====================//
+    public void PostFitness(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(TableFitness.TableFitnessDetails.col_userId , TableFitness.userId);
+        values.put(TableFitness.TableFitnessDetails.col_vehicleId, TableFitness.vehicleId);
+        values.put(TableFitness.TableFitnessDetails.col_renewalMonth, TableFitness.renewalMonth);
+        values.put(TableFitness.TableFitnessDetails.col_duration, TableFitness.duration);
+        values.put(TableFitness.TableFitnessDetails.col_expiryDate, TableFitness.expiryDate);
+        values.put(TableFitness.TableFitnessDetails.col_Location, TableFitness.Location);
+        values.put(TableFitness.TableFitnessDetails.col_cost, TableFitness.cost);
+        values.put(TableFitness.TableFitnessDetails.col_fitnessStatus, TableFitness.fitnessStatus);
+
+        db.insert(TableFitness.TableFitnessDetails.tableName , null , values);
+        db.close();
+    }
 }

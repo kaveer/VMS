@@ -90,8 +90,6 @@ public class InsuranceFragment extends Fragment {
                 }
 
             }
-
-
         });
 
         Button buttonViewHistory   = (Button)view.findViewById(R.id.BtnViewInsuranceHistory);
@@ -109,7 +107,6 @@ public class InsuranceFragment extends Fragment {
 
 
         });
-
 
         return view;
 

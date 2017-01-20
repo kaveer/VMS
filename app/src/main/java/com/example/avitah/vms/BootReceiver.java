@@ -29,7 +29,7 @@ public class BootReceiver extends BroadcastReceiver {
                 new NotificationCompat.Builder(context)
                         .setSmallIcon(R.drawable.ic_logo_new)
                         .setContentTitle("VMS Notification")
-                        .setContentText("VMS will run when boot complete");
+                        .setContentText("VMS will run when boot complete in class Boot");
 
         NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.notify(1, mBuilder.build());

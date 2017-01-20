@@ -22,7 +22,7 @@ public class MyService extends Service {
 
         DefaultNotification();
 
-        Toast.makeText(this, "Welcome to VMS", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Welcome to VMS in class MS in method OnstartCommand", Toast.LENGTH_LONG).show();
         return START_STICKY;
 
         //return super.onStartCommand(intent, flags, startId);
@@ -33,7 +33,7 @@ public class MyService extends Service {
                 new NotificationCompat.Builder(getApplicationContext())
                         .setSmallIcon(R.drawable.ic_logo_new)
                         .setContentTitle("VMS Notification")
-                        .setContentText("VMS is running in background process");
+                        .setContentText("VMS is running in background process in class ms on method defaultNotification");
 
         NotificationManager mNotificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
         mNotificationManager.notify(1, mBuilder.build());
