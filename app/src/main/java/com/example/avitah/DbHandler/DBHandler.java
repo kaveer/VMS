@@ -827,4 +827,46 @@ public class DBHandler extends SQLiteOpenHelper {
         db.insert(TableFitness.TableFitnessDetails.tableName , null , values);
         db.close();
     }
+
+    public ArrayList<TableFitness.FitnessNonStatic> GetFitness(){
+        ArrayList<TableFitness.FitnessNonStatic> fitnessList = new ArrayList<>();
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query;
+        query  = "SELECT * FROM "
+                + TableFitness.TableFitnessDetails.tableName  +
+                " WHERE " + TableFitness.TableFitnessDetails.col_userId + " = " + TableFitness.userId +
+                " AND "
+                + TableFitness.TableFitnessDetails.col_fitnessStatus + " = '" + TableFitness.fitnessStatus + "'";
+
+        Cursor cursor = db.rawQuery(query , null);
+        if(cursor.getCount() > 0){
+            for(cursor.moveToFirst(); !cursor.isAfterLast() ; cursor.moveToNext()){
+                TableFitness.FitnessNonStatic fitness = new TableFitness().new FitnessNonStatic();
+
+                fitness.fitnessId = Integer.parseInt(cursor.getString(0));
+                fitness.userId =  Integer.parseInt(cursor.getString(1));
+                fitness.vehicleId = Integer.parseInt(cursor.getString(2));
+                fitness.renewalMonth = cursor.getString(3);
+                fitness.duration =  cursor.getString(4) ;
+                fitness.expiryDate = cursor.getString(5);
+                fitness.Location = cursor.getString(6);
+                fitness.cost = Float.parseFloat(cursor.getString(7));
+                fitness.fitnessStatus = cursor.getString(8);
+
+
+                fitnessList.add(fitness);
+            }
+        }
+        db.close();
+
+        return  fitnessList;
+    }
+
+    public void DeleteFitness(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TableFitness.TableFitnessDetails.tableName, TableFitness.TableFitnessDetails.col_fitnessId + " = ? ",
+                new String[]{String.valueOf(TableFitness.fitnessId)});
+        db.close();
+    }
 }

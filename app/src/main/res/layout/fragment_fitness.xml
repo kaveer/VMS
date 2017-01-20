@@ -167,7 +167,7 @@
                         android:text="View History"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/BtnViewInsuranceHistory"
+                        android:id="@+id/BtnViewFitnessHistory"
                         android:layout_weight="1" />
                 </TableRow>
 

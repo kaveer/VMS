@@ -17,7 +17,7 @@ public class TableFitness {
     public  static String Location;
     public  static float cost;
     public  static String fitnessStatus = "ACTIVE";
-    public  static int fuelCount;
+    public  static int count;
 
     public class FitnessNonStatic {
         public int fitnessId;

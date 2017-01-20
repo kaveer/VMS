@@ -86,6 +86,22 @@ public class FitnessFragment extends Fragment {
             }
         });
 
+        Button buttonViewHistory   = (Button)view.findViewById(R.id.BtnViewFitnessHistory);
+        buttonViewHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FitnessHistoryFragment fragment = new FitnessHistoryFragment();
+                android.support.v4.app.FragmentTransaction fmTransaction = getFragmentManager().beginTransaction();
+                fmTransaction.replace(R.id.Frame_container, fragment);
+                fmTransaction.commit();
+
+
+            }
+
+
+        });
+
         return view;
     }
 
