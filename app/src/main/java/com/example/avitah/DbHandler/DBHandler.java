@@ -13,6 +13,7 @@ import com.example.avitah.Tables.TableFuel;
 import com.example.avitah.Tables.TableInsurance;
 import com.example.avitah.Tables.TableOtherExpense;
 import com.example.avitah.Tables.TableParking;
+import com.example.avitah.Tables.TableRoadTaxation;
 import com.example.avitah.Tables.TableUser;
 import com.example.avitah.Tables.TableVehicle;
 import com.example.avitah.Tables.TableCarWash;
@@ -41,6 +42,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String createTableOtherExpense;
         String createTableFine;
         String createTableFitness;
+        String createTableRoadTaxation;
 
         createTableUserQuery =
                 "CREATE TABLE "+ TableUser.TableUserDetails.tableName +
@@ -183,6 +185,19 @@ public class DBHandler extends SQLiteOpenHelper {
                         + TableFitness.TableFitnessDetails.col_fitnessStatus + "  TEXT"
                         + " )";
 
+        createTableRoadTaxation =
+                "CREATE TABLE " + TableRoadTaxation.TableRoadTaxationDetails.tableName +
+                        " ("
+                        + TableRoadTaxation.TableRoadTaxationDetails.col_taxId + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                        + TableRoadTaxation.TableRoadTaxationDetails.col_userId + "  INT,"
+                        + TableRoadTaxation.TableRoadTaxationDetails.col_vehicleId +  "  INT,"
+                        + TableRoadTaxation.TableRoadTaxationDetails.col_taxDescription + "  TEXT,"
+                        + TableRoadTaxation.TableRoadTaxationDetails.col_taxPaymentDate + "  DATE DEFAULT CURRENT_DATE,"
+                        + TableRoadTaxation.TableRoadTaxationDetails.col_taxCost + "  REAL,"
+                        + TableRoadTaxation.TableRoadTaxationDetails.col_expiryDate + "  DATE DEFAULT CURRENT_DATE,"
+                        + TableRoadTaxation.TableRoadTaxationDetails.col_taxStatus + "  TEXT"
+                        + " )";
+
 
         db.execSQL(createTableUserQuery);
         db.execSQL(createTableVehicleQuery);
@@ -193,7 +208,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(createTableParking);
         db.execSQL(createTableOtherExpense);
         db.execSQL(createTableFine);
-        db.execSQL(createTableFitness);
+        db.execSQL(createTableRoadTaxation);
 
     }
 
@@ -869,4 +884,63 @@ public class DBHandler extends SQLiteOpenHelper {
                 new String[]{String.valueOf(TableFitness.fitnessId)});
         db.close();
     }
+    //=================== END DB Operation for Fitness =====================//
+
+    //=================== DB Operation for RoadTaxation =====================//
+    public void PostRoadTaxation() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(TableRoadTaxation.TableRoadTaxationDetails.col_userId , TableRoadTaxation.userId);
+        values.put(TableRoadTaxation.TableRoadTaxationDetails.col_vehicleId, TableRoadTaxation.vehicleId);
+        values.put(TableRoadTaxation.TableRoadTaxationDetails.col_taxDescription, TableRoadTaxation.taxDescription);
+        values.put(TableRoadTaxation.TableRoadTaxationDetails.col_taxPaymentDate, TableRoadTaxation.taxPaymentDate);
+        values.put(TableRoadTaxation.TableRoadTaxationDetails.col_taxCost, TableRoadTaxation.taxCost);
+        values.put(TableRoadTaxation.TableRoadTaxationDetails.col_expiryDate, TableRoadTaxation.expiryDate);
+        values.put(TableRoadTaxation.TableRoadTaxationDetails.col_taxStatus, TableRoadTaxation.taxStatus);
+
+        db.insert(TableRoadTaxation.TableRoadTaxationDetails.tableName , null , values);
+        db.close();
+    }
+
+    public ArrayList<TableRoadTaxation.RoadTaxationNonStatic> GetTax() {
+        ArrayList<TableRoadTaxation.RoadTaxationNonStatic> taxList = new ArrayList<>();
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query;
+        query  = "SELECT * FROM "
+                + TableRoadTaxation.TableRoadTaxationDetails.tableName  +
+                " WHERE " + TableRoadTaxation.TableRoadTaxationDetails.col_userId + " = " + TableRoadTaxation.userId +
+                " AND "
+                + TableRoadTaxation.TableRoadTaxationDetails.col_taxStatus + " = '" + TableRoadTaxation.taxStatus + "'";
+
+        Cursor cursor = db.rawQuery(query , null);
+        if(cursor.getCount() > 0){
+            for(cursor.moveToFirst(); !cursor.isAfterLast() ; cursor.moveToNext()){
+                TableRoadTaxation.RoadTaxationNonStatic tax = new TableRoadTaxation().new RoadTaxationNonStatic();
+
+                tax.taxId = Integer.parseInt(cursor.getString(0));
+                tax.userId =  Integer.parseInt(cursor.getString(1));
+                tax.vehicleId = Integer.parseInt(cursor.getString(2));
+                tax.taxDescription = cursor.getString(3);
+                tax.taxPaymentDate =  cursor.getString(4) ;
+                tax.taxCost = Float.parseFloat(cursor.getString(5));
+                tax.expiryDate = cursor.getString(6);
+                tax.taxStatus = cursor.getString(7);
+
+
+                taxList.add(tax);
+            }
+        }
+        db.close();
+
+        return  taxList;
+    }
+
+    public void DeleteTax() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TableRoadTaxation.TableRoadTaxationDetails.tableName, TableRoadTaxation.TableRoadTaxationDetails.col_taxId + " = ? ",
+                new String[]{String.valueOf(TableRoadTaxation.taxId)});
+        db.close();
+    }
+    //=================== END DB Operation for RoadTaxation =====================//
 }

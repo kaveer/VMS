@@ -20,6 +20,7 @@ import com.example.avitah.Fragment.OtherExpense.OtherExpensesFragment;
 import com.example.avitah.Fragment.Owner.OwnerDetailsFragment;
 import com.example.avitah.Fragment.Parking.ParkingFragment;
 import com.example.avitah.Fragment.RepairAndServicing.RepairServicingFragment;
+import com.example.avitah.Fragment.Taxation.RoadTaxationFragment;
 import com.example.avitah.Fragment.Vehicle.SelectVehicleFragment;
 
 public class VMS extends AppCompatActivity
