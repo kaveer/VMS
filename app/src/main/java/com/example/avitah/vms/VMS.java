@@ -11,7 +11,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.avitah.Fragment.Accident.AccidentFragment;
+import com.example.avitah.Fragment.AnnualExpenseReport.AnnualExpenseReport;
 import com.example.avitah.Fragment.CarWash.CarWashFragment;
+import com.example.avitah.Fragment.ExpenseReport.ExpenseReport;
 import com.example.avitah.Fragment.Fine.FinesFragment;
 import com.example.avitah.Fragment.Fitness.FitnessFragment;
 import com.example.avitah.Fragment.Fuel.FuelFragment;
@@ -21,11 +23,11 @@ import com.example.avitah.Fragment.Owner.OwnerDetailsFragment;
 import com.example.avitah.Fragment.Parking.ParkingFragment;
 import com.example.avitah.Fragment.RepairAndServicing.RepairServicingFragment;
 import com.example.avitah.Fragment.Taxation.RoadTaxationFragment;
+import com.example.avitah.Fragment.Tools.ToolsFragment;
 import com.example.avitah.Fragment.Vehicle.SelectVehicleFragment;
 
 public class VMS extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    //EditText USERID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

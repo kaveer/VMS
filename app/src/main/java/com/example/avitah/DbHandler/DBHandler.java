@@ -208,6 +208,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(createTableParking);
         db.execSQL(createTableOtherExpense);
         db.execSQL(createTableFine);
+        db.execSQL(createTableFitness);
         db.execSQL(createTableRoadTaxation);
 
     }
@@ -943,4 +944,188 @@ public class DBHandler extends SQLiteOpenHelper {
         db.close();
     }
     //=================== END DB Operation for RoadTaxation =====================//
+
+    public String GetFuelExpense(int userId) {
+        String result = "";
+        TableFuel.userId = userId;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String query;
+        query  = "SELECT SUM(" + TableFuel.TableFuelDetails.col_totalCost + ") FROM "
+                + TableFuel.TableFuelDetails.tableName  +
+                " WHERE " + TableFuel.TableFuelDetails.col_userId + " = " + TableFuel.userId +
+                " AND "
+                + TableFuel.TableFuelDetails.col_Status + " = '" + TableFuel.fuelStatus + "'";
+
+        Cursor cursor = db.rawQuery(query , null);
+        if(cursor.getCount() > 0){
+            cursor.moveToFirst();
+            result = "Total Fuel expenses :" + cursor.getFloat(0);
+        }
+        db.close();
+
+        return result;
+    }
+
+    public String GetFineExpense(int userId) {
+        String result = "";
+        TableFines.userId = userId;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String query;
+        query  = "SELECT SUM(" + TableFines.TableFineDetails.col_Charge + ") FROM "
+                + TableFines.TableFineDetails.tableName  +
+                " WHERE " + TableFines.TableFineDetails.col_userId + " = " + TableFines.userId +
+                " AND "
+                + TableFines.TableFineDetails.col_Status + " = '" + TableFines.fineStatus + "'";
+
+        Cursor cursor = db.rawQuery(query , null);
+        if(cursor.getCount() > 0){
+            cursor.moveToFirst();
+            result = "Total fine expenses :" + cursor.getFloat(0);
+        }
+        db.close();
+
+        return result;
+    }
+
+    public String GetCarWashExpenses(int userId) {
+        String result = "";
+        TableCarWash.userId = userId;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String query;
+        query  = "SELECT SUM(" + TableCarWash.TableCarWashDetails.col_cost + ") FROM "
+                + TableCarWash.TableCarWashDetails.tableName  +
+                " WHERE " + TableCarWash.TableCarWashDetails.col_userId + " = " + TableCarWash.userId +
+                " AND "
+                + TableCarWash.TableCarWashDetails.col_status + " = '" + TableCarWash.Status + "'";
+
+        Cursor cursor = db.rawQuery(query , null);
+        if(cursor.getCount() > 0){
+            cursor.moveToFirst();
+            result = "Total car wash expenses :" + cursor.getFloat(0);
+        }
+        db.close();
+
+        return result;
+    }
+
+    public String GetParkingExpense(int userId) {
+        String result = "";
+        TableParking.userId = userId;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String query;
+        query  = "SELECT SUM(" + TableParking.TableParkingDetails.col_cost + ") FROM "
+                + TableParking.TableParkingDetails.tableName  +
+                " WHERE " + TableParking.TableParkingDetails.col_userId + " = " + TableParking.userId +
+                " AND "
+                + TableParking.TableParkingDetails.col_status + " = '" + TableParking.Status + "'";
+
+        Cursor cursor = db.rawQuery(query , null);
+        if(cursor.getCount() > 0){
+            cursor.moveToFirst();
+            result = "Total parking expenses :" + cursor.getFloat(0);
+        }
+        db.close();
+
+        return result;
+    }
+
+    public String GetOtherExpenses(int userId) {
+        String result = "";
+        TableOtherExpense.userId = userId;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String query;
+        query  = "SELECT SUM(" + TableOtherExpense.TableOtherExpenseDetails.col_cost + ") FROM "
+                + TableOtherExpense.TableOtherExpenseDetails.tableName  +
+                " WHERE " + TableOtherExpense.TableOtherExpenseDetails.col_userId + " = " + TableOtherExpense.userId +
+                " AND "
+                + TableOtherExpense.TableOtherExpenseDetails.col_status + " = '" + TableOtherExpense.Status + "'";
+
+        Cursor cursor = db.rawQuery(query , null);
+        if(cursor.getCount() > 0){
+            cursor.moveToFirst();
+            result = "Total Other expenses :" + cursor.getFloat(0);
+        }
+        db.close();
+
+        return result;
+    }
+
+    public String GetInsuranceExpense(int userId) {
+        String result = "";
+        TableInsurance.userId = userId;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String query;
+        query  = "SELECT SUM(" + TableInsurance.TableInsuranceDetails.col_insuranceCost + ") FROM "
+                + TableInsurance.TableInsuranceDetails.tableName  +
+                " WHERE " + TableInsurance.TableInsuranceDetails.col_userId + " = " + TableInsurance.userId +
+                " AND "
+                + TableInsurance.TableInsuranceDetails.col_insuranceStatus + " = '" + TableInsurance.insuranceStatus + "'";
+
+        Cursor cursor = db.rawQuery(query , null);
+        if(cursor.getCount() > 0){
+            cursor.moveToFirst();
+            result = "Total insurance expenses :" + cursor.getFloat(0);
+        }
+        db.close();
+
+        return result;
+    }
+
+    public String GetFitnessExpense(int userId) {
+        String result = "";
+        TableFitness.userId = userId;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String query;
+        query  = "SELECT SUM(" + TableFitness.TableFitnessDetails.col_cost + ") FROM "
+                + TableFitness.TableFitnessDetails.tableName  +
+                " WHERE " + TableFitness.TableFitnessDetails.col_userId + " = " + TableFitness.userId +
+                " AND "
+                + TableFitness.TableFitnessDetails.col_fitnessStatus + " = '" + TableFitness.fitnessStatus + "'";
+
+        Cursor cursor = db.rawQuery(query , null);
+        if(cursor.getCount() > 0){
+            cursor.moveToFirst();
+            result = "Total fitness expenses :" + cursor.getFloat(0);
+        }
+        db.close();
+
+        return result;
+    }
+
+    public String GetRoadTaxationExpense(int userId) {
+        String result = "";
+        TableRoadTaxation.userId = userId;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String query;
+        query  = "SELECT SUM(" + TableRoadTaxation.TableRoadTaxationDetails.col_taxCost + ") FROM "
+                + TableRoadTaxation.TableRoadTaxationDetails.tableName  +
+                " WHERE " + TableRoadTaxation.TableRoadTaxationDetails.col_userId + " = " + TableRoadTaxation.userId +
+                " AND "
+                + TableRoadTaxation.TableRoadTaxationDetails.col_taxStatus + " = '" + TableRoadTaxation.taxStatus + "'";
+
+        Cursor cursor = db.rawQuery(query , null);
+        if(cursor.getCount() > 0){
+            cursor.moveToFirst();
+            result = "Total road taxation expenses :" + cursor.getFloat(0);
+        }
+        db.close();
+
+        return result;
+    }
 }
