@@ -13,6 +13,7 @@ import com.example.avitah.Tables.TableFuel;
 import com.example.avitah.Tables.TableInsurance;
 import com.example.avitah.Tables.TableOtherExpense;
 import com.example.avitah.Tables.TableParking;
+import com.example.avitah.Tables.TableRepair;
 import com.example.avitah.Tables.TableRoadTaxation;
 import com.example.avitah.Tables.TableUser;
 import com.example.avitah.Tables.TableVehicle;
@@ -43,6 +44,7 @@ public class DBHandler extends SQLiteOpenHelper {
         String createTableFine;
         String createTableFitness;
         String createTableRoadTaxation;
+        String createTableRepairs;
 
         createTableUserQuery =
                 "CREATE TABLE "+ TableUser.TableUserDetails.tableName +
@@ -198,6 +200,18 @@ public class DBHandler extends SQLiteOpenHelper {
                         + TableRoadTaxation.TableRoadTaxationDetails.col_taxStatus + "  TEXT"
                         + " )";
 
+        createTableRepairs =
+                "CREATE TABLE " + TableRepair.TableRepairDetails.tableName +
+                        " ("
+                        + TableRepair.TableRepairDetails.col_repairId + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                        + TableRepair.TableRepairDetails.col_userId + "  INT,"
+                        + TableRepair.TableRepairDetails.col_date +  "  DATE DEFAULT CURRENT_DATE,"
+                        + TableRepair.TableRepairDetails.col_description + "  TEXT,"
+                        + TableRepair.TableRepairDetails.col_partAdded + " TEXT,"
+                        + TableRepair.TableRepairDetails.col_cost + "  REAL,"
+                        + TableRepair.TableRepairDetails.col_status + "  TEXT"
+                        + " )";
+
 
         db.execSQL(createTableUserQuery);
         db.execSQL(createTableVehicleQuery);
@@ -210,7 +224,7 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL(createTableFine);
         db.execSQL(createTableFitness);
         db.execSQL(createTableRoadTaxation);
-
+        db.execSQL(createTableRepairs);
     }
 
     @Override
@@ -945,6 +959,62 @@ public class DBHandler extends SQLiteOpenHelper {
     }
     //=================== END DB Operation for RoadTaxation =====================//
 
+    //=================== DB Operation for Repair =====================//
+    public void PostRepair() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(TableRepair.TableRepairDetails.col_userId , TableRepair.userId);
+        values.put(TableRepair.TableRepairDetails.col_date, TableRepair.repairDate);
+        values.put(TableRepair.TableRepairDetails.col_description, TableRepair.repairDescription);
+        values.put(TableRepair.TableRepairDetails.col_partAdded, TableRepair.repairAdded);
+        values.put(TableRepair.TableRepairDetails.col_cost, TableRepair.Cost);
+        values.put(TableRepair.TableRepairDetails.col_status, TableRepair.Status);
+
+        db.insert(TableRepair.TableRepairDetails.tableName , null , values);
+        db.close();
+    }
+
+    public ArrayList<TableRepair.RepairNonStatic> GetRepair() {
+        ArrayList<TableRepair.RepairNonStatic> repairList = new ArrayList<>();
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query;
+        query  = "SELECT * FROM "
+                + TableRepair.TableRepairDetails.tableName  +
+                " WHERE " + TableRepair.TableRepairDetails.col_userId + " = " + TableRepair.userId +
+                " AND "
+                + TableRepair.TableRepairDetails.col_status + " = '" + TableRepair.Status + "'";
+
+        Cursor cursor = db.rawQuery(query , null);
+        if(cursor.getCount() > 0){
+            for(cursor.moveToFirst(); !cursor.isAfterLast() ; cursor.moveToNext()){
+                TableRepair.RepairNonStatic repair = new TableRepair().new RepairNonStatic();
+
+                repair.repairId = Integer.parseInt(cursor.getString(0));
+                repair.userId =  Integer.parseInt(cursor.getString(1));
+                repair.repairDate = cursor.getString(2);
+                repair.repairDescription = cursor.getString(3);
+                repair.repairAdded =  cursor.getString(4) ;
+                repair.Cost = Float.parseFloat(cursor.getString(5));
+                repair.Status = cursor.getString(6);
+
+
+                repairList.add(repair);
+            }
+        }
+        db.close();
+
+        return  repairList;
+    }
+
+    public void DeleteRepair() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TableRepair.TableRepairDetails.tableName, TableRepair.TableRepairDetails.col_repairId + " = ? ",
+                new String[]{String.valueOf(TableRepair.repairId)});
+        db.close();
+    }
+    //=================== END DB Operation for Repair =====================//
+
     public String GetFuelExpense(int userId) {
         String result = "";
         TableFuel.userId = userId;
@@ -1123,6 +1193,29 @@ public class DBHandler extends SQLiteOpenHelper {
         if(cursor.getCount() > 0){
             cursor.moveToFirst();
             result = "Total road taxation expenses :" + cursor.getFloat(0);
+        }
+        db.close();
+
+        return result;
+    }
+
+    public String GetRepairAndServicingExpense(int userId) {
+        String result = "";
+        TableRepair.userId = userId;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String query;
+        query  = "SELECT SUM(" + TableRepair.TableRepairDetails.col_cost + ") FROM "
+                + TableRepair.TableRepairDetails.tableName  +
+                " WHERE " + TableRepair.TableRepairDetails.col_userId + " = " + TableRepair.userId +
+                " AND "
+                + TableRepair.TableRepairDetails.col_status + " = '" + TableRepair.Status + "'";
+
+        Cursor cursor = db.rawQuery(query , null);
+        if(cursor.getCount() > 0){
+            cursor.moveToFirst();
+            result = "Total repair and servicing expenses :" + cursor.getFloat(0);
         }
         db.close();
 

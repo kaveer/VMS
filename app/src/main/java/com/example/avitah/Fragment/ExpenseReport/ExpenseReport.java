@@ -72,7 +72,7 @@ public class ExpenseReport extends Fragment {
         DBHandler DB = new DBHandler(getContext());
 
         fuel = DB.GetFuelExpense(TableUser.userId);
-        //repairAndServicing = DB.GetRepairAndServicingExpense(TableUser.userId);
+        repairAndServicing = DB.GetRepairAndServicingExpense(TableUser.userId);
         fine = DB.GetFineExpense(TableUser.userId);
         carWash = DB.GetCarWashExpenses(TableUser.userId);
         parking = DB.GetParkingExpense(TableUser.userId);
