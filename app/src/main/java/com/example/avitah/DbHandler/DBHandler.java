@@ -1015,8 +1015,8 @@ public class DBHandler extends SQLiteOpenHelper {
     }
     //=================== END DB Operation for Repair =====================//
 
-    public String GetFuelExpense(int userId) {
-        String result = "";
+    public Float GetFuelExpense(int userId) {
+        Float result = 00.f;
         TableFuel.userId = userId;
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -1031,15 +1031,15 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query , null);
         if(cursor.getCount() > 0){
             cursor.moveToFirst();
-            result = "Total Fuel expenses :" + cursor.getFloat(0);
+            result =  cursor.getFloat(0);
         }
         db.close();
 
         return result;
     }
 
-    public String GetFineExpense(int userId) {
-        String result = "";
+    public Float GetFineExpense(int userId) {
+        Float result = 0.0f;
         TableFines.userId = userId;
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -1054,15 +1054,15 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query , null);
         if(cursor.getCount() > 0){
             cursor.moveToFirst();
-            result = "Total fine expenses :" + cursor.getFloat(0);
+            result =  cursor.getFloat(0);
         }
         db.close();
 
         return result;
     }
 
-    public String GetCarWashExpenses(int userId) {
-        String result = "";
+    public Float GetCarWashExpenses(int userId) {
+        Float result = 0.0f;
         TableCarWash.userId = userId;
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -1077,15 +1077,15 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query , null);
         if(cursor.getCount() > 0){
             cursor.moveToFirst();
-            result = "Total car wash expenses :" + cursor.getFloat(0);
+            result =  cursor.getFloat(0);
         }
         db.close();
 
         return result;
     }
 
-    public String GetParkingExpense(int userId) {
-        String result = "";
+    public Float GetParkingExpense(int userId) {
+        Float result = 0.0f;
         TableParking.userId = userId;
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -1100,15 +1100,15 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query , null);
         if(cursor.getCount() > 0){
             cursor.moveToFirst();
-            result = "Total parking expenses :" + cursor.getFloat(0);
+            result =  cursor.getFloat(0);
         }
         db.close();
 
         return result;
     }
 
-    public String GetOtherExpenses(int userId) {
-        String result = "";
+    public Float GetOtherExpenses(int userId) {
+        Float result = 0.0f;
         TableOtherExpense.userId = userId;
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -1123,15 +1123,15 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query , null);
         if(cursor.getCount() > 0){
             cursor.moveToFirst();
-            result = "Total Other expenses :" + cursor.getFloat(0);
+            result = cursor.getFloat(0);
         }
         db.close();
 
         return result;
     }
 
-    public String GetInsuranceExpense(int userId) {
-        String result = "";
+    public Float GetInsuranceExpense(int userId) {
+        Float result = 0.0f;
         TableInsurance.userId = userId;
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -1146,15 +1146,15 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query , null);
         if(cursor.getCount() > 0){
             cursor.moveToFirst();
-            result = "Total insurance expenses :" + cursor.getFloat(0);
+            result =  cursor.getFloat(0);
         }
         db.close();
 
         return result;
     }
 
-    public String GetFitnessExpense(int userId) {
-        String result = "";
+    public Float GetFitnessExpense(int userId) {
+        Float result = 0.0f;
         TableFitness.userId = userId;
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -1169,15 +1169,15 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query , null);
         if(cursor.getCount() > 0){
             cursor.moveToFirst();
-            result = "Total fitness expenses :" + cursor.getFloat(0);
+            result =  cursor.getFloat(0);
         }
         db.close();
 
         return result;
     }
 
-    public String GetRoadTaxationExpense(int userId) {
-        String result = "";
+    public Float GetRoadTaxationExpense(int userId) {
+        Float result = 0.0f;
         TableRoadTaxation.userId = userId;
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -1192,15 +1192,15 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query , null);
         if(cursor.getCount() > 0){
             cursor.moveToFirst();
-            result = "Total road taxation expenses :" + cursor.getFloat(0);
+            result =  cursor.getFloat(0);
         }
         db.close();
 
         return result;
     }
 
-    public String GetRepairAndServicingExpense(int userId) {
-        String result = "";
+    public Float GetRepairAndServicingExpense(int userId) {
+        Float result = 0.0f;
         TableRepair.userId = userId;
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -1215,7 +1215,7 @@ public class DBHandler extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query , null);
         if(cursor.getCount() > 0){
             cursor.moveToFirst();
-            result = "Total repair and servicing expenses :" + cursor.getFloat(0);
+            result =  cursor.getFloat(0);
         }
         db.close();
 

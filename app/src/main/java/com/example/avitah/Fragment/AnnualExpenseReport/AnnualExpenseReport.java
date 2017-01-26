@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -23,9 +24,9 @@ public class AnnualExpenseReport extends Fragment {
 
     ListView listView;
 
-    String insurance = "Error";
-    String fitness = "Error";
-    String roadTaxation = "Error";
+    String insurance = "Total insurance expenses :";
+    String fitness = "Total fitness expenses :";
+    String roadTaxation = "Total road taxation expenses :";
 
     public AnnualExpenseReport() {
         // Required empty public constructor
@@ -58,19 +59,34 @@ public class AnnualExpenseReport extends Fragment {
 
                 Toast messageBox = Toast.makeText(getActivity() , +itemPosition+ "Insurance removed" +itemValue  , Toast.LENGTH_SHORT);
                 messageBox.show();
-
             }
 
         });
+
+        Button buttonGraph   = (Button)view.findViewById(R.id.BtnAnnualExpenseGraph);
+        buttonGraph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavigateToVehicleFragment();
+            }
+        });
+
         return view;
+    }
+
+    private void NavigateToVehicleFragment() {
+        AnnualExpenseGraph fragment = new AnnualExpenseGraph();
+        android.support.v4.app.FragmentTransaction fmTransaction = getFragmentManager().beginTransaction();
+        fmTransaction.replace(R.id.Frame_container, fragment);
+        fmTransaction.commit();
     }
 
     private void GetExpenseReport() {
         DBHandler DB = new DBHandler(getContext());
 
-        insurance = DB.GetInsuranceExpense(TableUser.userId);
-        fitness = DB.GetFitnessExpense(TableUser.userId);
-        roadTaxation = DB.GetRoadTaxationExpense(TableUser.userId);
+         insurance = "Total insurance expenses :" + DB.GetInsuranceExpense(TableUser.userId);
+         fitness = "Total fitness expenses :" + DB.GetFitnessExpense(TableUser.userId);
+         roadTaxation = "Total road taxation expenses :" + DB.GetRoadTaxationExpense(TableUser.userId);
     }
 
     private void GenerateListView(String[] values) {

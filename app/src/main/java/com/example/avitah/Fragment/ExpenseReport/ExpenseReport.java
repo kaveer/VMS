@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -23,12 +24,12 @@ public class ExpenseReport extends Fragment {
 
     ListView listView;
 
-    String fuel = "Error";
-    String repairAndServicing = "Error";
-    String fine = "Error";
-    String carWash = "Error";
-    String parking = "Error";
-    String otherExpenses = "Error";
+    String fuel = "Total Fuel expenses :";
+    String repairAndServicing = "Total repair and servicing expenses :";
+    String fine = "Total fine expenses :";
+    String carWash = "Total car wash expenses";
+    String parking = "Total parking expenses :";
+    String otherExpenses = "Total Other expenses :";
 
     public ExpenseReport() {
         // Required empty public constructor
@@ -65,18 +66,33 @@ public class ExpenseReport extends Fragment {
             }
 
         });
+
+        Button buttonGraph   = (Button)view.findViewById(R.id.BtnGraphExpense);
+        buttonGraph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                NavigateToVehicleFragment();
+            }
+        });
         return view;
+    }
+
+    private void NavigateToVehicleFragment() {
+        ExpenseGraph fragment = new ExpenseGraph();
+        android.support.v4.app.FragmentTransaction fmTransaction = getFragmentManager().beginTransaction();
+        fmTransaction.replace(R.id.Frame_container, fragment);
+        fmTransaction.commit();
     }
 
     private void GetExpenseReport() {
         DBHandler DB = new DBHandler(getContext());
 
-        fuel = DB.GetFuelExpense(TableUser.userId);
-        repairAndServicing = DB.GetRepairAndServicingExpense(TableUser.userId);
-        fine = DB.GetFineExpense(TableUser.userId);
-        carWash = DB.GetCarWashExpenses(TableUser.userId);
-        parking = DB.GetParkingExpense(TableUser.userId);
-        otherExpenses = DB.GetOtherExpenses(TableUser.userId);
+         fuel = "Total Fuel expenses :" + DB.GetFuelExpense(TableUser.userId);
+         repairAndServicing = "Total repair and servicing expenses :" + DB.GetRepairAndServicingExpense(TableUser.userId);
+         fine = "Total fine expenses :" + DB.GetFineExpense(TableUser.userId);
+         carWash = "Total car wash expenses" + DB.GetCarWashExpenses(TableUser.userId);
+         parking = "Total parking expenses :" + DB.GetParkingExpense(TableUser.userId);
+         otherExpenses = "Total Other expenses :" + DB.GetOtherExpenses(TableUser.userId);
     }
 
     public void GenerateListView(String[] values){
