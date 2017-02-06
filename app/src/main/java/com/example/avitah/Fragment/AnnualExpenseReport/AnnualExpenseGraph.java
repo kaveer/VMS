@@ -12,7 +12,9 @@ import com.example.avitah.DbHandler.DBHandler;
 import com.example.avitah.Tables.TableUser;
 import com.example.avitah.vms.R;
 import com.jjoe64.graphview.GraphView;
+import com.jjoe64.graphview.ValueDependentColor;
 import com.jjoe64.graphview.helper.StaticLabelsFormatter;
+import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
 
@@ -35,17 +37,23 @@ public class AnnualExpenseGraph extends Fragment {
         DBHandler DB = new DBHandler(getContext());
 
         GraphView graph = (GraphView)view.findViewById(R.id.graphAnnualExpense);
-        LineGraphSeries<DataPoint> series = new LineGraphSeries<>(new DataPoint[] {
+        BarGraphSeries<DataPoint> series = new BarGraphSeries<>(new DataPoint[] {
                 new DataPoint(0, DB.GetInsuranceExpense(TableUser.userId)),
                 new DataPoint(1, DB.GetFitnessExpense(TableUser.userId)),
                 new DataPoint(2, DB.GetRoadTaxationExpense(TableUser.userId)),
         });
 
-        //series.setTitle("Random Curve 1");
-        series.setColor(Color.BLUE);
-        series.setDrawDataPoints(true);
-        series.setDataPointsRadius(10);
-        series.setThickness(8);
+        series.setValueDependentColor(new ValueDependentColor<DataPoint>() {
+            @Override
+            public int get(DataPoint data) {
+                return Color.rgb((int) data.getX()*255/4, (int) Math.abs(data.getY()*255/6), 100);
+            }
+        });
+
+        //  series.setSpacing(50);
+
+        series.setDrawValuesOnTop(true);
+        series.setValuesOnTopColor(Color.RED);
 
         graph.setTitle("Annual expenses");
         graph.getGridLabelRenderer().setVerticalAxisTitle("Cost");
