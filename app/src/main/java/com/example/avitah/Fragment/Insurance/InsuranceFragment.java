@@ -19,7 +19,12 @@ import com.example.avitah.Tables.TableUser;
 import com.example.avitah.Tables.TableVehicle;
 import com.example.avitah.vms.R;
 
+import java.text.Format;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 
 /**
@@ -190,8 +195,15 @@ public class InsuranceFragment extends Fragment {
             return false;
         }
 
+
+
         if(!expiryDate.getText().toString().trim().matches("(((19|20)([2468][048]|[13579][26]|0[48])|2000)[/-]02[/-]29|((19|20)[0-9]{2}[/-](0[4678]|1[02])[/-](0[1-9]|[12][0-9]|30)|(19|20)[0-9]{2}[/-](0[1359]|11)[/-](0[1-9]|[12][0-9]|3[01])|(19|20)[0-9]{2}[/-]02[/-](0[1-9]|1[0-9]|2[0-8])))")){
             expiryDate.setError("Invalid date(YYYY-MM-DD)");
+            return false;
+        }
+
+        if(!CompareDate(expiryDate.getText().toString().trim(), GetDateNow())){
+            expiryDate.setError("Expiry date cannot be before actual date");
             return false;
         }
 
@@ -202,9 +214,37 @@ public class InsuranceFragment extends Fragment {
         return  result;
     }
 
+    private boolean CompareDate(String expiry, String actual) {
+        boolean result = true;
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date expiryDate = sdf.parse(expiry);
+            Date actualDate = sdf.parse(actual);
+
+            if (expiryDate.before(actualDate)){
+                return false;
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
     public void InsertInsurance(){
         DBHandler DB = new DBHandler(getContext());
         DB.PostInsurance();
     }
+
+    public String GetDateNow(){
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); //import java.text.SimpleDateFormat instead of android.icu.text.simpleDateFormat
+        String currentDate = dateFormat.format(calendar.getTime());
+        return currentDate;
+    }
+
+
 
 }
