@@ -29,9 +29,11 @@ public class MyService extends Service {
     String notifTitle = "Notification Title";
     String notifSubject = "Notification Subject";
     ArrayList<TableInsurance.InsuranceNonStatic> insuranceList;
-
+    int notificationId =1;
     @Override
     public int onStartCommand(Intent intent, int flags, int startId){
+
+        //Notification(notifTitle , notifSubject);
 
         String dateNow = GetDateNow();
         String addedDate = AddDateToCurrentDate(GetDateNow(), 3);
@@ -47,7 +49,7 @@ public class MyService extends Service {
             }
         }
 
-        Toast.makeText(this, "Welcome to VMS in class MS in method OnstartCommand", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Welcome to VMS by Avitah", Toast.LENGTH_LONG).show();
         return START_STICKY;
         //return super.onStartCommand(intent, flags, startId);
     }
@@ -79,6 +81,7 @@ public class MyService extends Service {
     }
 
     public void Notification(String title, String subject){
+
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(getApplicationContext())
                         .setSmallIcon(R.drawable.ic_logo_new)
@@ -86,7 +89,7 @@ public class MyService extends Service {
                         .setContentText(subject);
 
         NotificationManager mNotificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
-        mNotificationManager.notify(1, mBuilder.build());
+        mNotificationManager.notify(++notificationId, mBuilder.build());
     }
 
     @Override
