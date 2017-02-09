@@ -1,4 +1,4 @@
-package com.example.avitah.vms;
+package com.example.avitah.Notification;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -9,6 +9,8 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
+
+import com.example.avitah.vms.R;
 
 
 /**

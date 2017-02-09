@@ -1015,6 +1015,7 @@ public class DBHandler extends SQLiteOpenHelper {
     }
     //=================== END DB Operation for Repair =====================//
 
+    //==================== Expense and Annual expense =====================//
     public Float GetFuelExpense(int userId) {
         Float result = 00.f;
         TableFuel.userId = userId;
@@ -1221,4 +1222,46 @@ public class DBHandler extends SQLiteOpenHelper {
 
         return result;
     }
+    //==================== End Expense and Annual expense =====================//
+
+    //==================== Notification ========================================//
+    public ArrayList<TableInsurance.InsuranceNonStatic> GetNotificationInsurance(String dateNow, String addedDate){
+        ArrayList<TableInsurance.InsuranceNonStatic> insuranceList = new ArrayList<>();
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query;
+        query  = "SELECT * FROM "
+                + TableInsurance.TableInsuranceDetails.tableName  +
+                " WHERE " + TableInsurance.TableInsuranceDetails.col_expiryDate +
+                " BETWEEN '"+ dateNow + "'" + " AND '" + addedDate + "' ";
+
+        Cursor cursor = db.rawQuery(query , null);
+        if(cursor.getCount() > 0){
+            for(cursor.moveToFirst(); !cursor.isAfterLast() ; cursor.moveToNext()){
+                TableInsurance.InsuranceNonStatic insurance = new TableInsurance().new InsuranceNonStatic();
+
+                insurance.insuranceId = Integer.parseInt(cursor.getString(0));
+                insurance.userId =  Integer.parseInt(cursor.getString(1));
+                insurance.insuranceType = cursor.getString(2);
+                insurance.selectVehicle = Integer.parseInt(cursor.getString(3)) ;
+                insurance.insuranceName = cursor.getString(4);
+                insurance.policyNo =  Integer.parseInt(cursor.getString(5)) ;
+                insurance.certificateNo = cursor.getString(6);
+                insurance.policyHolder = cursor.getString(7);
+                insurance.effectiveDate = cursor.getString(8);
+                insurance.expiryDate = cursor.getString(9);
+                insurance.insuranceCost = Float.parseFloat(cursor.getString(10));
+                insurance.insuranceStatus = cursor.getString(11);
+
+                insuranceList.add(insurance);
+            }
+        }
+        db.close();
+
+        return  insuranceList;
+    }
+
+
+    //==================== End Notification ========================================//
+
 }

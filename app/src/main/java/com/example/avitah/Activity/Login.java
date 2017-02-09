@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 import com.example.avitah.DbHandler.DBHandler;
 import com.example.avitah.Tables.TableUser;
-import com.example.avitah.vms.MyService;
+import com.example.avitah.Notification.MyService;
 import com.example.avitah.vms.R;
 import com.example.avitah.vms.VMS;
 
@@ -21,7 +21,8 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        startService();
+
+        startService(); //call the method to run the tag SERVICE in android manifest which will run the java class MyService
     }
 
     //call the method to run the tag SERVICE in android manifest which will run the java class MyService
