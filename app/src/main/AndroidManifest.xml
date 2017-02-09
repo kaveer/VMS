@@ -27,7 +27,7 @@
 
         <!-- add receiver tag to allow android to display message/toast/notification in the java class .BootReceiver -->
         <receiver
-            android:name=".BootReceiver"
+            android:name="com.example.avitah.Notification.BootReceiver"
             android:enabled="true"
             android:exported="true"
             android:label="BootReceiver">
@@ -37,7 +37,7 @@
         </receiver>
 
         <!-- Add service tag to run the java class .MyService when the app is actually running a specific activity -->
-        <service android:name=".MyService">
+        <service android:name="com.example.avitah.Notification.MyService">
             <intent-filter>
                 <action android:name="com.example.avitah.vms.MyService" />
             </intent-filter>
