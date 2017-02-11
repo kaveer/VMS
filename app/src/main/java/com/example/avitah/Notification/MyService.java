@@ -12,7 +12,9 @@ import android.support.v4.app.NotificationCompat;
 import android.widget.Toast;
 
 import com.example.avitah.DbHandler.DBHandler;
+import com.example.avitah.Tables.TableFitness;
 import com.example.avitah.Tables.TableInsurance;
+import com.example.avitah.Tables.TableRoadTaxation;
 import com.example.avitah.vms.R;
 
 import java.text.ParseException;
@@ -28,23 +30,43 @@ import java.util.Date;
 public class MyService extends Service {
     String notifTitle = "Notification Title";
     String notifSubject = "Notification Subject";
+
     ArrayList<TableInsurance.InsuranceNonStatic> insuranceList;
+    ArrayList<TableFitness.FitnessNonStatic> fitnessList;
+    ArrayList<TableRoadTaxation.RoadTaxationNonStatic> taxList;
+
     int notificationId =1;
+
     @Override
     public int onStartCommand(Intent intent, int flags, int startId){
 
-        //Notification(notifTitle , notifSubject);
-
         String dateNow = GetDateNow();
         String addedDate = AddDateToCurrentDate(GetDateNow(), 3);
+
         DBHandler DB = new DBHandler(this);
 
         insuranceList = DB.GetNotificationInsurance(dateNow, addedDate);
+        fitnessList = DB.GetNotificationFitness(dateNow, addedDate);
+        taxList = DB.GetNotificationTaxation(dateNow,addedDate);
 
         if (insuranceList.size() > 0){
             for (TableInsurance.InsuranceNonStatic insurance:  insuranceList) {
                 notifTitle = "Insurance " + insurance.insuranceName;
                 notifSubject = insurance.insuranceName + " expires on : " + insurance.expiryDate;
+                Notification(notifTitle , notifSubject);
+            }
+        }
+        if (fitnessList.size() > 0){
+            for (TableFitness.FitnessNonStatic fitness:  fitnessList) {
+                notifTitle = "Fitness is going to expire soon ";
+                notifSubject = "Fitness expires on : " + fitness.expiryDate;
+                Notification(notifTitle , notifSubject);
+            }
+        }
+        if (taxList.size()> 0){
+            for (TableRoadTaxation.RoadTaxationNonStatic tax:  taxList) {
+                notifTitle = "Road taxation is going to expire soon ";
+                notifSubject = "Taxation expires on : " + tax.expiryDate;
                 Notification(notifTitle , notifSubject);
             }
         }

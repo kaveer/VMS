@@ -1261,7 +1261,72 @@ public class DBHandler extends SQLiteOpenHelper {
         return  insuranceList;
     }
 
+    public ArrayList<TableFitness.FitnessNonStatic> GetNotificationFitness(String dateNow, String addedDate) {
+        ArrayList<TableFitness.FitnessNonStatic> fitnessList = new ArrayList<>();
 
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query;
+        query  = "SELECT * FROM "
+                + TableFitness.TableFitnessDetails.tableName  +
+                " WHERE " + TableFitness.TableFitnessDetails.col_expiryDate +
+                " BETWEEN '"+ dateNow + "'" + " AND '" + addedDate + "' ";
+
+        Cursor cursor = db.rawQuery(query , null);
+        if(cursor.getCount() > 0){
+            for(cursor.moveToFirst(); !cursor.isAfterLast() ; cursor.moveToNext()){
+                TableFitness.FitnessNonStatic fitness = new TableFitness().new FitnessNonStatic();
+
+                fitness.fitnessId = Integer.parseInt(cursor.getString(0));
+                fitness.userId =  Integer.parseInt(cursor.getString(1));
+                fitness.vehicleId = Integer.parseInt(cursor.getString(2));
+                fitness.renewalMonth = cursor.getString(3);
+                fitness.duration =  cursor.getString(4) ;
+                fitness.expiryDate = cursor.getString(5);
+                fitness.Location = cursor.getString(6);
+                fitness.cost = Float.parseFloat(cursor.getString(7));
+                fitness.fitnessStatus = cursor.getString(8);
+
+
+                fitnessList.add(fitness);
+            }
+        }
+        db.close();
+
+        return  fitnessList;
+    }
+
+    public ArrayList<TableRoadTaxation.RoadTaxationNonStatic> GetNotificationTaxation(String dateNow, String addedDate) {
+        ArrayList<TableRoadTaxation.RoadTaxationNonStatic> taxList = new ArrayList<>();
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query;
+        query  = "SELECT * FROM "
+                + TableRoadTaxation.TableRoadTaxationDetails.tableName  +
+                " WHERE " + TableRoadTaxation.TableRoadTaxationDetails.col_expiryDate +
+                " BETWEEN '"+ dateNow + "'" + " AND '" + addedDate + "' ";
+
+        Cursor cursor = db.rawQuery(query , null);
+        if(cursor.getCount() > 0){
+            for(cursor.moveToFirst(); !cursor.isAfterLast() ; cursor.moveToNext()){
+                TableRoadTaxation.RoadTaxationNonStatic tax = new TableRoadTaxation().new RoadTaxationNonStatic();
+
+                tax.taxId = Integer.parseInt(cursor.getString(0));
+                tax.userId =  Integer.parseInt(cursor.getString(1));
+                tax.vehicleId = Integer.parseInt(cursor.getString(2));
+                tax.taxDescription = cursor.getString(3);
+                tax.taxPaymentDate =  cursor.getString(4) ;
+                tax.taxCost = Float.parseFloat(cursor.getString(5));
+                tax.expiryDate = cursor.getString(6);
+                tax.taxStatus = cursor.getString(7);
+
+
+                taxList.add(tax);
+            }
+        }
+        db.close();
+
+        return  taxList;
+    }
     //==================== End Notification ========================================//
 
 }
