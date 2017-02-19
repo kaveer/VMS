@@ -1,4 +1,4 @@
-package com.example.avitah.vms;
+package com.example.avitah.Activity;
 
 
 import android.os.Bundle;
@@ -6,18 +6,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.example.avitah.Tables.TableUser;
+import com.example.avitah.vms.R;
 
 
 public class MainFragment extends Fragment {
 
-    ListView listView;
+    ListView listView1;
+    ListView listView2;
+    ListView listView3;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -70,7 +69,11 @@ public class MainFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main, container, false);
-        listView = (ListView)view.findViewById(R.id.ListViewHome);
+        listView1 = (ListView)view.findViewById(R.id.list1);
+        listView2 = (ListView)view.findViewById(R.id.list2);
+
+        listView3 = (ListView)view.findViewById(R.id.list3);
+
 
         String[] values = new String[] { "Android List View",
                 "Adapter implementation ",
@@ -108,34 +111,38 @@ public class MainFragment extends Fragment {
 
         GenerateListView(values);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
-
-                // ListView Clicked item index
-                int itemPosition     = position;
-
-                // ListView Clicked item value
-                String  itemValue    = (String) listView.getItemAtPosition(position);
-
-                // Show Alert
-
-                Toast messageBox = Toast.makeText(getActivity() , +itemPosition+ "Insurance removed" +itemValue  , Toast.LENGTH_SHORT);
-                messageBox.show();
-
-
-            }
-
-        });
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view,
+//                                    int position, long id) {
+//
+//                // ListView Clicked item index
+//                int itemPosition     = position;
+//
+//                // ListView Clicked item value
+//                String  itemValue    = (String) listView.getItemAtPosition(position);
+//
+//                // Show Alert
+//
+//                Toast messageBox = Toast.makeText(getActivity() , +itemPosition+ "Insurance removed" +itemValue  , Toast.LENGTH_SHORT);
+//                messageBox.show();
+//
+//
+//            }
+//
+//        });
 
         return view;
     }
 
     public void GenerateListView(String[] values){
         ArrayAdapter adapter = new ArrayAdapter(this.getContext(), android.R.layout.simple_list_item_1, values);
-        listView.setAdapter(adapter);
+        listView1.setAdapter(adapter);
+        listView2.setAdapter(adapter);
+
+        listView3.setAdapter(adapter);
+
     }
 
 

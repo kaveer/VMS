@@ -1,6 +1,9 @@
 package com.example.avitah.vms;
 
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +17,7 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.example.avitah.Activity.MainFragment;
 import com.example.avitah.Fragment.Accident.AccidentFragment;
 import com.example.avitah.Fragment.AnnualExpenseReport.AnnualExpenseReport;
 import com.example.avitah.Fragment.CarWash.CarWashFragment;
@@ -26,6 +30,7 @@ import com.example.avitah.Fragment.OtherExpense.OtherExpensesFragment;
 import com.example.avitah.Fragment.Owner.OwnerDetailsFragment;
 import com.example.avitah.Fragment.Parking.ParkingFragment;
 import com.example.avitah.Fragment.RepairAndServicing.RepairServicingFragment;
+import com.example.avitah.Fragment.Share.ShareFragment;
 import com.example.avitah.Fragment.Taxation.RoadTaxationFragment;
 import com.example.avitah.Fragment.Tools.ToolsFragment;
 import com.example.avitah.Fragment.Vehicle.SelectVehicleFragment;
@@ -196,10 +201,14 @@ public class VMS extends AppCompatActivity
             fmTransaction.replace(R.id.Frame_container, fragment);
             fmTransaction.commit();
         } else if (id == R.id.NavFacebook) {
-            FacebookFragment fragment = new FacebookFragment();
-            android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
-            fmTransaction.replace(R.id.Frame_container, fragment);
-            fmTransaction.commit();
+            if(isNetworkConnected()){
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/VMS-Avi-406670713021198/?__mref=message_bubble"));
+                startActivity(browserIntent);
+            }
+            else {
+                Toast messageBox = Toast.makeText(this , "No internet connection" , Toast.LENGTH_LONG);
+                messageBox.show();
+            }
         }else if(id == R.id.ExpenseReport){
             ExpenseReport fragment = new ExpenseReport();
             android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
@@ -215,5 +224,17 @@ public class VMS extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    protected boolean isNetworkConnected() {
+        try {
+            ConnectivityManager mConnectivityManager = (ConnectivityManager) this.getSystemService(this.CONNECTIVITY_SERVICE);
+            NetworkInfo mNetworkInfo = mConnectivityManager.getActiveNetworkInfo();
+            return (mNetworkInfo == null) ? false : true;
+
+        }catch (NullPointerException e){
+            return false;
+
+        }
     }
 }
