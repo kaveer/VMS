@@ -190,6 +190,19 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/BtnFuelHistory"
                         android:layout_weight="1" />
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <Button
+                        android:id="@+id/BtnFineGraph"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="View Graph"
+                        android:layout_weight="1"/>
                 </TableRow>
 
             </TableLayout>

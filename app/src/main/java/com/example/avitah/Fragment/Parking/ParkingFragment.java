@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.avitah.DbHandler.DBHandler;
-import com.example.avitah.Tables.TableCarWash;
 import com.example.avitah.Tables.TableParking;
 import com.example.avitah.Tables.TableUser;
 import com.example.avitah.vms.R;
@@ -62,6 +61,18 @@ public class ParkingFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 NavigateToVehicleFragment();
+            }
+        });
+
+
+        Button buttonParkingGraph   = (Button)view.findViewById(R.id.BtnParkingGraph);
+        buttonParkingGraph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ParkingGraphFragment fragment = new ParkingGraphFragment();
+                android.support.v4.app.FragmentTransaction fmTransaction = getFragmentManager().beginTransaction();
+                fmTransaction.replace(R.id.Frame_container, fragment);
+                fmTransaction.commit();
             }
         });
 

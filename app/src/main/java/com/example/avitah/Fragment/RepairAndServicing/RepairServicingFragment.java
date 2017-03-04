@@ -64,6 +64,17 @@ public class RepairServicingFragment extends Fragment {
             }
         });
 
+        Button buttonRepairGraph   = (Button)view.findViewById(R.id.BtnRepairGraph);
+        buttonRepairGraph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RepairGraphFragment fragment = new RepairGraphFragment();
+                android.support.v4.app.FragmentTransaction fmTransaction = getFragmentManager().beginTransaction();
+                fmTransaction.replace(R.id.Frame_container, fragment);
+                fmTransaction.commit();
+            }
+        });
+
         return view;
     }
 

@@ -21,9 +21,11 @@ public class Login extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //make application fullscreen
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
 
+        //display the xml found in layout
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -41,12 +43,12 @@ public class Login extends AppCompatActivity {
         email = (EditText)findViewById(R.id.TextboxEmailLogin);
         password = (EditText)findViewById(R.id.TextboxPasswordLogin);
 
-
-
         if(login.getId() == R.id.ButtonLogin){
             if(ValidateEditText() && GetUser()){
                 Intent main = new Intent(Login.this, VMS.class);
                 startActivity(main);
+
+                //display message box at the bottom
                 Toast messageBox = Toast.makeText(Login.this , "Login successful" , Toast.LENGTH_LONG);
                 messageBox.show();
             }

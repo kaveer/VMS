@@ -121,6 +121,12 @@
                         android:text="View history"
                         android:id="@+id/BtnOtherExpensehistory"
                         android:layout_gravity="left|center_vertical" />
+
+                    <Button
+                        android:id="@+id/BtnOtherGraph"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="View Graph"/>
                 </LinearLayout>
 
             </RelativeLayout>

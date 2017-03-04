@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.example.avitah.DbHandler.DBHandler;
 import com.example.avitah.Tables.TableOtherExpense;
-import com.example.avitah.Tables.TableParking;
 import com.example.avitah.Tables.TableUser;
 import com.example.avitah.vms.R;
 
@@ -60,6 +59,17 @@ public class OtherExpensesFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 NavigateToVehicleFragment();
+            }
+        });
+
+        Button buttonOtherGraph   = (Button)view.findViewById(R.id.BtnOtherGraph);
+        buttonOtherGraph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OtherGraphFragment fragment = new OtherGraphFragment();
+                android.support.v4.app.FragmentTransaction fmTransaction = getFragmentManager().beginTransaction();
+                fmTransaction.replace(R.id.Frame_container, fragment);
+                fmTransaction.commit();
             }
         });
 

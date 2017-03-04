@@ -138,6 +138,12 @@
                         android:text="View history"
                         android:id="@+id/BtnCarWashHistory"
                         android:layout_gravity="left|center_vertical" />
+
+                    <Button
+                        android:text="View Graph"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/BtnCarWashGraph"/>
                 </LinearLayout>
 
             </RelativeLayout>

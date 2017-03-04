@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.avitah.DbHandler.DBHandler;
-import com.example.avitah.Fragment.Fuel.FuelHistoryFragment;
 import com.example.avitah.Tables.TableFines;
 import com.example.avitah.Tables.TableUser;
 import com.example.avitah.vms.R;
@@ -65,6 +64,17 @@ public class FinesFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 NavigateToVehicleFragment();
+            }
+        });
+
+        Button buttonFineGraph   = (Button)view.findViewById(R.id.BtnFineGraph);
+        buttonViewHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FineGraphFragment fragment = new FineGraphFragment();
+                android.support.v4.app.FragmentTransaction fmTransaction = getFragmentManager().beginTransaction();
+                fmTransaction.replace(R.id.Frame_container, fragment);
+                fmTransaction.commit();
             }
         });
 

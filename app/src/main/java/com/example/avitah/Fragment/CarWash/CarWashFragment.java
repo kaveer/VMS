@@ -63,6 +63,17 @@ public class CarWashFragment extends Fragment {
             }
         });
 
+        Button buttonGraph   = (Button)view.findViewById(R.id.BtnCarWashGraph);
+        buttonGraph.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CarWashGraphFragment fragment = new CarWashGraphFragment();
+                android.support.v4.app.FragmentTransaction fmTransaction = getFragmentManager().beginTransaction();
+                fmTransaction.replace(R.id.Frame_container, fragment);
+                fmTransaction.commit();
+            }
+        });
+
         return view;
     }
 
