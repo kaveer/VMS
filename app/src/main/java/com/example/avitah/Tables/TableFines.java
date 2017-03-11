@@ -11,7 +11,7 @@ public class TableFines {
     public  static int userId;
     public  static  String court;
     public  static  String fineDate;
-    public  static String charge;
+    public  static Float charge;
     public  static String breachOfArticle;
     public  static String ordinace;
     public  static String issuedBy;
@@ -23,7 +23,7 @@ public class TableFines {
         public int userId;
         public  String court;
         public  String fineDate;
-        public String charge;
+        public Float charge;
         public String breachOfArticle;
         public String ordinace;
         public String issuedBy;

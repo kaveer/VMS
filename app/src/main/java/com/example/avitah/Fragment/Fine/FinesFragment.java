@@ -68,7 +68,7 @@ public class FinesFragment extends Fragment {
         });
 
         Button buttonFineGraph   = (Button)view.findViewById(R.id.BtnFineGraph);
-        buttonViewHistory.setOnClickListener(new View.OnClickListener() {
+        buttonFineGraph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FineGraphFragment fragment = new FineGraphFragment();
@@ -144,7 +144,7 @@ public class FinesFragment extends Fragment {
         TableFines.userId = TableUser.userId;
         TableFines.court = court.getText().toString().trim();
         TableFines.fineDate = date.getText().toString().trim();
-        TableFines.charge =  charge.getText().toString().trim();
+        TableFines.charge = Float.parseFloat(charge.getText().toString().trim());
         TableFines.breachOfArticle = breachOfArticle.getText().toString().trim();
         TableFines.ordinace = ordinance.getText().toString().trim();
         TableFines.issuedBy = issuedBy.getText().toString().trim();

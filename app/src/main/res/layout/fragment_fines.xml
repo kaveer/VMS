@@ -79,12 +79,12 @@
                         android:id="@+id/textView36" />
 
                     <EditText
+                        android:id="@+id/TxtChargeFine"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:ems="10"
-                        android:id="@+id/TxtChargeFine"
                         android:layout_weight="1"
-                        android:inputType="textMultiLine" />
+                        android:ems="10"
+                        android:inputType="numberDecimal"/>
 
                 </TableRow>
 

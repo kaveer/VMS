@@ -94,7 +94,7 @@ public class FineHistoryFragment extends Fragment {
 
         for (TableFines.FineNonStatic fine:  fineList) {
             fineRadioButton[counter]  = new RadioButton(getContext());
-            fineRadioButton[counter].setText("Added at " + fine.fineDate + " ,cost :" + fine.breachOfArticle);
+            fineRadioButton[counter].setText("Added at " + fine.fineDate + " ,cost :" + fine.charge);
             fineRadioButton[counter].setId(fine.FineId);
             fineRadioGroup.addView(fineRadioButton[counter]);
         }

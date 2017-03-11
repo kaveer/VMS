@@ -166,7 +166,7 @@ public class DBHandler extends SQLiteOpenHelper {
                         + TableFines.TableFineDetails.col_userId + "  INT,"
                         + TableFines.TableFineDetails.col_Court +  "  TEXT,"
                         + TableFines.TableFineDetails.col_FineDate + "  DATE DEFAULT CURRENT_DATE,"
-                        + TableFines.TableFineDetails.col_Charge + "  TEXT,"
+                        + TableFines.TableFineDetails.col_Charge + "  INT,"
                         + TableFines.TableFineDetails.col_BreachOfArticle + "  TEXT,"
                         + TableFines.TableFineDetails.col_Ordinance + "  TEXT,"
                         + TableFines.TableFineDetails.col_IssuedBy + "  TEXT,"
@@ -818,7 +818,7 @@ public class DBHandler extends SQLiteOpenHelper {
                 fine.userId =  Integer.parseInt(cursor.getString(1));
                 fine.court = cursor.getString(2);
                 fine.fineDate = cursor.getString(3);
-                fine.charge =  cursor.getString(4) ;
+                fine.charge = Float.parseFloat(cursor.getString(4) );
                 fine.breachOfArticle = cursor.getString(5);
                 fine.ordinace = cursor.getString(6);
                 fine.issuedBy = cursor.getString(7);
