@@ -36,6 +36,8 @@ public class InsuranceHistoryFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        getActivity().setTitle("Insurance History");
+
         int counter = 0;
         View view = inflater.inflate(R.layout.fragment_insurance_history, container, false);
         insuranceRadioGroup =(RadioGroup)view.findViewById(R.id.RadioGroupInsurance);

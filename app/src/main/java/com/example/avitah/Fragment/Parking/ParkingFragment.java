@@ -38,6 +38,8 @@ public class ParkingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getActivity().setTitle("Parking");
+
         View view = inflater.inflate(R.layout.fragment_parking, container, false);
         InitializeEDitText(view);
         date.setText(GetDateNow());

@@ -10,11 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.avitah.DbHandler.DBHandler;
-import com.example.avitah.Fragment.Insurance.InsuranceHistoryFragment;
 import com.example.avitah.Tables.TableRoadTaxation;
 import com.example.avitah.Tables.TableUser;
 import com.example.avitah.Tables.TableVehicle;
@@ -46,6 +44,8 @@ public class RoadTaxationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getActivity().setTitle("Tax");
+
         View view = inflater.inflate(R.layout.fragment_road_taxation, container, false);
         InitializeText(view);
 

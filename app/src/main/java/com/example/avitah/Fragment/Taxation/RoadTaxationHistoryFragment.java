@@ -34,6 +34,8 @@ public class RoadTaxationHistoryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getActivity().setTitle("Tax History");
+
         View view = inflater.inflate(R.layout.fragment_road_taxation_history, container, false);
         int counter = 0;
         taxRadioGroup =(RadioGroup)view.findViewById(R.id.RadioGroupRoadTaxation);

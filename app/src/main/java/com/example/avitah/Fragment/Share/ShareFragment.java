@@ -31,6 +31,8 @@ public class ShareFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getActivity().setTitle("Share");
+
         View view = inflater.inflate(R.layout.fragment_share, container, false);
 
         recipient = (EditText) view.findViewById(R.id.txt_recipient) ;

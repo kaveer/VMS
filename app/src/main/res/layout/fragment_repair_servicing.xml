@@ -9,14 +9,6 @@
     android:orientation="vertical"
     tools:context="com.example.avitah.vms.com.example.avitah.Fragment.RepairAndServicing.RepairServicingFragment">
 
-    <TextView
-        android:text="Repair and servicing"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView49"
-        android:textAlignment="center"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
     <!-- TODO: Update blank fragment layout -->
     <ScrollView
         android:layout_width="match_parent"

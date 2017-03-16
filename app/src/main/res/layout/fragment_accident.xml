@@ -9,14 +9,6 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Accident"
-        android:id="@+id/textView"
-        android:textAlignment="center" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

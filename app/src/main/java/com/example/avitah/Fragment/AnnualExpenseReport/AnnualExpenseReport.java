@@ -36,6 +36,9 @@ public class AnnualExpenseReport extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        getActivity().setTitle("Annual Expense Report");
+
         View view = inflater.inflate(R.layout.fragment_annual_expense_report, container, false);
         listView = (ListView)view.findViewById(R.id.ListViewAnnualExpenseReport);
 

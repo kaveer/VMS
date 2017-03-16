@@ -12,7 +12,6 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.avitah.DbHandler.DBHandler;
-import com.example.avitah.Tables.TableCarWash;
 import com.example.avitah.Tables.TableParking;
 import com.example.avitah.Tables.TableUser;
 import com.example.avitah.vms.R;
@@ -35,6 +34,8 @@ public class ParkingHistoryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getActivity().setTitle("Parking History");
+
         int counter = 0;
         View view = inflater.inflate(R.layout.fragment_parking_history, container, false);
         parkingRadioGroup = (RadioGroup)view.findViewById(R.id.RadioGroupParking);

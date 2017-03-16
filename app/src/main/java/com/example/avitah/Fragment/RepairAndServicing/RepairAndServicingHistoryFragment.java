@@ -33,6 +33,8 @@ public class RepairAndServicingHistoryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getActivity().setTitle("Repair & Servicing History");
+
         View view = inflater.inflate(R.layout.fragment_repair_and_servicing_history, container, false);
         int counter = 0;
         repairRadioGroup = (RadioGroup)view.findViewById(R.id.RadioGroupRepair);

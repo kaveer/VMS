@@ -9,14 +9,6 @@
     android:orientation="vertical"
     tools:context="com.example.avitah.Fragment.Parking.ParkingFragment">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Parking"
-        android:id="@+id/textView4"
-        android:textAlignment="center" />
-
     <!-- TODO: Update blank fragment layout -->
     <ScrollView
         android:layout_width="match_parent"

@@ -32,6 +32,8 @@ public class OwnerDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getActivity().setTitle("Owner Details");
+
         View view = inflater.inflate(R.layout.fragment_owner_details, container, false);
 
         InitializeTextEdit(view);

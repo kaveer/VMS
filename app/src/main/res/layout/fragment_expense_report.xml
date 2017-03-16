@@ -10,13 +10,6 @@
     tools:context="com.example.avitah.Fragment.ExpenseReport.ExpenseReport">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Expense Report"
-        android:id="@+id/textView"
-        android:textAlignment="center" />
 
     <ScrollView
         android:layout_width="match_parent"

@@ -35,6 +35,8 @@ public class ParkingGraphFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getActivity().setTitle("Parking Graph");
+
         View view = inflater.inflate(R.layout.fragment_parking_graph, container, false);
 
 

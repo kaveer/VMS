@@ -34,6 +34,9 @@ public class FineHistoryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        getActivity().setTitle("Fine History");
+
         View view = inflater.inflate(R.layout.fragment_fine_history, container, false);
 
         int counter = 0;

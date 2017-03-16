@@ -9,14 +9,6 @@
     tools:context="com.example.avitah.Fragment.Fuel.FuelFragment"
     android:orientation="vertical">
 
-    <TextView
-        android:text="Fuel Tracker"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView49"
-        android:textAlignment="center"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-
     <!-- TODO: Update blank fragment layout -->
 
 

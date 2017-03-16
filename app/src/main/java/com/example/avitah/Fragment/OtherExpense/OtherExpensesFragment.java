@@ -36,6 +36,9 @@ public class OtherExpensesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        getActivity().setTitle("Other Expense");
+
         View view = inflater.inflate(R.layout.fragment_other_expenses, container, false);
         InitializeEDitText(view);
         date.setText(GetDateNow());

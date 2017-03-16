@@ -35,6 +35,8 @@ public class CarWashGraphFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getActivity().setTitle("Car Wash Graph");
+
         View view = inflater.inflate(R.layout.fragment_car_wash_graph, container, false);
 
         GraphView graph = (GraphView)view.findViewById(R.id.graphExpense);

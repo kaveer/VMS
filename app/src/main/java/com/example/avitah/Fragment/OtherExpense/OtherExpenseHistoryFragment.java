@@ -34,6 +34,9 @@ public class OtherExpenseHistoryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        getActivity().setTitle("Other Expense History");
+
         int counter = 0;
         View view = inflater.inflate(R.layout.fragment_other_expense_history, container, false);
         otherExpenseRadioGroup = (RadioGroup)view.findViewById(R.id.RadioGroupOtherExpense);

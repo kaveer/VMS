@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import com.example.avitah.DbHandler.DBHandler;
 import com.example.avitah.Tables.TableCarWash;
-import com.example.avitah.Tables.TableFuel;
 import com.example.avitah.Tables.TableUser;
 import com.example.avitah.vms.R;
 
@@ -36,6 +35,9 @@ public class CarWashHistoryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        getActivity().setTitle("Car Wash History");
+
         int counter = 0;
         View view = inflater.inflate(R.layout.fragment_car_wash_history, container, false);
         carWashRadioGroup = (RadioGroup)view.findViewById(R.id.RadioGroupCarWash);

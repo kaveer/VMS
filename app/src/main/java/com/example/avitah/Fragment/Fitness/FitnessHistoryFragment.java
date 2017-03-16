@@ -34,6 +34,8 @@ public class FitnessHistoryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getActivity().setTitle("Fitness History");
+
         View view = inflater.inflate(R.layout.fragment_fitness_history, container, false);
 
         int counter = 0;

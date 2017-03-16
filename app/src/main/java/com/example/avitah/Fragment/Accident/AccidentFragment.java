@@ -43,6 +43,8 @@ public class AccidentFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        getActivity().setTitle("Accident");
+
         final View view = inflater.inflate(R.layout.fragment_accident, container, false);
         InitializeEditText(view);
         date.setText(GetDateNow());

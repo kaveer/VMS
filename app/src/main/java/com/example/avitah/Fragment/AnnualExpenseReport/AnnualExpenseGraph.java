@@ -16,7 +16,6 @@ import com.jjoe64.graphview.ValueDependentColor;
 import com.jjoe64.graphview.helper.StaticLabelsFormatter;
 import com.jjoe64.graphview.series.BarGraphSeries;
 import com.jjoe64.graphview.series.DataPoint;
-import com.jjoe64.graphview.series.LineGraphSeries;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -32,6 +31,9 @@ public class AnnualExpenseGraph extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        getActivity().setTitle("Annual Expense Graph");
+
         View view = inflater.inflate(R.layout.fragment_annual_expense_graph, container, false);
 
         DBHandler DB = new DBHandler(getContext());

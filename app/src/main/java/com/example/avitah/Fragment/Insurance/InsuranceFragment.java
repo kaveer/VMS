@@ -19,7 +19,6 @@ import com.example.avitah.Tables.TableUser;
 import com.example.avitah.Tables.TableVehicle;
 import com.example.avitah.vms.R;
 
-import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -54,6 +53,8 @@ public class InsuranceFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+
+        getActivity().setTitle("Insurance");
 
         View view = inflater.inflate(R.layout.fragment_insurance, container, false);
         InitializeText(view);
