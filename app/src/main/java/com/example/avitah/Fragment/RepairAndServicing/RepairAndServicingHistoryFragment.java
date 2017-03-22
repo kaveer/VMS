@@ -86,7 +86,7 @@ public class RepairAndServicingHistoryFragment extends Fragment {
 
         for (TableRepair.RepairNonStatic repair:  repairList) {
             repairRadioButton[counter]  = new RadioButton(getContext());
-            repairRadioButton[counter].setText("Car parked at " + repair.repairDescription + " for " +repair.repairDate + " on " +repair.Cost);
+            repairRadioButton[counter].setText(String.format("Repaired on %s with a total cost of %s. More info: %s, parts added: %s", repair.repairDate, String.valueOf(repair.Cost), repair.repairDescription, repair.repairAdded));
             repairRadioButton[counter].setId(repair.repairId);
             repairRadioGroup.addView(repairRadioButton[counter]);
         }

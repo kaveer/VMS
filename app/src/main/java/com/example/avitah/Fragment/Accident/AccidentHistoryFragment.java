@@ -96,7 +96,7 @@ public class AccidentHistoryFragment extends Fragment {
 
         for (TableAccident.AccidentNonStatic accident:  accidentList) {
             accidentRadioButton[counter]  = new RadioButton(getContext());
-            accidentRadioButton[counter].setText("Accident with " + accident.acciName + " owned  " + accident.makeModel + " ,with " + accident.regNo );
+            accidentRadioButton[counter].setText(String.format("Accident on %s with the car model %s with registration no %s, owned by %s (contact No %s). Insured at %s with policy No %s .More info: %s", accident.acciDate, accident.makeModel, accident.regNo, accident.acciName, String.valueOf(accident.contactNo), accident.insurance, accident.policyNo , accident.acciDescription));
             accidentRadioButton[counter].setId(accident.accidentId);
             accidentRadioGroup.addView(accidentRadioButton[counter]);
         }

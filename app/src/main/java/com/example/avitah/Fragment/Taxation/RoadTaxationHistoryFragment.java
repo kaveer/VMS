@@ -87,7 +87,7 @@ public class RoadTaxationHistoryFragment extends Fragment {
 
         for (TableRoadTaxation.RoadTaxationNonStatic tax:  taxList) {
             taxRadioButton[counter]  = new RadioButton(getContext());
-            taxRadioButton[counter].setText(tax.taxPaymentDate + "  " + tax.taxCost + " ,Expired on " + tax.expiryDate );
+            taxRadioButton[counter].setText(String.format("Tax paid on %s with a total cost of %s and expired on %s. More info: %s", tax.taxPaymentDate, String.valueOf(tax.taxCost), tax.expiryDate, tax.taxDescription));
             taxRadioButton[counter].setId(tax.taxId);
             taxRadioGroup.addView(taxRadioButton[counter]);
         }

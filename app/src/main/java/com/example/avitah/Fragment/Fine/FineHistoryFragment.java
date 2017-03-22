@@ -97,7 +97,7 @@ public class FineHistoryFragment extends Fragment {
 
         for (TableFines.FineNonStatic fine:  fineList) {
             fineRadioButton[counter]  = new RadioButton(getContext());
-            fineRadioButton[counter].setText("Added at " + fine.fineDate + " ,cost :" + fine.charge);
+            fineRadioButton[counter].setText(String.format("Fine received on %s, issued by %s for the breach of article: %s. A total cost of %s was paid at court %s", fine.fineDate, fine.issuedBy, fine.breachOfArticle, String.valueOf(fine.charge), fine.court));
             fineRadioButton[counter].setId(fine.FineId);
             fineRadioGroup.addView(fineRadioButton[counter]);
         }

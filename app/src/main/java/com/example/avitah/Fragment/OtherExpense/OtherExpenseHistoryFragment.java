@@ -94,7 +94,7 @@ public class OtherExpenseHistoryFragment extends Fragment {
 
         for (TableOtherExpense.OtherExpenseNonStatic otherExpense:  otherExpenseList) {
             otherExpenseRadioButton[counter]  = new RadioButton(getContext());
-            otherExpenseRadioButton[counter].setText(otherExpense.Description + " on " + otherExpense.date + " cost " + otherExpense.Cost);
+            otherExpenseRadioButton[counter].setText(String.format("Other expense occurred on %s with a total cost of %s. More info: %s", otherExpense.date, String.valueOf(otherExpense.Cost), otherExpense.Description) );
             otherExpenseRadioButton[counter].setId(otherExpense.otherExpenseId);
             otherExpenseRadioGroup.addView(otherExpenseRadioButton[counter]);
         }

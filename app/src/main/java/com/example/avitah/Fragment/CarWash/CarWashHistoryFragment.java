@@ -43,7 +43,7 @@ public class CarWashHistoryFragment extends Fragment {
         carWashRadioGroup = (RadioGroup)view.findViewById(R.id.RadioGroupCarWash);
 
         if(!GetCarWash()) {
-            Toast messageBox = Toast.makeText(getActivity() , "No Fuel record!!" , Toast.LENGTH_SHORT);
+            Toast messageBox = Toast.makeText(getActivity() , "No Car wash record!!" , Toast.LENGTH_SHORT);
             messageBox.show();
         }
 
@@ -96,7 +96,7 @@ public class CarWashHistoryFragment extends Fragment {
 
         for (TableCarWash.CarWashNonStatic wash:  carWashList) {
             washRadioButton[counter]  = new RadioButton(getContext());
-            washRadioButton[counter].setText("Car Washed on " + wash.date + " at :" + wash.Location + " cost" + wash.Cost);
+            washRadioButton[counter].setText(String.format("Car washed on %s at %s with a total cost of %s. More info %s", wash.date, wash.Location, String.valueOf(wash.Cost), wash.Description));
             washRadioButton[counter].setId(wash.carWashId);
             carWashRadioGroup.addView(washRadioButton[counter]);
         }

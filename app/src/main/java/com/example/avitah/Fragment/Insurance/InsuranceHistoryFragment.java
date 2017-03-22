@@ -100,7 +100,7 @@ public class InsuranceHistoryFragment extends Fragment {
 
         for (TableInsurance.InsuranceNonStatic insurance:  InsuranceList) {
             InsuranceRadioButton[counter]  = new RadioButton(getContext());
-            InsuranceRadioButton[counter].setText(insurance.insuranceName + "  " + insurance.policyNo + " ,Expired on " + insurance.expiryDate );
+            InsuranceRadioButton[counter].setText(String.format("%s type insurance obtained from %s with policy no : %s and certificate no: %s. More info: effective date: %s and expiry date: %s. A total cost of %s was paid", insurance.insuranceType, insurance.insuranceName, String.valueOf(insurance.policyNo), insurance.certificateNo, insurance.effectiveDate, insurance.expiryDate, String.valueOf(insurance.insuranceCost)));
             InsuranceRadioButton[counter].setId(insurance.insuranceId);
             insuranceRadioGroup.addView(InsuranceRadioButton[counter]);
         }

@@ -88,7 +88,7 @@ public class FitnessHistoryFragment extends Fragment {
 
         for (TableFitness.FitnessNonStatic fitness:  fitnessList) {
             fitnessRadioButton[counter]  = new RadioButton(getContext());
-            fitnessRadioButton[counter].setText(fitness.expiryDate + "  " + fitness.Location + " ,Expired on " + fitness.expiryDate );
+            fitnessRadioButton[counter].setText(String.format("Fitness with the duration of %s obtained at %s with an expiry date %s. A total cost of %s was paid", fitness.duration, fitness.Location, fitness.expiryDate, String.valueOf(fitness.cost)));
             fitnessRadioButton[counter].setId(fitness.fitnessId);
             fitnessRadioGroup.addView(fitnessRadioButton[counter]);
         }

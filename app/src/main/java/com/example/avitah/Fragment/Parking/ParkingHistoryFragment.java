@@ -94,7 +94,7 @@ public class ParkingHistoryFragment extends Fragment {
 
         for (TableParking.ParkingNonStatic parking:  ParkingList) {
             parkingRadioButton[counter]  = new RadioButton(getContext());
-            parkingRadioButton[counter].setText("Car parked at " + parking.Location + " for " +parking.duration + " on " +parking.date);
+            parkingRadioButton[counter].setText(String.format("Parking at %s on %s, duration of %s with a total cost of %s. More info: %s", parking.Location, parking.date, String.valueOf(parking.duration), String.valueOf(parking.Cost), parking.Description));
             parkingRadioButton[counter].setId(parking.parkingId);
             parkingRadioGroup.addView(parkingRadioButton[counter]);
         }
