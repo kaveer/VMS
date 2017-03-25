@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.avitah.DbHandler.DBHandler;
@@ -20,7 +21,7 @@ import com.example.avitah.vms.R;
 public class VehicleDetailsFragment extends Fragment {
 
     EditText regNo;
-    EditText make;
+    Spinner make;
     EditText model;
     EditText classType;
     EditText type;
@@ -110,7 +111,7 @@ public class VehicleDetailsFragment extends Fragment {
 
     public void GetText(){
         regNo.setText(TableVehicle.regNo);
-        make.setText(TableVehicle.make);
+        make.getSelectedItem().toString();
         model.setText(TableVehicle.model);
         classType.setText(TableVehicle.classType);
         type.setText(TableVehicle.type);
@@ -138,7 +139,7 @@ public class VehicleDetailsFragment extends Fragment {
         }
 
         TableVehicle.regNo = regNo.getText().toString().trim();
-        TableVehicle.make = make.getText().toString().trim();
+        TableVehicle.make = make.getSelectedItem().toString();
         TableVehicle.model = model.getText().toString().trim();
         TableVehicle.classType = classType.getText().toString().trim();
         TableVehicle.type = type.getText().toString().trim();
@@ -152,7 +153,7 @@ public class VehicleDetailsFragment extends Fragment {
 
     public  void InitializeEditText(View view){
         regNo = (EditText)view.findViewById(R.id.TxtRegNoVehicle);
-        make = (EditText)view.findViewById(R.id.TxtMakeVehicle);
+        make = (Spinner) view.findViewById(R.id.spinnerCarMake);
         model = (EditText)view.findViewById(R.id.TxtModelVehicle);
         classType = (EditText)view.findViewById(R.id.TxtClassVehicle);
         type = (EditText)view.findViewById(R.id.TxtTypeVehicle);
@@ -171,10 +172,10 @@ public class VehicleDetailsFragment extends Fragment {
             regNo.setError("Enter Registration Number");
             return result = false;
         }
-        if(make.getText().toString().trim().length() == 0){
-            make.setError("Enter Make");
-            return result = false;
-        }
+//        if(make.getText().toString().trim().length() == 0){
+//            make.setError("Enter Make");
+//            return result = false;
+//        }
         if(model.getText().toString().trim().length() ==0){
             model.setError("Enter Model");
             return result = false;

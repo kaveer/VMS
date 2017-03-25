@@ -35,6 +35,59 @@
         <item>December</item>
     </string-array>
 
+    <string-array name="CarMake">
+        <item>Acura</item>
+        <item>Alfa Romeo</item>
+        <item>Audi</item>
+        <item>Benz</item>
+        <item>BMW</item>
+        <item>Bugatti</item>
+        <item>Buick</item>
+        <item>Cadillac</item>
+        <item>Chevrolet</item>
+        <item>Chrysler</item>
+        <item>Citroen</item>
+        <item>Daewoo</item>
+        <item>Dodge</item>
+        <item>Ferrari</item>
+        <item>Ford</item>
+        <item>Foton</item>
+        <item>GM</item>
+        <item>GMC</item>
+        <item>Honda</item>
+        <item>Hyundai</item>
+        <item>Infiniti</item>
+        <item>Isuzu</item>
+        <item>Jeep</item>
+        <item>Kia</item>
+        <item>Lada</item>
+        <item>Lamborghini</item>
+        <item>Lexus</item>
+        <item>Lincoln</item>
+        <item>Lotus</item>
+        <item>Mercedes-Benz</item>
+        <item>Maybach</item>
+        <item>Mazda</item>
+        <item>Mini</item>
+        <item>Mitsubishi</item>
+        <item>Nissan</item>
+        <item>Oldsmobile</item>
+        <item>Opel</item>
+        <item>Peugeot</item>
+        <item>Pontiac</item>
+        <item>Porsche</item>
+        <item>Proton</item>
+        <item>Renault</item>
+        <item>Subaru</item>
+        <item>Suzuki</item>
+        <item>Tata</item>
+        <item>Toyota</item>
+        <item>Vauxhall</item>
+        <item>Volkswagen</item>
+        <item>Volvo</item>
+        <item>others</item>
+    </string-array>
+
     <string-array name="FitnessDuration">
         <item>6 months</item>
         <item>1 year </item>

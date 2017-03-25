@@ -58,15 +58,12 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/textView18" />
 
-                        <EditText
+                        <Spinner
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:inputType="textPersonName"
-                            android:ems="10"
-                            android:id="@+id/TxtMakeVehicle"
-                            android:singleLine="false"
+                            android:id="@+id/spinnerCarMake"
                             android:layout_weight="1"
-                            android:hint="Manufacturer" />
+                            android:entries="@array/CarMake"/>
 
                     </TableRow>
 
