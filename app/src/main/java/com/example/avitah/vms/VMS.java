@@ -32,7 +32,6 @@ import com.example.avitah.Fragment.Parking.ParkingFragment;
 import com.example.avitah.Fragment.RepairAndServicing.RepairServicingFragment;
 import com.example.avitah.Fragment.Share.ShareFragment;
 import com.example.avitah.Fragment.Taxation.RoadTaxationFragment;
-import com.example.avitah.Fragment.Tools.ToolsFragment;
 import com.example.avitah.Fragment.Vehicle.SelectVehicleFragment;
 
 public class VMS extends AppCompatActivity
@@ -145,12 +144,16 @@ public class VMS extends AppCompatActivity
             android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
             fmTransaction.replace(R.id.Frame_container, fragment);
             fmTransaction.commit();
-        } else if (id == R.id.NavTools) {
-            ToolsFragment fragment = new ToolsFragment();
-            android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
-            fmTransaction.replace(R.id.Frame_container, fragment);
-            fmTransaction.commit();
-        } else if (id == R.id.NavFuel) {
+        }
+
+//        else if (id == R.id.NavTools) {
+//            ToolsFragment fragment = new ToolsFragment();
+//            android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
+//            fmTransaction.replace(R.id.Frame_container, fragment);
+//            fmTransaction.commit();
+//        }
+
+        else if (id == R.id.NavFuel) {
             FuelFragment fragment = new FuelFragment();
             android.support.v4.app.FragmentTransaction fmTransaction = getSupportFragmentManager().beginTransaction();
             fmTransaction.replace(R.id.Frame_container, fragment);
