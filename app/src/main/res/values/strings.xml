@@ -94,6 +94,18 @@
         <item>2 year </item>
     </string-array>
 
+    <string-array name="SelectServicing">
+        <item>Replace filters</item>
+        <item>Tune the Engine</item>
+        <item>Check brake spar part</item>
+        <item>Check level and refill fluid</item>
+        <item>Grease and lubricate components</item>
+        <item>Inspect/replace timing belt/chain</item>
+        <item>check tires</item>
+        <item>check for proper operation of spar part</item>
+        <item>Check for any error in ECU</item>
+    </string-array>
+
 
     <string name="Test">This chapter provides an introduction to Visual Studio 2013, the programming environment, and toolset
 designed to help you build applications for Microsoft Windows. Visual Studio 2013 is the ideal tool

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.avitah.DbHandler.DBHandler;
@@ -25,6 +26,8 @@ import java.util.Calendar;
 public class RepairServicingFragment extends Fragment {
 
     EditText repairDate;
+    EditText repairMileage;
+    Spinner repairServicing;
     EditText repairDescription;
     EditText repairAdded;
     EditText repairCost;
@@ -95,6 +98,8 @@ public class RepairServicingFragment extends Fragment {
 
     private void SetEditText() {
         TableRepair.repairDate = repairDate.getText().toString().trim();
+        TableRepair.repairMileage = Integer.parseInt(repairMileage.getText().toString().trim());
+        TableRepair.repairServicing = repairServicing.getSelectedItem().toString();
         TableRepair.repairDescription = repairDescription.getText().toString().trim();
         TableRepair.repairAdded = repairAdded.getText().toString().trim();
         TableRepair.Cost = Float.parseFloat(repairCost.getText().toString().trim());
@@ -135,6 +140,8 @@ public class RepairServicingFragment extends Fragment {
 
     private void InitializeEDitText(View view) {
         repairDate = (EditText)view.findViewById(R.id.repairDate);
+        repairMileage = (EditText)view.findViewById(R.id.repairMileage);
+        repairServicing = (Spinner)view.findViewById(R.id.spinnerSelectServicing);
         repairDescription = (EditText)view.findViewById(R.id.RepairDescription);
         repairAdded = (EditText)view.findViewById(R.id.RepairParts);
         repairCost = (EditText)view.findViewById(R.id.repairCost);

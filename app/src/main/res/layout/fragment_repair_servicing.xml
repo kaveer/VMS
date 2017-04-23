@@ -7,7 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:orientation="vertical"
-    tools:context="com.example.avitah.vms.com.example.avitah.Fragment.RepairAndServicing.RepairServicingFragment">
+    tools:context="com.example.avitah.Fragment.RepairAndServicing.RepairServicingFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <ScrollView
@@ -39,6 +39,44 @@
                         android:ems="10"
                         android:id="@+id/repairDate"
                         android:layout_weight="1" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mileage "/>
+
+                    <EditText
+                        android:id="@+id/repairMileage"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:inputType="number"
+                        android:layout_weight="1"/>
+
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/textView12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Servicing"/>
+
+                    <Spinner
+                        android:id="@+id/spinnerSelectServicing"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:entries="@array/SelectServicing"/>
                 </TableRow>
 
                 <TableRow

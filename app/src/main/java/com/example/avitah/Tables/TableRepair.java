@@ -10,6 +10,8 @@ public class TableRepair {
     public  static int repairId;
     public  static int userId;
     public  static String repairDate;
+    public  static int repairMileage;
+    public  static String repairServicing;
     public  static String repairDescription;
     public  static String repairAdded;
     public  static  float Cost;
@@ -20,6 +22,8 @@ public class TableRepair {
         public int repairId;
         public int userId;
         public String repairDate;
+        public int repairMileage;
+        public String repairServicing;
         public String repairDescription;
         public String repairAdded;
         public float Cost;
@@ -33,6 +37,8 @@ public class TableRepair {
         public  static String col_repairId = "RepairId";
         public  static String col_userId = "UserId";
         public  static String col_date = "RepairDate";
+        public  static String col_mileage = "Mileage";
+        public  static String col_servicing = "SelectedServicing";
         public  static String col_description = "Description";
         public  static String col_partAdded = "PartsAdded";
         public  static  String col_cost = "repairCost";

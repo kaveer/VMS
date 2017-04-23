@@ -206,6 +206,8 @@ public class DBHandler extends SQLiteOpenHelper {
                         + TableRepair.TableRepairDetails.col_repairId + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                         + TableRepair.TableRepairDetails.col_userId + "  INT,"
                         + TableRepair.TableRepairDetails.col_date +  "  DATE DEFAULT CURRENT_DATE,"
+                        + TableRepair.TableRepairDetails.col_mileage + "  INT,"
+                        + TableRepair.TableRepairDetails.col_servicing + "  TEXT,"
                         + TableRepair.TableRepairDetails.col_description + "  TEXT,"
                         + TableRepair.TableRepairDetails.col_partAdded + " TEXT,"
                         + TableRepair.TableRepairDetails.col_cost + "  REAL,"
@@ -965,6 +967,8 @@ public class DBHandler extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(TableRepair.TableRepairDetails.col_userId , TableRepair.userId);
         values.put(TableRepair.TableRepairDetails.col_date, TableRepair.repairDate);
+        values.put(TableRepair.TableRepairDetails.col_mileage, TableRepair.repairMileage);
+        values.put(TableRepair.TableRepairDetails.col_servicing, TableRepair.repairServicing);
         values.put(TableRepair.TableRepairDetails.col_description, TableRepair.repairDescription);
         values.put(TableRepair.TableRepairDetails.col_partAdded, TableRepair.repairAdded);
         values.put(TableRepair.TableRepairDetails.col_cost, TableRepair.Cost);
@@ -993,10 +997,12 @@ public class DBHandler extends SQLiteOpenHelper {
                 repair.repairId = Integer.parseInt(cursor.getString(0));
                 repair.userId =  Integer.parseInt(cursor.getString(1));
                 repair.repairDate = cursor.getString(2);
-                repair.repairDescription = cursor.getString(3);
-                repair.repairAdded =  cursor.getString(4) ;
-                repair.Cost = Float.parseFloat(cursor.getString(5));
-                repair.Status = cursor.getString(6);
+                repair.repairMileage = Integer.parseInt(cursor.getString(3));
+                repair.repairServicing = cursor.getString(4);
+                repair.repairDescription = cursor.getString(5);
+                repair.repairAdded =  cursor.getString(6) ;
+                repair.Cost = Float.parseFloat(cursor.getString(7));
+                repair.Status = cursor.getString(8);
 
 
                 repairList.add(repair);
