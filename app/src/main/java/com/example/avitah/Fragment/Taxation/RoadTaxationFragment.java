@@ -18,7 +18,11 @@ import com.example.avitah.Tables.TableUser;
 import com.example.avitah.Tables.TableVehicle;
 import com.example.avitah.vms.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 
 /**
@@ -153,7 +157,38 @@ public class RoadTaxationFragment extends Fragment {
             return false;
         }
 
+        if(!CompareDate(taxExpiryDate.getText().toString().trim(), GetDateNow())){
+            taxExpiryDate.setError("Expiry date cannot be before actual date");
+            return false;
+        }
+
         return  result;
+    }
+
+    private boolean CompareDate(String expiry, String actual) {
+        boolean result = true;
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            Date expiryDate = sdf.parse(expiry);
+            Date actualDate = sdf.parse(actual);
+
+            if (expiryDate.before(actualDate)){
+                return false;
+            }
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        return result;
+    }
+
+    public String GetDateNow(){
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); //import java.text.SimpleDateFormat instead of android.icu.text.simpleDateFormat
+        String currentDate = dateFormat.format(calendar.getTime());
+        return currentDate;
     }
 
     private boolean GetVehicle() {
