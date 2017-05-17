@@ -54,7 +54,7 @@ public class RepairGraphFragment extends Fragment {
                 }
                 series = new LineGraphSeries<>(values);
 
-                graph.setTitle("Car Wash");
+                graph.setTitle("Repair And Repair Graph");
                 graph.getGridLabelRenderer().setVerticalAxisTitle("Cost");
                 graph.getGridLabelRenderer().setHorizontalAxisTitle("Date");
 

@@ -50,7 +50,7 @@
             <ListView
                 android:id="@+id/listViewVehicle"
                 android:layout_width="fill_parent"
-                android:layout_height="400dp" />
+                android:layout_height="300dp" />
 
             <View
                 android:layout_width="fill_parent"
@@ -68,7 +68,7 @@
             <ListView
                 android:id="@+id/listViewExp"
                 android:layout_width="fill_parent"
-                android:layout_height="400dp" />
+                android:layout_height="300dp" />
 
             <View
                 android:layout_width="fill_parent"

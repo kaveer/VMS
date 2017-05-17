@@ -55,7 +55,7 @@ public class FineGraphFragment extends Fragment {
                 }
                 series = new LineGraphSeries<>(values);
 
-                graph.setTitle("Car Wash");
+                graph.setTitle("Fine Graph");
                 graph.getGridLabelRenderer().setVerticalAxisTitle("Cost");
                 graph.getGridLabelRenderer().setHorizontalAxisTitle("Date");
 

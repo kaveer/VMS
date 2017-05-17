@@ -55,7 +55,7 @@ public class ParkingGraphFragment extends Fragment {
                 }
                 series = new LineGraphSeries<>(values);
 
-                graph.setTitle("Car Wash");
+                graph.setTitle("Parking Graph");
                 graph.getGridLabelRenderer().setVerticalAxisTitle("Cost");
                 graph.getGridLabelRenderer().setHorizontalAxisTitle("Date");
 

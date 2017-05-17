@@ -54,7 +54,7 @@ public class OtherGraphFragment extends Fragment {
                 }
                 series = new LineGraphSeries<>(values);
 
-                graph.setTitle("Car Wash");
+                graph.setTitle("Other Expenses Graph");
                 graph.getGridLabelRenderer().setVerticalAxisTitle("Cost");
                 graph.getGridLabelRenderer().setHorizontalAxisTitle("Date");
 
